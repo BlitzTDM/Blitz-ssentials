@@ -1,8 +1,8 @@
-package net.tydiumcraft.blitztdm;
+package net.tydiumcraft.HiPlugim;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import net.tydiumcraft.blitztdm.helloworld.commands.HiCommand;
+import net.tydiumcraft.HiPlugim.commands.HiCommand;
 
 public class Main extends JavaPlugin {
 
