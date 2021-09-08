@@ -1,6 +1,7 @@
 package net.tydiumcraft.hiplugin;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.ChatColor;
 
 import net.tydiumcraft.hiplugin.commands.HiCommand;
 
