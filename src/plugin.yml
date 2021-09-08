@@ -1,0 +1,10 @@
+name: HiPlugin
+version: 1.0.0
+author: BlitzTDM
+main: net.tydiumcraft.hiplugin.Main
+description: The TydiumCraft Hi Plugin
+
+commands:
+  hi:
+    aliases: [hello]
+    description: The Hi Command
