@@ -15,7 +15,7 @@ public class Test implements CommandExecutor {
 	
 	private static final String pluginprefix = ChatColor.AQUA + "[" + ChatColor.DARK_AQUA + "BlitzSsentials" + ChatColor.AQUA + "] ";
 	private static final String bzssprefix = ChatColor.DARK_AQUA + "BZ" + ChatColor.BLUE + "Ss";
-	private static final String noperm = ChatColor.RED + "No Permission";
+	private static final String noperm = pluginprefix + ChatColor.RED + "No Permission";
 	private BlitzssentialsMain plugin;
 	
 	public test(BlitzssentialsMain plugin) {
@@ -41,7 +41,7 @@ public class Test implements CommandExecutor {
     	}
 		Player p = (Player) sender;
 		
-		if (p.hasPermission("TydiumCraft.BlitzTDM.test")) {
+		if (p.hasPermission("BlitzSsentials.test")) {
 		
     	return true;
 		} else {
