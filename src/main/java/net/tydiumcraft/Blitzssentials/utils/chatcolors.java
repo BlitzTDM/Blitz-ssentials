@@ -1,4 +1,4 @@
-package net.tydiumcraft.hiplugin.utils;
+package net.tydiumcraft.Blitzssentials.utils;
 
 import net.md_5.bungee.api.ChatColor;
 
