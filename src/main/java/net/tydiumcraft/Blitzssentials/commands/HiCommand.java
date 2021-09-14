@@ -1,4 +1,4 @@
-package net.tydiumcraft.hiplugin.commands;
+package net.tydiumcraft.Blitzssentials.commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
