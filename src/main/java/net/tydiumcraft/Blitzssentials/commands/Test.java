@@ -11,7 +11,7 @@ import net.tydiumcraft.Blitzssentials.BlitzssentialsMain;
 
 
 @SuppressWarnings("unused")
-public class test implements CommandExecutor {
+public class Test implements CommandExecutor {
 	
 	private static final String pluginprefix = ChatColor.AQUA + "[" + ChatColor.DARK_AQUA + "BlitzSsentials" + ChatColor.AQUA + "] ";
 	private static final String bzssprefix = ChatColor.DARK_AQUA + "BZ" + ChatColor.BLUE + "Ss";
