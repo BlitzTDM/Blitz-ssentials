@@ -1,7 +1,7 @@
-name: HiPlugin
+name: BlitzSsentials
 version: 1.0.0
 author: BlitzTDM
-main: net.tydiumcraft.hiplugin.Main
+main: net.tydiumcraft.Blitzssentials.Main
 description: The TydiumCraft Hi Plugin
 
 commands:
