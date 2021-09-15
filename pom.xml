@@ -8,8 +8,8 @@
 
     <!-- Plugin Information -->
     <!-- Name, Description, and URL are used in plugin.yml -->
-    <name>HiPlugin</name>
-    <description>Tydiumcraft Hi Plugin</description>
+    <name>BlitzSsentials</name>
+    <description>The BlitzSsentials</description>
     <url>http://tydiumcraft.net</url>
 
     <licenses>
@@ -48,7 +48,7 @@
     <properties>
         <!--  Author and MainClass are used in plugin.yml -->
         <author>BlitzTDM</author>
-        <mainClass>net.tydiumcraft.hiplugin.Main</mainClass>
+        <mainClass>net.tydiumcraft.Blitzssentials.BlitzssentialsMain</mainClass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
