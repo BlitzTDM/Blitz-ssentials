@@ -3,13 +3,13 @@
     <groupId>net.tydiumcraft</groupId>
     <artifactId>SpigotPlugin</artifactId>
     <!-- Version is used in plugin.yml -->
-    <version>0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <!-- Plugin Information -->
     <!-- Name, Description, and URL are used in plugin.yml -->
     <name>BlitzSsentials</name>
-    <description>The BlitzSsentials</description>
+    <description>The BlitzSsentials You Need</description>
     <url>http://tydiumcraft.net</url>
 
     <licenses>
@@ -48,7 +48,7 @@
     <properties>
         <!--  Author and MainClass are used in plugin.yml -->
         <author>BlitzTDM</author>
-        <mainClass>net.tydiumcraft.Blitzssentials.BlitzssentialsMain</mainClass>
+        <mainClass>net.tydiumcraft.hiplugin.Main</mainClass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
