@@ -5,8 +5,11 @@ main: net.tydiumcraft.Blitzssentials.BlitzssentialsMain
 description: The BlitzSsentials Plugin that is also ran on TydiumCraft
 
 commands:
+  bzsshelp:
+    aliases: [bzss]
+    description: The Helpful Command
   Test:
-    aliases: [tst,bzss]
+    aliases: [tst]
     description: The Test Command
   gmc:
     aliases: [gc]
