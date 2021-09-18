@@ -1,25 +1,117 @@
 name: BlitzSsentials
-version: 0.0.1
+version: 0.0.2
 author: BlitzTDM
 main: net.tydiumcraft.Blitzssentials.BlitzssentialsMain
 description: The BlitzSsentials Plugin that is also ran on TydiumCraft
+prefix: BZSs
+
+permissions:
+    BlitzSsentials.*:
+        description: Gives access to all BlitzSsential Commands and Permissions
+        children:
+            BlitzSsentials.test: true
+            BlitzSsentials.reload: true
+            BlitzSsentials.gamemode: true
+            BlitzSsentials.time: true
+            BlitzSsentials.weather: true
+            BlitzSsentials.adminhelp: true
+    BlitzSsentials.gamemode:
+        description: Gives access to all BlitzSsential Gamemode Commands
+        children:
+            BlitzSsentials.gms: true
+            BlitzSsentials.gmc: true
+            BlitzSsentials.gmsp: true
+            BlitzSsentials.gma: true
 
 commands:
   bzsshelp:
-    aliases: [bzss]
+    aliases: 
+    - bzss help
     description: The Helpful Command
   Test:
-    aliases: [tst]
+    aliases: 
+    - tst
     description: The Test Command
+    permission: BlitzSsentials.test
+  BZSsConfig:
+    aliases: 
+    - bzssreloadconfig
+    description: The Plugin's Reload Config Command
+    permission: BlitzSsentials.reload
+
+  gm:
+    description: GameMode Shortcut Command
+    permission: BlitzSsentials.gamemode
   gmc:
-    aliases: [gc]
+    aliases: 
+    - gc
+    - gm1
     description: CreativeMode Shortcut Command
+    permission: BlitzSsentials.gmc
   gms:
-    aliases: [gs]
+    aliases: 
+    - gs
+    - gm0
     description: SurvivalMode Shortcut Command
+    permission: BlitzSsentials.gms
   gmsp:
-    aliases: [gsp]
+    aliases: 
+    - gsp
+    - gm2
     description: SpectatorMode Shortcut Command
+    permission: BlitzSsentials.gmsp
   gma:
-    aliases: [ga]
+    aliases: 
+    - ga
+    - gm3
     description: AdventureMode Shortcut Command
+    permission: BlitzSsentials.gma
+
+  time:
+    description: Time Shortcut Command
+    permission: BlitzSsentials.time
+  day:
+    aliases: 
+    - timeday
+    description: Day Shortcut Command
+    permission: BlitzSsentials.time
+  noon:
+    aliases: 
+    - timenoon
+    - midday
+    - timemidday
+    description: Noon Shortcut Command
+    permission: BlitzSsentials.time
+  night:
+    aliases: 
+    - timenight
+    description: Night Shortcut Command
+    permission: BlitzSsentials.time
+  midnight:
+    aliases: 
+    - timemidnight
+    description: Midnight Shortcut Command
+    permission: BlitzSsentials.time
+
+  weather:
+    description: Weather Shortcut Command
+    permission: BlitzSsentials.weather
+  weatherclear:
+    aliases: 
+    - wclear
+    description: Weather Clear Shortcut Command
+    permission: BlitzSsentials.weather
+  weatherrain:
+    aliases: 
+    - wrain
+    - weatherdownpour
+    - wdownpour
+    description: Weather Rain Shortcut Command
+    permission: BlitzSsentials.weather
+  weatherthunder:
+    aliases: 
+    - wthunder
+    - weatherlightning
+    - wlightning
+    description: Weather Lightning and a Thunder Shortcut Command
+    permission: BlitzSsentials.weather
