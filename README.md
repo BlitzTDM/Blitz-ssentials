@@ -1,4 +1,4 @@
 # Blitz-ssentials
-The BlitzSsentials you need and also ran on TydiumCraft
+A more vanillified experience of Essentials by BlitzTDM
 
-Commands -
+Used on TydiumCraft!
