@@ -44,12 +44,14 @@ public class BlitzssentialsMain extends JavaPlugin {
     public String noperm = pluginprefix + ChatColor.RED + "No Permission";
     public String console = pluginprefix + ChatColor.RED + "Not a Console CMD";
     
+    public static String pluginversion = "V0.0.3 - SNAPSHOT 1a";
+   
 	@Override
 	public void onEnable() {
     	Bukkit.getConsoleSender().sendMessage(""
     			+ ChatColor.GOLD + line + ChatColor.DARK_AQUA + "\n"
 				+ pluginprefix + "Plugin By BlitzTDM " + ChatColor.AQUA + "\n"
-				+ ChatColor.GREEN + "|Plugin Enabled| " + ChatColor.AQUA + "V0.0.2" + ChatColor.RESET + "\n"
+				+ ChatColor.GREEN + "|Plugin Enabled| " + ChatColor.AQUA + pluginversion + ChatColor.RESET + "\n"
 				+ ChatColor.GOLD + line);
 
     	//Config
@@ -59,17 +61,16 @@ public class BlitzssentialsMain extends JavaPlugin {
     	getConfig().options().header(""
     			+ "BlitzSsentials Config!\n"
     			+ "\n"
-    			+ "# Config for Join Messages" + "\n"
+    			+ "CONFIG FOR JOIN MESSAGES:" + "\n"
     			+ "Use %player% for Playername" + "\n"
     			+ "Use %line% for Line" + "\n"
     			+ "Use %plugin% for Plugin and Plugin Version (Admin Only)" + "\n"
     			+ "Use & for color codes!" + "\n"
     			+ "Use \n for Enter/Another Line" + "\n"
     			+ "Remember the: ''" + "\n"
-    			+ "Default Join Message comes after Admin");
+    			+ "Note: Default Join Message comes after Admin");
     	getConfig().addDefault("admin-join-message", adminjoinmessagedefault);
     	getConfig().addDefault("default-join-message", joinmessagedefault);
-    	getConfig().options().header("test 1");
     	getConfig().options().copyDefaults(true);
     	saveConfig();
     	
@@ -105,7 +106,7 @@ public class BlitzssentialsMain extends JavaPlugin {
     	Bukkit.getConsoleSender().sendMessage(""
     			+ ChatColor.GOLD + line + ChatColor.DARK_AQUA + "\n"
     			+ pluginprefix + "Plugin By BlitzTDM " + ChatColor.AQUA + "\n"
-				+ ChatColor.RED + "|Plugin Disabled| " + ChatColor.AQUA + "V0.0.2" + ChatColor.RESET + "\n"
+				+ ChatColor.RED + "|Plugin Disabled| " + ChatColor.AQUA + pluginversion + ChatColor.RESET + "\n"
 				+ ChatColor.GOLD + line);
     	
     	saveConfig();

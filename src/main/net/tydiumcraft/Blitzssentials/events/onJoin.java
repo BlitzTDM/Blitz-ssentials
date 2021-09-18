@@ -24,6 +24,7 @@ public class onJoin implements Listener {
     public String console = pluginprefix + ChatColor.RED + "Not a Console CMD ";
     
     BlitzssentialsMain plugin = BlitzssentialsMain.getPlugin(BlitzssentialsMain.class);
+    String pluginversion = BlitzssentialsMain.pluginversion;
     
 	@EventHandler
 	void onPlayerJoin(PlayerJoinEvent event) {
@@ -44,8 +45,8 @@ public class onJoin implements Listener {
 	    adminmessage = adminmessage.replace("%Player%", player.getName());
 	    adminmessage = adminmessage.replace("%line%", line);
 	    adminmessage = adminmessage.replace("%Line%", line);
-	    adminmessage = adminmessage.replace("%plugin%", pluginprefix + ChatColor.DARK_AQUA + "Plugin Version: 0.0.3");
-	    adminmessage = adminmessage.replace("%Plugin%", pluginprefix + ChatColor.DARK_AQUA + "Plugin Version: 0.0.3");
+	    adminmessage = adminmessage.replace("%plugin%", pluginprefix + ChatColor.DARK_AQUA + pluginversion);
+	    adminmessage = adminmessage.replace("%Plugin%", pluginprefix + ChatColor.DARK_AQUA + pluginversion);
 	    
 	    if ((player.hasPermission("BlitzSsentials.join"))) {
 	    	
