@@ -29,10 +29,8 @@ public class GamemodeA implements CommandExecutor {
 	}
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
     	if (sender instanceof Player) {
-    		Player p = (Player) sender;
-    		if (p.hasPermission("BlitzSsentials.gma")) {
+    		if (sender.hasPermission("BlitzSsentials.gma")) {
     			if (((Player) sender).getGameMode() == GameMode.ADVENTURE) {
         			sender.sendMessage(pluginprefix + ChatColor.RED + "Already in " + ((Player) sender).getGameMode());	
     				} else {
@@ -40,7 +38,7 @@ public class GamemodeA implements CommandExecutor {
     			((Player) sender).setGameMode(GameMode.ADVENTURE);
     				}
     		} else {
-    				p.sendMessage(noperm);
+    			sender.sendMessage(noperm);
     			}
     	} else {
     		Bukkit.getConsoleSender().sendMessage(console);
