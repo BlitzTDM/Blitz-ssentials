@@ -4,6 +4,12 @@ package net.tydiumcraft.Blitzssentials;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import net.tydiumcraft.Blitzssentials.utils.ChatColors;
@@ -25,6 +31,7 @@ import net.tydiumcraft.Blitzssentials.commands.Weather;
 import net.tydiumcraft.Blitzssentials.commands.WeatherClear;
 import net.tydiumcraft.Blitzssentials.commands.WeatherRain;
 import net.tydiumcraft.Blitzssentials.commands.WeatherThunder;
+import net.tydiumcraft.Blitzssentials.events.onJoin;
 
 @SuppressWarnings("unused")
 public class BlitzssentialsMain extends JavaPlugin {
@@ -44,14 +51,32 @@ public class BlitzssentialsMain extends JavaPlugin {
 				+ pluginprefix + "Plugin By BlitzTDM " + ChatColor.AQUA + "\n"
 				+ ChatColor.GREEN + "|Plugin Enabled| " + ChatColor.AQUA + "V0.0.2" + ChatColor.RESET + "\n"
 				+ ChatColor.GOLD + line);
+
+    	//Config
+    	String joinmessagedefault = "&6%Line%\n&r&aWelcome, &l%Player%!\n&6%Line%";
+    	String adminjoinmessagedefault = "&6%Line%\n&r&bWelcome Admin/Operator!\n&r%Plugin%";
     	
-    	this.getServer().getPluginManager().registerEvents(new ChatColors(), this);
-		
-    	
-    	getConfig().options().header("BlitzSsentials Config! - Currently no use for it.");
+    	getConfig().options().header(""
+    			+ "BlitzSsentials Config!\n"
+    			+ "\n"
+    			+ "# Config for Join Messages" + "\n"
+    			+ "Use %player% for Playername" + "\n"
+    			+ "Use %line% for Line" + "\n"
+    			+ "Use %plugin% for Plugin and Plugin Version (Admin Only)" + "\n"
+    			+ "Use & for color codes!" + "\n"
+    			+ "Use \n for Enter/Another Line" + "\n"
+    			+ "Remember the: ''" + "\n"
+    			+ "Default Join Message comes after Admin");
+    	getConfig().addDefault("admin-join-message", adminjoinmessagedefault);
+    	getConfig().addDefault("default-join-message", joinmessagedefault);
+    	getConfig().options().header("test 1");
+    	getConfig().options().copyDefaults(true);
     	saveConfig();
     	
-    	
+    	//Events/Utils
+    	getServer().getPluginManager().registerEvents(new ChatColors(), this);
+    	getServer().getPluginManager().registerEvents(new onJoin(), this);
+
     	//Commands
     	new Help(this);
 		new Test(this);
@@ -73,8 +98,8 @@ public class BlitzssentialsMain extends JavaPlugin {
 		new WeatherClear(this);
 		new WeatherRain(this);
 		new WeatherThunder(this);
-
 	}
+			
 	@Override
 	public void onDisable() {
     	Bukkit.getConsoleSender().sendMessage(""

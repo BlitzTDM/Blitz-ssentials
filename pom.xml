@@ -3,7 +3,7 @@
     <groupId>net.tydiumcraft</groupId>
     <artifactId>BlitzSsentials</artifactId>
     <!-- Version is used in plugin.yml -->
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <packaging>jar</packaging>
     <!-- Plugin Information -->
     <!-- Name, Description, and URL are used in plugin.yml -->

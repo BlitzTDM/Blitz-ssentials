@@ -1,0 +1,17 @@
+# BlitzSsentials Config!
+# 
+# Use %player% for Playername
+# Use %line% for Line
+# Use %plugin% for Plugin and Plugin Version (Admin Only)
+# Use & for color codes!
+# Use \n for Enter/Another Line
+# Remember the: ''
+# Default Join Message comes after Admin
+admin-join-message: |-
+  &6%Line%
+  &r&bWelcome Admin/Operator!
+  &r%Plugin%
+default-join-message: |-
+  &6%Line%
+  &r&aWelcome, &l%Player%!
+  &6%Line%

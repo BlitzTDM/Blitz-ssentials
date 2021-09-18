@@ -21,7 +21,7 @@ public class ReloadConfig implements CommandExecutor {
     public String noperm = pluginprefix + ChatColor.RED + "No Permission";
     public String console = pluginprefix + ChatColor.RED + "Not a Console CMD ";
 	
-    private BlitzssentialsMain plugin;
+    final BlitzssentialsMain plugin;
 	public ReloadConfig(BlitzssentialsMain plugin) {
 		this.plugin = plugin;
 		plugin.getCommand("BZSsConfig").setExecutor(this);
