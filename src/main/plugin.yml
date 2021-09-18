@@ -1,5 +1,5 @@
 name: BlitzSsentials
-version: 0.0.3
+version: 0.0.3 - SNAPSHOT 1a
 author: BlitzTDM
 main: net.tydiumcraft.Blitzssentials.BlitzssentialsMain
 description: The BlitzSsentials Plugin that is also ran on TydiumCraft
@@ -39,7 +39,7 @@ permissions:
 commands:
   bzsshelp:
     aliases: 
-    - bzss help
+    - bzssh
     description: The Helpful Command
   Test:
     aliases: 
@@ -58,25 +58,21 @@ commands:
   gmc:
     aliases: 
     - gc
-    - gm1
     description: CreativeMode Shortcut Command
     permission: BlitzSsentials.gmc
   gms:
     aliases: 
     - gs
-    - gm0
     description: SurvivalMode Shortcut Command
     permission: BlitzSsentials.gms
   gmsp:
     aliases: 
     - gsp
-    - gm2
     description: SpectatorMode Shortcut Command
     permission: BlitzSsentials.gmsp
   gma:
     aliases: 
     - ga
-    - gm3
     description: AdventureMode Shortcut Command
     permission: BlitzSsentials.gma
 
