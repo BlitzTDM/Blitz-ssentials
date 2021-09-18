@@ -1,5 +1,5 @@
 name: BlitzSsentials
-version: 0.0.2
+version: 0.0.3
 author: BlitzTDM
 main: net.tydiumcraft.Blitzssentials.BlitzssentialsMain
 description: The BlitzSsentials Plugin that is also ran on TydiumCraft
@@ -8,6 +8,7 @@ prefix: BZSs
 permissions:
     BlitzSsentials.*:
         description: Gives access to all BlitzSsential Commands and Permissions
+        default: op
         children:
             BlitzSsentials.test: true
             BlitzSsentials.reload: true
@@ -15,6 +16,8 @@ permissions:
             BlitzSsentials.time: true
             BlitzSsentials.weather: true
             BlitzSsentials.adminhelp: true
+            BlitzSsentials.admin: true
+            BlitzSsentials.op: true
     BlitzSsentials.gamemode:
         description: Gives access to all BlitzSsential Gamemode Commands
         children:
@@ -22,6 +25,16 @@ permissions:
             BlitzSsentials.gmc: true
             BlitzSsentials.gmsp: true
             BlitzSsentials.gma: true
+    BlitzSsentials.admin:
+        description: BlitzSsential Admin/OP Permission
+        defualt: op
+        children:
+            BlitzSsentials.op: true
+            BlitzSsentials.adminhelp: true
+            
+    BlitzSsentials.join:
+        description: BlitzSsential Join Events Permission
+        default: true
 
 commands:
   bzsshelp:
