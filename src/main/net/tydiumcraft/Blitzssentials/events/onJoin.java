@@ -10,27 +10,37 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.Plugin;
 
 import net.tydiumcraft.Blitzssentials.BlitzssentialsMain;
+import net.tydiumcraft.Blitzssentials.utils.shortcutTags;
 
 @SuppressWarnings("unused")
 public class onJoin implements Listener {
 	
-	public String line = "------------------------------------";
-	public String line2 = "-----------------";
-    public String pluginprefix = ChatColor.AQUA + "[" + ChatColor.DARK_AQUA + "BlitzSsentials" + ChatColor.AQUA + "] ";
-    public String pluginprefix2 = ChatColor.DARK_AQUA + "BlitzSsentials ";
-    public String bzssprefix = ChatColor.AQUA + "[" + ChatColor.DARK_AQUA + "BZ" + ChatColor.BLUE + "Ss" + ChatColor.AQUA + "] ";
-    public String bzssprefix2 = ChatColor.DARK_AQUA + "BZ" + ChatColor.BLUE + "Ss ";
-    public String noperm = pluginprefix + ChatColor.RED + "No Permission";
-    public String console = pluginprefix + ChatColor.RED + "Not a Console CMD ";
-    
+	String line = shortcutTags.line;
+	String line2 = shortcutTags.line2;
+	String pluginprefix = shortcutTags.pluginprefix;
+	String pluginprefix2 = shortcutTags.pluginprefix2;
+	String bzssprefix = shortcutTags.bzssprefix;
+	String bzssprefix2 = shortcutTags.bzssprefix2;
+	String noperm = shortcutTags.noperm;
+	String console = shortcutTags.console;
+    String pluginversion = shortcutTags.pluginversion;
+	
     BlitzssentialsMain plugin = BlitzssentialsMain.getPlugin(BlitzssentialsMain.class);
-    String pluginversion = BlitzssentialsMain.pluginversion;
+    FileConfiguration config = plugin.getConfig();
     
 	@EventHandler
 	void onPlayerJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 	    
-	    String defaultmessage = plugin.getConfig().getString("default-join-message");
+	    String globalmessage = config.getString("join-message.global.global-message");
+	    globalmessage = ChatColor.translateAlternateColorCodes('&', globalmessage);
+	    globalmessage = ChatColor.translateAlternateColorCodes('§', globalmessage);
+	    globalmessage = globalmessage.replace("%player%", player.getName());
+	    globalmessage = globalmessage.replace("%Player%", player.getName());
+	    globalmessage = globalmessage.replace("%line%", line);
+	    globalmessage = globalmessage.replace("%Line%", line);
+	    
+	    String defaultmessage = config.getString("join-message.default-personal.default-personal-message");
 	    defaultmessage = ChatColor.translateAlternateColorCodes('&', defaultmessage);
 	    defaultmessage = ChatColor.translateAlternateColorCodes('§', defaultmessage);
 	    defaultmessage = defaultmessage.replace("%player%", player.getName());
@@ -38,7 +48,7 @@ public class onJoin implements Listener {
 	    defaultmessage = defaultmessage.replace("%line%", line);
 	    defaultmessage = defaultmessage.replace("%Line%", line);
 		
-	    String adminmessage = plugin.getConfig().getString("admin-join-message");
+	    String adminmessage = config.getString("join-message.admin-personal.admin-personal-message");
 	    adminmessage = ChatColor.translateAlternateColorCodes('&', adminmessage);
 	    adminmessage = ChatColor.translateAlternateColorCodes('§', adminmessage);
 	    adminmessage = adminmessage.replace("%player%", player.getName());
@@ -48,14 +58,19 @@ public class onJoin implements Listener {
 	    adminmessage = adminmessage.replace("%plugin%", pluginprefix + ChatColor.DARK_AQUA + pluginversion);
 	    adminmessage = adminmessage.replace("%Plugin%", pluginprefix + ChatColor.DARK_AQUA + pluginversion);
 	    
+	    
+	    if (config.getBoolean("join-message.global.enable-global")) {
+	    	event.setJoinMessage(globalmessage);
+	    }
 	    if ((player.hasPermission("BlitzSsentials.join"))) {
+	    	if (config.getBoolean("join-message.default-personal.enable-default-personal")) {
+	    		player.sendMessage(defaultmessage);
+	    	}
 	    	
-	    	event.setJoinMessage(defaultmessage);
-	    	
-			if ((player.hasPermission("BlitzSsentials.admin"))) {
-				
+			if ((player.hasPermission("BlitzSsentials.adminjoin"))) {
+				if (config.getBoolean("join-message.admin-personal.enable-admin-personal")) {
 					player.sendMessage(adminmessage);
-			    		
+				}
 				
 			}
 	    }

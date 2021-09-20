@@ -1,17 +1,69 @@
 # BlitzSsentials Config!
-# 
+
+# -----------------------------------------------------------
+# MAIN/GENERAL CONFIG
+
+# None Yet!
+
+# -----------------------------------------------------------
+# END OF MAIN/GENERAL CONFIG
+# -----------------------------------------------------------
+# COMMANDS CONFIG
+
+mass-summon:
+  enable-max-ammount: false
+  max-ammount: 100
+
+# -----------------------------------------------------------
+# END OF COMMANDS CONFIG
+# -----------------------------------------------------------
+# JOIN MESSAGES CONFIG
+
+# VARIABLES:
 # Use %player% for Playername
 # Use %line% for Line
 # Use %plugin% for Plugin and Plugin Version (Admin Only)
 # Use & for color codes!
 # Use \n for Enter/Another Line
-# Remember the: ''
-# Default Join Message comes after Admin
-admin-join-message: |-
-  &6%Line%
-  &r&bWelcome Admin/Operator!
-  &r%Plugin%
-default-join-message: |-
-  &6%Line%
-  &r&aWelcome, &l%Player%!
-  &6%Line%
+
+# NOTES:
+# Remember the: Quotations ("<Mesaage>")
+# The Order of Messages is: Default-Personal, then Admin-Personal (If they have the permission), and last, Global
+
+join-message:
+# Default Personal Message (Only users with the permission BlitzSsentials.join (default) can see this only, when they join)
+  default-personal:
+    enable-default-personal: true
+    default-personal-message: "&6%Line%\n&b[&3BZSs&b] &aWelcome, &l%Player%!\n&6%Line%"
+# Admin Personal Message (Only users with the permision BlitzSsentials.adminjoin can see this only, when they join)
+  admin-personal:
+    enable-admin-personal: true
+    admin-personal-message: "&bWelcome Admin/Operator!\n&r%Plugin%\n&6%Line%"
+# Global Message (Everyone see's this when someone Joins)
+  global:
+    enable-global: true
+    global-message: "&aWelcome &l%Player% &ato the Server Everyone!"
+    
+# -----------------------------------------------------------
+# END OF JOIN MESSAGES CONFIG
+# -----------------------------------------------------------
+# More to be added!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# -----------------------------------------------------------
+# End of the line... Litterally | haha Line 69, FUNNY NUMBER!

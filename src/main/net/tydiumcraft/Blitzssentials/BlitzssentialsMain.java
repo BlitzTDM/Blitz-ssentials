@@ -14,12 +14,17 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import net.tydiumcraft.Blitzssentials.utils.ChatColors;
 import net.tydiumcraft.Blitzssentials.utils.shortcutTags;
+import net.tydiumcraft.Blitzssentials.commands.Feed;
+import net.tydiumcraft.Blitzssentials.commands.Fly;
 import net.tydiumcraft.Blitzssentials.commands.Gamemode;
 import net.tydiumcraft.Blitzssentials.commands.GamemodeA;
 import net.tydiumcraft.Blitzssentials.commands.GamemodeC;
 import net.tydiumcraft.Blitzssentials.commands.GamemodeS;
 import net.tydiumcraft.Blitzssentials.commands.GamemodeSP;
+import net.tydiumcraft.Blitzssentials.commands.Heal;
 import net.tydiumcraft.Blitzssentials.commands.Help;
+import net.tydiumcraft.Blitzssentials.commands.MassSummon;
+import net.tydiumcraft.Blitzssentials.commands.PluginInfo;
 import net.tydiumcraft.Blitzssentials.commands.ReloadConfig;
 import net.tydiumcraft.Blitzssentials.commands.Test;
 import net.tydiumcraft.Blitzssentials.commands.Time;
@@ -36,43 +41,28 @@ import net.tydiumcraft.Blitzssentials.events.onJoin;
 @SuppressWarnings("unused")
 public class BlitzssentialsMain extends JavaPlugin {
 	
-	public String line = "------------------------------------";
-    public String pluginprefix = ChatColor.AQUA + "[" + ChatColor.DARK_AQUA + "BlitzSsentials" + ChatColor.AQUA + "] ";
-    public String pluginprefix2 = ChatColor.DARK_AQUA + "BlitzSsentials ";
-    public String bzssprefix = ChatColor.AQUA + "[" + ChatColor.DARK_AQUA + "BZ" + ChatColor.BLUE + "Ss" + ChatColor.AQUA + "] ";
-    public String bzssprefix2 = ChatColor.DARK_AQUA + "BZ" + ChatColor.BLUE + "Ss";
-    public String noperm = pluginprefix + ChatColor.RED + "No Permission";
-    public String console = pluginprefix + ChatColor.RED + "Not a Console CMD";
-    
-    public static String pluginversion = "V0.0.3 - SNAPSHOT 1a";
+	String line = shortcutTags.line;
+	String line2 = shortcutTags.line2;
+	String pluginprefix = shortcutTags.pluginprefix;
+	String pluginprefix2 = shortcutTags.pluginprefix2;
+	String bzssprefix = shortcutTags.bzssprefix;
+	String bzssprefix2 = shortcutTags.bzssprefix2;
+	String noperm = shortcutTags.noperm;
+	String console = shortcutTags.console;
+    String pluginversion = shortcutTags.pluginversion;
+    String defaultpluginprefix = shortcutTags.defaultpluginprefix;
    
 	@Override
 	public void onEnable() {
     	Bukkit.getConsoleSender().sendMessage(""
     			+ ChatColor.GOLD + line + ChatColor.DARK_AQUA + "\n"
-				+ pluginprefix + "Plugin By BlitzTDM " + ChatColor.AQUA + "\n"
+				+ defaultpluginprefix + "Plugin By BlitzTDM " + ChatColor.AQUA + "\n"
 				+ ChatColor.GREEN + "|Plugin Enabled| " + ChatColor.AQUA + pluginversion + ChatColor.RESET + "\n"
 				+ ChatColor.GOLD + line);
 
     	//Config
-    	String joinmessagedefault = "&6%Line%\n&r&aWelcome, &l%Player%!\n&6%Line%";
-    	String adminjoinmessagedefault = "&6%Line%\n&r&bWelcome Admin/Operator!\n&r%Plugin%";
-    	
-    	getConfig().options().header(""
-    			+ "BlitzSsentials Config!\n"
-    			+ "\n"
-    			+ "CONFIG FOR JOIN MESSAGES:" + "\n"
-    			+ "Use %player% for Playername" + "\n"
-    			+ "Use %line% for Line" + "\n"
-    			+ "Use %plugin% for Plugin and Plugin Version (Admin Only)" + "\n"
-    			+ "Use & for color codes!" + "\n"
-    			+ "Use \n for Enter/Another Line" + "\n"
-    			+ "Remember the: ''" + "\n"
-    			+ "Note: Default Join Message comes after Admin");
-    	getConfig().addDefault("admin-join-message", adminjoinmessagedefault);
-    	getConfig().addDefault("default-join-message", joinmessagedefault);
     	getConfig().options().copyDefaults(true);
-    	saveConfig();
+    	saveDefaultConfig();
     	
     	//Events/Utils
     	getServer().getPluginManager().registerEvents(new ChatColors(), this);
@@ -82,6 +72,13 @@ public class BlitzssentialsMain extends JavaPlugin {
     	new Help(this);
 		new Test(this);
 		new ReloadConfig(this);
+		new PluginInfo(this);
+		
+		new MassSummon(this);
+		
+		new Feed(this);
+		new Heal(this);
+		new Fly(this);
 		
 		new Gamemode(this);
 		new GamemodeC(this);
@@ -105,11 +102,11 @@ public class BlitzssentialsMain extends JavaPlugin {
 	public void onDisable() {
     	Bukkit.getConsoleSender().sendMessage(""
     			+ ChatColor.GOLD + line + ChatColor.DARK_AQUA + "\n"
-    			+ pluginprefix + "Plugin By BlitzTDM " + ChatColor.AQUA + "\n"
+    			+ defaultpluginprefix + "Plugin By BlitzTDM " + ChatColor.AQUA + "\n"
 				+ ChatColor.RED + "|Plugin Disabled| " + ChatColor.AQUA + pluginversion + ChatColor.RESET + "\n"
 				+ ChatColor.GOLD + line);
     	
-    	saveConfig();
+    	saveDefaultConfig();
 		
 	}
 }

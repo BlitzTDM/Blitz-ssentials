@@ -12,6 +12,15 @@ import net.md_5.bungee.api.ChatColor;
 
 public class ChatColors  implements Listener {
 		
+	String line = shortcutTags.line;
+	String line2 = shortcutTags.line2;
+	String pluginprefix = shortcutTags.pluginprefix;
+	String pluginprefix2 = shortcutTags.pluginprefix2;
+	String bzssprefix = shortcutTags.bzssprefix;
+	String bzssprefix2 = shortcutTags.bzssprefix2;
+	String noperm = shortcutTags.noperm;
+	String console = shortcutTags.console;
+    String pluginversion = shortcutTags.pluginversion;
 	
 	private final Pattern pattern = Pattern.compile("#[a-fA-F0-9]{6}");
 	

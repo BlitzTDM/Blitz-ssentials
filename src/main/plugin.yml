@@ -1,5 +1,5 @@
 name: BlitzSsentials
-version: 0.0.3 - SNAPSHOT 1a
+version: 0.0.3
 author: BlitzTDM
 main: net.tydiumcraft.Blitzssentials.BlitzssentialsMain
 description: The BlitzSsentials Plugin that is also ran on TydiumCraft
@@ -18,6 +18,13 @@ permissions:
             BlitzSsentials.adminhelp: true
             BlitzSsentials.admin: true
             BlitzSsentials.op: true
+            BlitzSsentials.join: true
+            BlitzSsentials.fly: true
+            BlitzSsentials.plugininfo: true
+            BlitzSsentials.masssummon: true
+            BlitzSsentials.refillhungerhealth: true
+            BlitzSsentials.feed: true
+            BlitzSsentials.heal: true
     BlitzSsentials.gamemode:
         description: Gives access to all BlitzSsential Gamemode Commands
         children:
@@ -27,10 +34,19 @@ permissions:
             BlitzSsentials.gma: true
     BlitzSsentials.admin:
         description: BlitzSsential Admin/OP Permission
-        defualt: op
+        default: op
         children:
             BlitzSsentials.op: true
             BlitzSsentials.adminhelp: true
+            BlitzSsentials.join: true
+            BlitzSsentials.fly: true
+            BlitzSsentials.plugininfo: true
+            BlitzSsentials.adminjoin: true
+    BlitzSsentials.refillhungerhealth:
+        description: BlitzSsential Refill Commands for Health and Hunger
+        children:
+            BlitzSsentials.feed: true
+            BlitzSsentials.heal: true
             
     BlitzSsentials.join:
         description: BlitzSsential Join Events Permission
@@ -49,8 +65,35 @@ commands:
   BZSsConfig:
     aliases: 
     - bzssreloadconfig
-    description: The Plugin's Reload Config Command
+    description: The Plugins Reload Config Command
     permission: BlitzSsentials.reload
+  BZSsInfo:
+    aliases:
+    - bzssplugin
+    description: To Find the Plugins Information
+    permission: BlitzSsentials.plugininfo
+    
+  masssummon:
+    aliases:
+    - msummon
+    description: Summon Multiple Enititys
+    permission: BlitzSsentials.masssummon
+    
+  feed:
+    aliases:
+    - feedme
+    - food
+    description: Refills Hunger
+    permission: BlitzSsentials.feed
+  heal:
+    aliases:
+    - healme
+    - health
+    description: Refills Health
+    permission: BlitzSsentials.heal
+  fly:
+    description: Allow you to Enable/Disable Fly
+    permission: BlitzSsentials.fly
 
   gm:
     description: GameMode Shortcut Command

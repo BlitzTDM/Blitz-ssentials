@@ -2,18 +2,18 @@ package net.tydiumcraft.Blitzssentials.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 import net.tydiumcraft.Blitzssentials.BlitzssentialsMain;
 import net.tydiumcraft.Blitzssentials.utils.shortcutTags;
 
 @SuppressWarnings("unused")
-public class Test implements CommandExecutor {
-
+public class Heal implements CommandExecutor {
+	
 	String line = shortcutTags.line;
 	String line2 = shortcutTags.line2;
 	String pluginprefix = shortcutTags.pluginprefix;
@@ -23,25 +23,28 @@ public class Test implements CommandExecutor {
 	String noperm = shortcutTags.noperm;
 	String console = shortcutTags.console;
     String pluginversion = shortcutTags.pluginversion;
-	private BlitzssentialsMain plugin;
+    String defaultpluginprefix = shortcutTags.defaultpluginprefix;
+    String lessargs = shortcutTags.lessargs;
 	
-	public Test(BlitzssentialsMain plugin) {
+    private BlitzssentialsMain plugin;
+	public Heal(BlitzssentialsMain plugin) {
 		this.plugin = plugin;
-		plugin.getCommand("test").setExecutor(this);
-	
+		plugin.getCommand("heal").setExecutor(this);
+		
 	}
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     	if (sender instanceof Player) {
-    		if (sender.hasPermission("BlitzSsentials.test")) {
-    			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Test Command Successful (" + bzssprefix2 + ChatColor.GREEN + ")");
+    		if (sender.hasPermission("BlitzSsentials.heal")) {
+    			double maxHealth = ((Player) sender).getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue();
+    			((Player) sender).setHealth(maxHealth);
+    			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Healed!");
     		} else {
     			sender.sendMessage(noperm);
-    			}
+    		}
     	} else {
-    		Bukkit.getConsoleSender().sendMessage(pluginprefix + ChatColor.GREEN + "Test Command Successful (" + bzssprefix2 + ChatColor.GREEN + ")");
+    		Bukkit.getConsoleSender().sendMessage(console);
     	}
 		return false;
     }
 }
-
