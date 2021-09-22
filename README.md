@@ -1,6 +1,10 @@
 # Blitz-ssentials
 The BlitzSsentials you need!
+
+# Quotes:
 Tydium: "A more vanillified experience of Essentials by BlitzTDM!"
+
+# Features:
 - Gamemode Shortcut CMDS!
 - Weather Shortvut CMDS!
 - Time Shortcut CMDS!
