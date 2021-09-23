@@ -1,8 +1,9 @@
 name: BlitzSsentials
-version: 0.0.3
+version: 0.0.4
 author: BlitzTDM
 main: net.tydiumcraft.Blitzssentials.BlitzssentialsMain
 description: The BlitzSsentials Plugin that is also ran on TydiumCraft
+api-version: 1.17
 prefix: BZSs
 
 permissions:
@@ -12,7 +13,7 @@ permissions:
         children:
             BlitzSsentials.test: true
             BlitzSsentials.reload: true
-            BlitzSsentials.gamemode: true
+            BlitzSsentials.othergm: true
             BlitzSsentials.time: true
             BlitzSsentials.weather: true
             BlitzSsentials.adminhelp: true
@@ -57,15 +58,41 @@ commands:
     aliases: 
     - bzssh
     description: The Helpful Command
+  bzsshelpplugin:
+    aliases: 
+    - bzsshelpp
+    description: The Helpful Command for the Plugin
+    permission: BlitzSsentials.adminhelp
+  bzsshelpgamemode:
+    aliases: 
+    - bzsshelpg
+    description: The Helpful Command for Gamemode
+    permission: BlitzSsentials.adminhelp
+  bzsshelpweather:
+    aliases: 
+    - bzsshelpw
+    description: The Helpful Command for the Weather
+    permission: BlitzSsentials.adminhelp
+  bzsshelptime:
+    aliases: 
+    - bzsshelpt
+    description: The Helpful Command for the Time
+    permission: BlitzSsentials.adminhelp
+    
   Test:
     aliases: 
     - tst
     description: The Test Command
     permission: BlitzSsentials.test
+  BZSsReload:
+    aliases: 
+    - bzssreloadplugin
+    description: The Plugins Plugin Reload Command
+    permission: BlitzSsentials.reload
   BZSsConfig:
     aliases: 
     - bzssreloadconfig
-    description: The Plugins Reload Config Command
+    description: The Plugins Config Reload Command
     permission: BlitzSsentials.reload
   BZSsInfo:
     aliases:
@@ -95,9 +122,6 @@ commands:
     description: Allow you to Enable/Disable Fly
     permission: BlitzSsentials.fly
 
-  gm:
-    description: GameMode Shortcut Command
-    permission: BlitzSsentials.gamemode
   gmc:
     aliases: 
     - gc
