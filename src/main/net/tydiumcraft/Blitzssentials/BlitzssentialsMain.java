@@ -33,10 +33,13 @@ import net.tydiumcraft.Blitzssentials.commands.HelpPlugin;
 import net.tydiumcraft.Blitzssentials.commands.HelpTime;
 import net.tydiumcraft.Blitzssentials.commands.HelpWeather;
 import net.tydiumcraft.Blitzssentials.commands.MassSummon;
+import net.tydiumcraft.Blitzssentials.commands.PluginCheckUpdate;
 import net.tydiumcraft.Blitzssentials.commands.PluginInfo;
 import net.tydiumcraft.Blitzssentials.commands.PluginReloadConfig;
 import net.tydiumcraft.Blitzssentials.commands.PluginReloadPlugin;
-import net.tydiumcraft.Blitzssentials.commands.Test;
+import net.tydiumcraft.Blitzssentials.commands.PluginTest;
+import net.tydiumcraft.Blitzssentials.commands.PluginTestJoin;
+import net.tydiumcraft.Blitzssentials.commands.PluginTestLeave;
 import net.tydiumcraft.Blitzssentials.commands.Time;
 import net.tydiumcraft.Blitzssentials.commands.TimeDay;
 import net.tydiumcraft.Blitzssentials.commands.TimeMidnight;
@@ -48,6 +51,7 @@ import net.tydiumcraft.Blitzssentials.commands.WeatherRain;
 import net.tydiumcraft.Blitzssentials.commands.WeatherThunder;
 import net.tydiumcraft.Blitzssentials.events.checkVersion;
 import net.tydiumcraft.Blitzssentials.events.onJoin;
+import net.tydiumcraft.Blitzssentials.events.onLeave;
 
 @SuppressWarnings("unused")
 public class BlitzssentialsMain extends JavaPlugin {
@@ -61,6 +65,8 @@ public class BlitzssentialsMain extends JavaPlugin {
 	String noperm = shortcutTags.noperm;
 	String console = shortcutTags.console;
     String pluginversion = shortcutTags.pluginversion;
+    String lastpluginversion = shortcutTags.lastpluginversion;
+    String lastpluginversionquick = shortcutTags.lastpluginversionquick;
     String defaultpluginprefix = shortcutTags.defaultpluginprefix;
    
 	@Override
@@ -78,6 +84,7 @@ public class BlitzssentialsMain extends JavaPlugin {
     	//Events/Utils
     	getServer().getPluginManager().registerEvents(new ChatColors(), this);
     	getServer().getPluginManager().registerEvents(new onJoin(), this);
+    	getServer().getPluginManager().registerEvents(new onLeave(), this);
     	
     	//checkVersion
     	String PluginUpdated = checkVersion.PluginUpdated;
@@ -85,6 +92,10 @@ public class BlitzssentialsMain extends JavaPlugin {
     	String PluginError = checkVersion.VersionCheckError;
     	new checkVersion(this).getVersion(version -> {
             if (pluginversion.equalsIgnoreCase(version)) {
+            	Bukkit.getConsoleSender().sendMessage(PluginUpdated);
+            } else if (version.equalsIgnoreCase(lastpluginversion)) {
+            	Bukkit.getConsoleSender().sendMessage(PluginUpdated);
+            } else if (version.equalsIgnoreCase(lastpluginversionquick)) {
             	Bukkit.getConsoleSender().sendMessage(PluginUpdated);
             } else {
             	Bukkit.getConsoleSender().sendMessage(PluginOutdated);
@@ -97,10 +108,13 @@ public class BlitzssentialsMain extends JavaPlugin {
     	new HelpWeather(this);
     	new HelpTime(this);
     	
-		new Test(this);
+		new PluginTest(this);
+		new PluginTestJoin(this);
+		new PluginTestLeave(this);
 		new PluginReloadPlugin(this);
 		new PluginReloadConfig(this);
 		new PluginInfo(this);
+		new PluginCheckUpdate(this);
 		
 		new MassSummon(this);
 		

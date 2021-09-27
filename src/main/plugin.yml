@@ -1,5 +1,5 @@
 name: BlitzSsentials
-version: 0.0.4
+version: 0.0.5
 author: BlitzTDM
 main: net.tydiumcraft.Blitzssentials.BlitzssentialsMain
 description: The BlitzSsentials Plugin that is also ran on TydiumCraft
@@ -78,11 +78,26 @@ commands:
     - bzsshelpt
     description: The Helpful Command for the Time
     permission: BlitzSsentials.adminhelp
+  bzssupdate:
+    aliases:
+    - bzssupdatecheck
+    description: The Helpful Command for checking for Updates
+    permission: BlitzSsentials.admin
     
   Test:
     aliases: 
     - tst
     description: The Test Command
+    permission: BlitzSsentials.test
+  TestJoin:
+    aliases: 
+    - tstjoin
+    description: The Test Command for Join Message
+    permission: BlitzSsentials.test
+  TestLeave:
+    aliases: 
+    - tstleave
+    description: The Test Command for Leave Message
     permission: BlitzSsentials.test
   BZSsReload:
     aliases: 

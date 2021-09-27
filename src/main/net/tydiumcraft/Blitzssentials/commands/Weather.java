@@ -51,11 +51,11 @@ public class Weather implements CommandExecutor {
     	    			((Player) sender).getWorld().setThundering(false);
     	    			((Player) sender).getWorld().setStorm(true);
     				} else if (args[0].equalsIgnoreCase("thunder")) {
-    					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "LIGHTNING AND A THUNDER");
+    					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "LIGHTNING AND THE THUNDER");
     					((Player) sender).getWorld().setStorm(true);
     	    			((Player) sender).getWorld().setThundering(true);
     				} else if (args[0].equalsIgnoreCase("lighting")) {
-    					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "LIGHTNING AND A THUNDER");
+    					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "LIGHTNING AND THE THUNDER");
     					((Player) sender).getWorld().setStorm(true);
     	    			((Player) sender).getWorld().setThundering(true);
     				}

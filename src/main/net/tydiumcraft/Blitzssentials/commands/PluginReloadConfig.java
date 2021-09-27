@@ -34,18 +34,18 @@ public class PluginReloadConfig implements CommandExecutor {
     	if (sender instanceof Player) {
     		if (sender.hasPermission("BlitzSsentials.reload")) {
     			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Reloading Config");
-    			plugin.reloadConfig();
     			plugin.getConfig();
     			plugin.saveDefaultConfig();
+    			plugin.reloadConfig();
     			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Config Reloaded");
     		} else {
     			sender.sendMessage(noperm);
     		}
     	} else {
     		Bukkit.getConsoleSender().sendMessage(pluginprefix + ChatColor.GREEN + "Reloading Config");
-    		plugin.reloadConfig();
     		plugin.getConfig();
     		plugin.saveDefaultConfig();
+    		plugin.reloadConfig();
     		Bukkit.getConsoleSender().sendMessage(pluginprefix + ChatColor.GREEN + "Config Reloaded");
     	}
 		return false;

@@ -22,9 +22,11 @@ public class commandTemplateAliases implements CommandExecutor {
 	String noperm = shortcutTags.noperm;
 	String console = shortcutTags.console;
     String pluginversion = shortcutTags.pluginversion;
+    String lastpluginversion = shortcutTags.lastpluginversion;
+    String lastpluginversionquick = shortcutTags.lastpluginversionquick;
+    String apiversion = shortcutTags.apiversion;
     String defaultpluginprefix = shortcutTags.defaultpluginprefix;
-    String lessargs = shortcutTags.lessargs;
-	
+   
     private BlitzssentialsMain plugin;
 	public commandTemplateAliases(BlitzssentialsMain plugin) {
 		this.plugin = plugin;

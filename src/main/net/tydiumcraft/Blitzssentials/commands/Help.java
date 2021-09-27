@@ -36,12 +36,12 @@ public class Help implements CommandExecutor {
 	    		sender.sendMessage(""
 	    		+ ChatColor.GOLD + line + "\n"
 	    		+ pluginprefix2 + "Help Menu!" + ChatColor.DARK_AQUA + "\n"
-	    		+ ChatColor.AQUA + "/Help " + helpmenu1 + "Shows this Menu." + "\n"
+	    		+ ChatColor.AQUA + "/BZSsHelp " + helpmenu1 + "Shows this Menu." + "\n"
 	    		+ ChatColor.GOLD + line);
 	    		if (sender.hasPermission("BlitzSsentials.adminhelp")) {
 	    			sender.sendMessage(""
 	    			+ pluginprefix2 + "Admin Help Menu!" + ChatColor.DARK_AQUA + "\n"
-	    	    	+ ChatColor.AQUA + "/test " + helpmenu1 + "Test if the Plugin is Working" + "\n"
+	    	    	+ ChatColor.AQUA + "/Test " + helpmenu1 + "Test if the Plugin is Working" + "\n"
 	    			+ ChatColor.AQUA + "/Heal <optional-player> " + helpmenu1 + "The Heal Command" + "\n"
 	    			+ ChatColor.AQUA + "/Feed <optional-player> " + helpmenu1 + "The Feed Command" + "\n"
 	    			+ ChatColor.AQUA + "/Fly <optional-player> " + helpmenu1 + "The Fly Command" + "\n"

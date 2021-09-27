@@ -36,10 +36,13 @@ public class HelpPlugin implements CommandExecutor {
 	    		if (sender.hasPermission("BlitzSsentials.adminhelp")) {
 	    			sender.sendMessage(""
 	    			+ pluginprefix2 + "Admin Help Menu! - Plugin" + ChatColor.DARK_AQUA + "\n"
-	    	    	+ ChatColor.AQUA + "/test " + helpmenu1 + "Test if the Plugin is Working" + "\n"
+	    	    	+ ChatColor.AQUA + "/Test " + helpmenu1 + "Test if the Plugin is Working" + "\n"
+	    	    	+ ChatColor.AQUA + "/TestJoin " + helpmenu1 + "Test the Join Message" + "\n"
+	    	    	+ ChatColor.AQUA + "/TestLeave " + helpmenu1 + "Test the Leave Message" + "\n"
 	    			+ ChatColor.AQUA + "/PluginInfo " + helpmenu1 + "See the Plugin Info" + "\n"
 	    			+ ChatColor.AQUA + "/BZSsConfig " + helpmenu1 + "Reload the Config" + "\n"
 	    			+ ChatColor.AQUA + "/BZSsReload " + helpmenu1 + "Reload the Plugin" + "\n"
+	    			+ ChatColor.AQUA + "/BZSsUpdate " + helpmenu1 + "Checks Spigot for an Update" + "\n"
 	    			+ ChatColor.AQUA + "All of these commands can also be used in Console" + "\n"
 	    			+ ChatColor.GOLD + line);	
 	    		} else {

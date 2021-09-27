@@ -23,8 +23,9 @@ public class onJoin implements Listener {
 	String bzssprefix2 = shortcutTags.bzssprefix2;
 	String noperm = shortcutTags.noperm;
 	String console = shortcutTags.console;
-    String pluginversion = shortcutTags.pluginversion;
-	
+    String pluginversion = shortcutTags.pluginversion;	
+    String apiversion = shortcutTags.apiversion;
+    
     BlitzssentialsMain plugin = BlitzssentialsMain.getPlugin(BlitzssentialsMain.class);
     FileConfiguration config = plugin.getConfig();
     
@@ -37,27 +38,24 @@ public class onJoin implements Listener {
 	    globalmessage = ChatColor.translateAlternateColorCodes('&', globalmessage);
 	    globalmessage = ChatColor.translateAlternateColorCodes('§', globalmessage);
 	    globalmessage = globalmessage.replace("%player%", player.getName());
-	    globalmessage = globalmessage.replace("%Player%", player.getName());
+	    globalmessage = globalmessage.replace("%playerfull%", player.getDisplayName());
 	    globalmessage = globalmessage.replace("%line%", line);
-	    globalmessage = globalmessage.replace("%Line%", line);
 	    
 	    String defaultmessage = config.getString("join-message.default-personal.default-personal-message");
 	    defaultmessage = ChatColor.translateAlternateColorCodes('&', defaultmessage);
 	    defaultmessage = ChatColor.translateAlternateColorCodes('§', defaultmessage);
 	    defaultmessage = defaultmessage.replace("%player%", player.getName());
-	    defaultmessage = defaultmessage.replace("%Player%", player.getName());
+	    defaultmessage = defaultmessage.replace("%playerfull%", player.getDisplayName());
 	    defaultmessage = defaultmessage.replace("%line%", line);
-	    defaultmessage = defaultmessage.replace("%Line%", line);
 		
 	    String adminmessage = config.getString("join-message.admin-personal.admin-personal-message");
 	    adminmessage = ChatColor.translateAlternateColorCodes('&', adminmessage);
 	    adminmessage = ChatColor.translateAlternateColorCodes('§', adminmessage);
 	    adminmessage = adminmessage.replace("%player%", player.getName());
-	    adminmessage = adminmessage.replace("%Player%", player.getName());
+	    adminmessage = adminmessage.replace("%playerfull%", player.getDisplayName());
 	    adminmessage = adminmessage.replace("%line%", line);
-	    adminmessage = adminmessage.replace("%Line%", line);
 	    adminmessage = adminmessage.replace("%plugin%", pluginprefix + ChatColor.DARK_AQUA + pluginversion);
-	    adminmessage = adminmessage.replace("%Plugin%", pluginprefix + ChatColor.DARK_AQUA + pluginversion);
+	    adminmessage = adminmessage.replace("%api%", apiversion);
 	    
 	    
 	    if (config.getBoolean("join-message.global.enable-global")) {

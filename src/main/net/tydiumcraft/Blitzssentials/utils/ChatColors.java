@@ -21,6 +21,9 @@ public class ChatColors  implements Listener {
 	String noperm = shortcutTags.noperm;
 	String console = shortcutTags.console;
     String pluginversion = shortcutTags.pluginversion;
+    String lastpluginversion = shortcutTags.lastpluginversion;
+    String lastpluginversionquick = shortcutTags.lastpluginversionquick;
+    String defaultpluginprefix = shortcutTags.defaultpluginprefix;
 	
 	private final Pattern pattern = Pattern.compile("#[a-fA-F0-9]{6}");
 	

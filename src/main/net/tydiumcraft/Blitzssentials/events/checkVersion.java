@@ -26,20 +26,20 @@ public class checkVersion {
 	static String bzssprefix2 = shortcutTags.bzssprefix2;
 	String noperm = shortcutTags.noperm;
 	String console = shortcutTags.console;
-    String pluginversion = shortcutTags.pluginversion;
+    static String pluginversion = shortcutTags.pluginversion;
     String defaultpluginprefix = shortcutTags.defaultpluginprefix;
     
 	public static String PluginUpdated = ChatColor.GREEN + line2 + "\n" 
-			+ bzssprefix2 + ChatColor.GREEN + "is Up-to-Date!" + ChatColor.RESET + "\n"
+			+ bzssprefix2 + ChatColor.GREEN + "is Up-to-Date! <Your Current Version: " + ChatColor.GOLD + pluginversion + ChatColor.GREEN + ">" + ChatColor.RESET + "\n"
 			+ ChatColor.GREEN + line2;
 
 public static String PluginOutdated = ChatColor.YELLOW + line2 + "\n" 
-			+ bzssprefix2 + ChatColor.YELLOW + "is Outdated!" + "\n"
+			+ bzssprefix2 + ChatColor.YELLOW + "is Outdated! <Your Version: " + ChatColor.GOLD + pluginversion + ChatColor.YELLOW + ">" + "\n"
 			+ "Go to " + ChatColor.BLUE + "https://www.SpigotMC.org/resources/BlitzSsentials.96327/ " + ChatColor.YELLOW + "to Update!" + ChatColor.RESET + "\n"
 			+ ChatColor.YELLOW + line2;
 
 public static String VersionCheckError = ChatColor.RED + line2 + "\n" 
-				+ bzssprefix2 + ChatColor.RED + "Failed to Check for Updates" + ChatColor.RESET + "\n"
+				+ bzssprefix2 + ChatColor.RED + "Failed to Check for Updates <Your Current Version: " + ChatColor.GOLD + pluginversion + ChatColor.RED + ">" + ChatColor.RESET + "\n"
 				+ ChatColor.RED + line2;
     
 private JavaPlugin plugin;

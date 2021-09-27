@@ -1,17 +1,18 @@
-package net.tydiumcraft.Blitzssentials.utils;
+package net.tydiumcraft.Blitzssentials.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import net.tydiumcraft.Blitzssentials.BlitzssentialsMain;
 import net.tydiumcraft.Blitzssentials.utils.shortcutTags;
 
 @SuppressWarnings("unused")
-public class commandTemplate implements CommandExecutor {
+public class PluginTestLeave implements CommandExecutor {
 	
 	String line = shortcutTags.line;
 	String line2 = shortcutTags.line2;
@@ -28,22 +29,31 @@ public class commandTemplate implements CommandExecutor {
     String defaultpluginprefix = shortcutTags.defaultpluginprefix;
 	
     private BlitzssentialsMain plugin;
-	public commandTemplate(BlitzssentialsMain plugin) {
+	public PluginTestLeave(BlitzssentialsMain plugin) {
 		this.plugin = plugin;
-		plugin.getCommand("test").setExecutor(this);
+		plugin.getCommand("TestLeave").setExecutor(this);
 		
 	}
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     	if (sender instanceof Player) {
     		if (sender.hasPermission("BlitzSsentials.test")) {
-    			//Command Execution Here
-    			sender.sendMessage();
+    			
+    			FileConfiguration config = plugin.getConfig();
+    			
+    			String leavemessage = config.getString("leave-message.leave.leave-message");
+    		    leavemessage = ChatColor.translateAlternateColorCodes('&', leavemessage);
+    		    leavemessage = ChatColor.translateAlternateColorCodes('§', leavemessage);
+    		    leavemessage = leavemessage.replace("%player%", sender.getName());
+    		    leavemessage = leavemessage.replace("%playerfull%", ((Player) sender).getDisplayName());
+    		    leavemessage = leavemessage.replace("%line%", line);
+    		    
+    		    sender.sendMessage(leavemessage);
     		} else {
-    			sender.sendMessage();
+    			sender.sendMessage(noperm);
     		}
     	} else {
-    		Bukkit.getConsoleSender().sendMessage();
+    		Bukkit.getConsoleSender().sendMessage(console);
     	}
 		return false;
     }

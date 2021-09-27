@@ -17,12 +17,13 @@ mass-summon:
 # -----------------------------------------------------------
 # END OF COMMANDS CONFIG
 # -----------------------------------------------------------
-# JOIN MESSAGES CONFIG
+# JOIN/LEAVE MESSAGES CONFIG
 
 # VARIABLES:
 # Use %player% for Playername
 # Use %line% for Line
 # Use %plugin% for Plugin and Plugin Version (Admin Only)
+# Use %api% for Plugin's Spigot API and Dependancies (Admin Only)
 # Use & for color codes!
 # Use \n for Enter/Another Line
 
@@ -31,34 +32,33 @@ mass-summon:
 # The Order of Messages is: Default-Personal, then Admin-Personal (If they have the permission), and last, Global
 
 join-message:
+
 # Default Personal Message (Only users with the permission BlitzSsentials.join (default) can see this only, when they join)
   default-personal:
     enable-default-personal: true
-    default-personal-message: "&6%Line%\n&b[&3BZSs&b] &aWelcome, &l%Player%!\n&6%Line%"
+    default-personal-message: "&6%line%\n&b[&3BZSs&b] &aWelcome, &l%player%!\n&6%line%"
+    
 # Admin Personal Message (Only users with the permision BlitzSsentials.adminjoin can see this only, when they join)
   admin-personal:
     enable-admin-personal: true
-    admin-personal-message: "&bWelcome Admin/Operator!\n&r%Plugin%\n&6%Line%"
+    admin-personal-message: "&bWelcome Admin/Operator!\n&r%plugin% - %api%\n&6%line%"
+    
 # Global Message (Everyone see's this when someone Joins)
   global:
     enable-global: true
-    global-message: "&aWelcome &l%Player% &ato the Server Everyone!"
+    global-message: "&aWelcome &l%player% &ato the Server Everyone!"
+
+leave-message: 
+
+# Leave Message (Everyone see's this when someone Leaves)
+  leave:
+    enable-leave-message: true
+    leave-message: "&eSay Goodbye to &l%player% &eEveryone!"
     
 # -----------------------------------------------------------
-# END OF JOIN MESSAGES CONFIG
+# END OF JOIN/LEAVE MESSAGES CONFIG
 # -----------------------------------------------------------
 # More to be added!
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -22,5 +22,10 @@ public class shortcutTags implements Listener {
     public static String noperm = pluginprefix + ChatColor.RED + "No Permission";
     public static String lessargs = pluginprefix + ChatColor.RED + "Not Enough Arguements: ";
     public static String console = pluginprefix + ChatColor.RED + "Not a Console CMD ";
-    public static String pluginversion = "V0.0.4";
+    
+    public static String apiversion = "Spigot-1.17";
+    
+    public static String pluginversion = "V0.0.5";
+    public static String lastpluginversion = "V0.0.4";
+    public static String lastpluginversionquick = "VersionPlaceholder";
 }
