@@ -3,6 +3,7 @@ The BlitzSsentials you need!
 
 # Quotes:
 - Tydium: "A more vanillified experience of Essentials by BlitzTDM!"
+- LLEVC (Cole): "It's actually a really good plugin, you can use it!"
 
 # Features:
 - Gamemode Shortcut CMDS!
