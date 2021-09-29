@@ -21,3 +21,4 @@ The BlitzSsentials you need!
 
 # Fun Facts
 - This Plugin is also ran on TydiumCraft
+- Tested on/for SMP's
