@@ -7,10 +7,13 @@ The BlitzSsentials you need!
 
 # Features:
 - Gamemode Shortcut CMDS!
-- Weather Shortvut CMDS!
+- Weather Shortcut CMDS!
 - Time Shortcut CMDS!
-- Permmisions Compatable!
-- Custom Join Message + Admin Only Join Message!
+- Vanish!
+- Heal + Feed
+- Mass Summon (Summon multiple of one entity)
+- Permmisions Compatible!
+- Custom Join Message + Personal Join Messages!
 
 - Doesn't have the weird custom tp that essentials has!
 - Doesn't change most vanilla feature's!
