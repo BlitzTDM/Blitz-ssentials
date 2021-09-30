@@ -1,4 +1,4 @@
-![BlitzSsentials Logo 1 0 0](https://user-images.githubusercontent.com/60582816/135375810-264fbd2f-f58f-49f1-a20b-1dfacd239c4e.png)
+![BlitzSsentials Logo 1 0 0 Short](https://user-images.githubusercontent.com/60582816/135375971-345dd505-1b46-4e57-bd85-ec87887ad286.png)
 # Blitz-ssentials
 The BlitzSsentials you need!
 
