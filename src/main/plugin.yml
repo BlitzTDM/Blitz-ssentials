@@ -1,5 +1,5 @@
 name: BlitzSsentials
-version: 0.0.5
+version: 0.1.1
 author: BlitzTDM
 main: net.tydiumcraft.Blitzssentials.BlitzssentialsMain
 description: The BlitzSsentials Plugin that is also ran on TydiumCraft
@@ -26,6 +26,8 @@ permissions:
             BlitzSsentials.refillhungerhealth: true
             BlitzSsentials.feed: true
             BlitzSsentials.heal: true
+            BlitzSsentials.vanish: true
+            BlitzSsentials.gamemode: true
     BlitzSsentials.gamemode:
         description: Gives access to all BlitzSsential Gamemode Commands
         children:
@@ -37,17 +39,26 @@ permissions:
         description: BlitzSsential Admin/OP Permission
         default: op
         children:
+            BlitzSsentials.test: true
             BlitzSsentials.op: true
             BlitzSsentials.adminhelp: true
             BlitzSsentials.join: true
             BlitzSsentials.fly: true
             BlitzSsentials.plugininfo: true
             BlitzSsentials.adminjoin: true
+            BlitzSsentials.vanish: true
+            BlitzSsentials.gamemode: true
     BlitzSsentials.refillhungerhealth:
         description: BlitzSsential Refill Commands for Health and Hunger
         children:
             BlitzSsentials.feed: true
             BlitzSsentials.heal: true
+            
+    BlitzSsentials.default:
+        default: true
+        description: Default BlitzSsentials Permissions
+        children:
+            BlitzSsentials.join: true
             
     BlitzSsentials.join:
         description: BlitzSsential Join Events Permission
@@ -134,8 +145,26 @@ commands:
     description: Refills Health
     permission: BlitzSsentials.heal
   fly:
-    description: Allow you to Enable/Disable Fly
+    aliases:
+    - f
+    description: Allows you to Enable/Disable Fly
     permission: BlitzSsentials.fly
+    
+  vanish:
+    aliases:
+    - v
+    description: Allows you to Vanish
+    permission: BlitzSsentials.vanish
+  unvanish:
+    aliases:
+    - uv
+    description: Allows you to Unvanish
+    permission: BlitzSsentials.vanish
+  togglevanish:
+    aliases:
+    - tv
+    description: Allows you to Toggle Vanish
+    permission: BlitzSsentials.vanish
 
   gmc:
     aliases: 
@@ -159,6 +188,8 @@ commands:
     permission: BlitzSsentials.gma
 
   time:
+    aliases:
+    - t
     description: Time Shortcut Command
     permission: BlitzSsentials.time
   day:

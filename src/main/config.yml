@@ -11,8 +11,8 @@
 # COMMANDS CONFIG
 
 mass-summon:
-  enable-max-ammount: false
-  max-ammount: 100
+  enable-max-amount: false
+  max-amount: 100
 
 # -----------------------------------------------------------
 # END OF COMMANDS CONFIG
@@ -23,7 +23,7 @@ mass-summon:
 # Use %player% for Playername
 # Use %line% for Line
 # Use %plugin% for Plugin and Plugin Version (Admin Only)
-# Use %api% for Plugin's Spigot API and Dependancies (Admin Only)
+# Use %api% for Plugin's Spigot API and Dependencies (Admin Only)
 # Use & for color codes!
 # Use \n for Enter/Another Line
 
@@ -38,7 +38,7 @@ join-message:
     enable-default-personal: true
     default-personal-message: "&6%line%\n&b[&3BZSs&b] &aWelcome, &l%player%!\n&6%line%"
     
-# Admin Personal Message (Only users with the permision BlitzSsentials.adminjoin can see this only, when they join)
+# Admin Personal Message (Only users with the permission BlitzSsentials.adminjoin can see this only, when they join)
   admin-personal:
     enable-admin-personal: true
     admin-personal-message: "&bWelcome Admin/Operator!\n&r%plugin% - %api%\n&6%line%"
@@ -50,7 +50,7 @@ join-message:
 
 leave-message: 
 
-# Leave Message (Everyone see's this when someone Leaves)
+# Leave Message (Everyone sees this when someone Leaves)
   leave:
     enable-leave-message: true
     leave-message: "&eSay Goodbye to &l%player% &eEveryone!"
