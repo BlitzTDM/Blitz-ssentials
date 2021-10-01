@@ -1,0 +1,242 @@
+name: BlitzSsentials
+version: 0.1.1
+author: BlitzTDM
+main: net.tydiumcraft.Blitzssentials.BlitzssentialsMain
+description: The BlitzSsentials Plugin that is also ran on TydiumCraft
+api-version: 1.17
+prefix: BZSs
+
+permissions:
+    BlitzSsentials.*:
+        description: Gives access to all BlitzSsential Commands and Permissions
+        default: op
+        children:
+            BlitzSsentials.test: true
+            BlitzSsentials.reload: true
+            BlitzSsentials.othergm: true
+            BlitzSsentials.time: true
+            BlitzSsentials.weather: true
+            BlitzSsentials.adminhelp: true
+            BlitzSsentials.admin: true
+            BlitzSsentials.op: true
+            BlitzSsentials.join: true
+            BlitzSsentials.fly: true
+            BlitzSsentials.fly.other: true
+            BlitzSsentials.plugininfo: true
+            BlitzSsentials.masssummon: true
+            BlitzSsentials.refillhungerhealth: true
+            BlitzSsentials.feed: true
+            BlitzSsentials.feed.other: true
+            BlitzSsentials.heal: true
+            BlitzSsentials.heal.other: true
+            BlitzSsentials.vanish: true
+            BlitzSsentials.gamemode: true
+    BlitzSsentials.gamemode:
+        description: Gives access to all BlitzSsential Gamemode Commands
+        children:
+            BlitzSsentials.gms: true
+            BlitzSsentials.gmc: true
+            BlitzSsentials.gmsp: true
+            BlitzSsentials.gma: true
+    BlitzSsentials.admin:
+        description: BlitzSsential Admin/OP Permission
+        default: op
+        children:
+            BlitzSsentials.test: true
+            BlitzSsentials.op: true
+            BlitzSsentials.adminhelp: true
+            BlitzSsentials.join: true
+            BlitzSsentials.fly: true
+            BlitzSsentials.plugininfo: true
+            BlitzSsentials.adminjoin: true
+            BlitzSsentials.vanish: true
+            BlitzSsentials.gamemode: true
+    BlitzSsentials.refillhungerhealth:
+        description: BlitzSsential Refill Commands for Health and Hunger
+        children:
+            BlitzSsentials.feed: true
+            BlitzSsentials.heal: true
+            
+    BlitzSsentials.default:
+        default: true
+        description: Default BlitzSsentials Permissions
+        children:
+            BlitzSsentials.join: true
+            
+    BlitzSsentials.join:
+        description: BlitzSsential Join Events Permission
+        default: true
+
+commands:
+  bzsshelp:
+    aliases: 
+    - bzssh
+    description: The Helpful Command
+  bzsshelpplugin:
+    aliases: 
+    - bzsshelpp
+    description: The Helpful Command for the Plugin
+    permission: BlitzSsentials.adminhelp
+  bzsshelpgamemode:
+    aliases: 
+    - bzsshelpg
+    description: The Helpful Command for Gamemode
+    permission: BlitzSsentials.adminhelp
+  bzsshelpweather:
+    aliases: 
+    - bzsshelpw
+    description: The Helpful Command for the Weather
+    permission: BlitzSsentials.adminhelp
+  bzsshelptime:
+    aliases: 
+    - bzsshelpt
+    description: The Helpful Command for the Time
+    permission: BlitzSsentials.adminhelp
+  bzssupdate:
+    aliases:
+    - bzssupdatecheck
+    description: The Helpful Command for checking for Updates
+    permission: BlitzSsentials.admin
+    
+  Test:
+    aliases: 
+    - tst
+    description: The Test Command
+    permission: BlitzSsentials.test
+  TestJoin:
+    aliases: 
+    - tstjoin
+    description: The Test Command for Join Message
+    permission: BlitzSsentials.test
+  TestLeave:
+    aliases: 
+    - tstleave
+    description: The Test Command for Leave Message
+    permission: BlitzSsentials.test
+  BZSsReload:
+    aliases: 
+    - bzssreloadplugin
+    description: The Plugins Plugin Reload Command
+    permission: BlitzSsentials.reload
+  BZSsConfig:
+    aliases: 
+    - bzssreloadconfig
+    description: The Plugins Config Reload Command
+    permission: BlitzSsentials.reload
+  BZSsInfo:
+    aliases:
+    - bzssplugin
+    description: To Find the Plugins Information
+    permission: BlitzSsentials.plugininfo
+    
+  masssummon:
+    aliases:
+    - msummon
+    description: Summon Multiple Enititys
+    permission: BlitzSsentials.masssummon
+    
+  feed:
+    aliases:
+    - feedme
+    - food
+    description: Refills Hunger
+    permission: BlitzSsentials.feed
+  heal:
+    aliases:
+    - healme
+    - health
+    description: Refills Health
+    permission: BlitzSsentials.heal
+  fly:
+    aliases:
+    - f
+    description: Allows you to Enable/Disable Fly
+    permission: BlitzSsentials.fly
+    
+  vanish:
+    aliases:
+    - v
+    description: Allows you to Vanish
+    permission: BlitzSsentials.vanish
+  unvanish:
+    aliases:
+    - uv
+    description: Allows you to Unvanish
+    permission: BlitzSsentials.vanish
+  togglevanish:
+    aliases:
+    - tv
+    description: Allows you to Toggle Vanish
+    permission: BlitzSsentials.vanish
+
+  gmc:
+    aliases: 
+    - gc
+    description: CreativeMode Shortcut Command
+    permission: BlitzSsentials.gmc
+  gms:
+    aliases: 
+    - gs
+    description: SurvivalMode Shortcut Command
+    permission: BlitzSsentials.gms
+  gmsp:
+    aliases: 
+    - gsp
+    description: SpectatorMode Shortcut Command
+    permission: BlitzSsentials.gmsp
+  gma:
+    aliases: 
+    - ga
+    description: AdventureMode Shortcut Command
+    permission: BlitzSsentials.gma
+
+  time:
+    aliases:
+    - t
+    description: Time Shortcut Command
+    permission: BlitzSsentials.time
+  day:
+    aliases: 
+    - timeday
+    description: Day Shortcut Command
+    permission: BlitzSsentials.time
+  noon:
+    aliases: 
+    - timenoon
+    - midday
+    - timemidday
+    description: Noon Shortcut Command
+    permission: BlitzSsentials.time
+  night:
+    aliases: 
+    - timenight
+    description: Night Shortcut Command
+    permission: BlitzSsentials.time
+  midnight:
+    aliases: 
+    - timemidnight
+    description: Midnight Shortcut Command
+    permission: BlitzSsentials.time
+
+  weather:
+    description: Weather Shortcut Command
+    permission: BlitzSsentials.weather
+  weatherclear:
+    aliases: 
+    - wclear
+    description: Weather Clear Shortcut Command
+    permission: BlitzSsentials.weather
+  weatherrain:
+    aliases: 
+    - wrain
+    - weatherdownpour
+    - wdownpour
+    description: Weather Rain Shortcut Command
+    permission: BlitzSsentials.weather
+  weatherthunder:
+    aliases: 
+    - wthunder
+    - weatherlightning
+    - wlightning
+    description: Weather Lightning and a Thunder Shortcut Command
+    permission: BlitzSsentials.weather
