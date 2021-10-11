@@ -1,5 +1,7 @@
 package net.tydiumcraft.Blitzssentials.commands;
 
+import java.io.File;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -32,9 +34,18 @@ public class PluginReloadConfig implements CommandExecutor {
 	}
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    	if (sender instanceof Player) {
-    		if (sender.hasPermission("BlitzSsentials.reload")) {
+    		if (sender.hasPermission("BlitzSsentials.reload") || (!(sender instanceof Player))) {
     			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Reloading Config");
+    			File confyml = new File(plugin.getDataFolder(), "config.yml");
+    			File confymlbackup = new File(plugin.getDataFolder(), "configOld.yml");
+    			
+    			if (confyml.exists() && !(confymlbackup.exists())) {
+    			confyml.renameTo(confymlbackup);
+    				sender.sendMessage(bzssprefix + ChatColor.YELLOW + "Created Config Backup and Generated New Config");
+    			} else {
+    				sender.sendMessage(bzssprefix + ChatColor.YELLOW + "Remove or Rename configOld.yml to Create new Config and Backup current Config");
+    			}
+    			
     			plugin.getConfig();
     			plugin.saveDefaultConfig();
     			plugin.reloadConfig();
@@ -42,13 +53,6 @@ public class PluginReloadConfig implements CommandExecutor {
     		} else {
     			sender.sendMessage(noperm);
     		}
-    	} else {
-    		Bukkit.getConsoleSender().sendMessage(pluginprefix + ChatColor.GREEN + "Reloading Config");
-    		plugin.getConfig();
-    		plugin.saveDefaultConfig();
-    		plugin.reloadConfig();
-    		Bukkit.getConsoleSender().sendMessage(pluginprefix + ChatColor.GREEN + "Config Reloaded");
-    	}
 		return false;
     }
 }

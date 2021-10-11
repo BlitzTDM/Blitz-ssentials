@@ -34,21 +34,25 @@ public class Heal implements CommandExecutor {
 	}
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    	if (sender instanceof Player) {
-    		if (sender.hasPermission("BlitzSsentials.heal")) {
-    			if (args.length == 0) {
+    		if (sender.hasPermission("BlitzSsentials.heal") || !(sender instanceof Player)) {
+    			if (args.length == 0 && sender instanceof Player) {
     				double maxHealth = ((Player) sender).getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue();
         			((Player) sender).setHealth(maxHealth);
         			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Healed!");
-    			} else if (sender.hasPermission("BlitzSsentials.heal.other")) {
+        			
+    			} else if (sender.hasPermission("BlitzSsentials.heal.other") || !(sender instanceof Player)) {
+    				if (!(sender instanceof Player) && args.length == 0) {
+    					sender.sendMessage(pluginprefix + ChatColor.RED + "Specify Player");
+    				} else {
     				Player arg0 = Bukkit.getServer().getPlayer(args[0]);
     				if (arg0 == null) {
         				sender.sendMessage(pluginprefix + ChatColor.RED + "Cannot find " + args[0]);
     				} else {
     				double maxHealth = arg0.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue();
     				arg0.setHealth(maxHealth);
-        			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Healed " + args[0] + "!");
+        			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Healed " + arg0.getDisplayName() + "!");
     				arg0.sendMessage(pluginprefix + ChatColor.GREEN + "You've Been Healed!");
+    				}
     				}
     			} else {
     				sender.sendMessage(noperm);
@@ -56,21 +60,6 @@ public class Heal implements CommandExecutor {
     		} else {
     			sender.sendMessage(noperm);
     		}
-    	} else {
-    		if (args.length == 0) {
-    		sender.sendMessage(pluginprefix + ChatColor.RED + "Specify Player");
-    		} else {
-        		Player arg0 = Bukkit.getServer().getPlayer(args[0]);
-    			if (arg0 == null) {
-    				sender.sendMessage(pluginprefix + ChatColor.RED + "Cannot find " + args[0]);
-    			} else {
-    				double maxHealth = arg0.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue();
-    				arg0.setHealth(maxHealth);
-    				sender.sendMessage(pluginprefix + ChatColor.GREEN + "Healed " + args[0] + "!");
-    				arg0.sendMessage(pluginprefix + ChatColor.GREEN + "You've Been Healed!");
-    			}
-    		}
-    	}
 		return false;
     }
 }

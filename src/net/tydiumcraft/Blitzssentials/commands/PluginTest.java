@@ -32,15 +32,11 @@ public class PluginTest implements CommandExecutor {
 	}
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    	if (sender instanceof Player) {
-    		if (sender.hasPermission("BlitzSsentials.test")) {
+    		if (sender.hasPermission("BlitzSsentials.test") || (!(sender instanceof Player))) {
     			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Test Command Successful ( " + bzssprefix2 + ChatColor.GREEN + ")");
     		} else {
     			sender.sendMessage(noperm);
     			}
-    	} else {
-    		Bukkit.getConsoleSender().sendMessage(pluginprefix + ChatColor.GREEN + "Test Command Successful ( " + bzssprefix2 + ChatColor.GREEN + ")");
-    	}
 		return false;
     }
 }

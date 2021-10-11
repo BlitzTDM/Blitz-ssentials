@@ -40,8 +40,7 @@ public class PluginCheckUpdate implements CommandExecutor {
 	}
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    	if (sender instanceof Player) {
-    		if (sender.hasPermission("BlitzSsentials.admin")) {
+    		if (sender.hasPermission("BlitzSsentials.admin") || (!(sender instanceof Player))) {
     			new checkVersion(plugin).getVersion(version -> {
     	            if (pluginversion.equalsIgnoreCase(version)) {
     	            	sender.sendMessage(PluginUpdated);
@@ -57,18 +56,6 @@ public class PluginCheckUpdate implements CommandExecutor {
     		} else {
     			sender.sendMessage(noperm);
     		}
-    	} else {
-    		new checkVersion(plugin).getVersion(version -> {
-            if (pluginversion.equalsIgnoreCase(version)) {
-            	Bukkit.getConsoleSender().sendMessage(PluginUpdated);
-            } else if (version.equalsIgnoreCase(lastpluginversion)) {
-            	Bukkit.getConsoleSender().sendMessage(PluginUpdated);
-            } else if (version.equalsIgnoreCase(lastpluginversionquick)) {
-            	Bukkit.getConsoleSender().sendMessage(PluginUpdated);
-            } else {
-            	Bukkit.getConsoleSender().sendMessage(PluginOutdated);
-            }});
-    	}
 		return false;
     }
 }

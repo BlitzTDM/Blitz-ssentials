@@ -32,16 +32,19 @@ public class GamemodeC implements CommandExecutor {
 	}
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    	if (sender instanceof Player) {
-    		if (sender.hasPermission("BlitzSsentials.gmc")) {
-    			if (args.length == 0) {
+    		if (sender.hasPermission("BlitzSsentials.gmc") || !(sender instanceof Player)) {
+    			if (args.length == 0 && sender instanceof Player) {
     			if (((Player) sender).getGameMode() == GameMode.CREATIVE) {
         			sender.sendMessage(pluginprefix + ChatColor.RED + "Already in " + ((Player) sender).getGameMode());	
     				} else {
     			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Gamemode Changed to " + ChatColor.GOLD + "CREATIVE " + ChatColor.GREEN + "from " + ((Player) sender).getGameMode());
     			((Player) sender).setGameMode(GameMode.CREATIVE);
     				}
-    			} else if (sender.hasPermission("BlitzSsentials.othergm")) {
+    			
+    			} else if (sender.hasPermission("BlitzSsentials.othergm") || !(sender instanceof Player)) {
+        			if (args.length == 0 && !(sender instanceof Player)) {
+        				sender.sendMessage(pluginprefix + ChatColor.RED + "Specify Player");
+        		} else {
     				Player arg0 = Bukkit.getServer().getPlayer(args[0]);
     				if (arg0 == null) {
         				sender.sendMessage(pluginprefix + ChatColor.RED + "Cannot find " + args[0]);
@@ -52,31 +55,14 @@ public class GamemodeC implements CommandExecutor {
         			sender.sendMessage(pluginprefix + ChatColor.GREEN + arg0.getDisplayName() + "'s " + "Gamemode Changed to " + ChatColor.GOLD + "CREATIVE " + ChatColor.GREEN + "from " + arg0.getGameMode());
         			arg0.sendMessage(pluginprefix + ChatColor.GREEN + "Gamemode Changed to " + ChatColor.GOLD + "CREATIVE " + ChatColor.GREEN + "from " + arg0.getGameMode());
         			arg0.setGameMode(GameMode.CREATIVE);
-        				}
+        					}
+    					}
+        			}
+    			} else {
+    				sender.sendMessage(noperm);
     			}
     		} else {
     			sender.sendMessage(noperm);
-    		}
-    		} else {
-    			sender.sendMessage(noperm);
-    			}
-    	} else {
-    		if (args.length == 0) {
-    			sender.sendMessage(pluginprefix + ChatColor.RED + "Specify Player");
-    	} else {
-    		Player arg0 = Bukkit.getServer().getPlayer(args[0]);
-			if (arg0 == null) {
-				sender.sendMessage(pluginprefix + ChatColor.RED + "Cannot find " + args[0]);
-			} else {
-			if (arg0.getGameMode() == GameMode.CREATIVE) {
-    			sender.sendMessage(pluginprefix + ChatColor.RED + arg0.getDisplayName() + " is " + "Already in " + arg0.getGameMode());	
-				} else {
-			sender.sendMessage(pluginprefix + ChatColor.GREEN + arg0.getDisplayName() + "'s " + "Gamemode Changed to " + ChatColor.GOLD + "CREATIVE " + ChatColor.GREEN + "from " + arg0.getGameMode());
-			arg0.sendMessage(pluginprefix + ChatColor.GREEN + "Gamemode Changed to " + ChatColor.GOLD + "CREATIVE " + ChatColor.GREEN + "from " + arg0.getGameMode());
-			arg0.setGameMode(GameMode.CREATIVE);
-				}
-			}
-    	}
     	}
 		return false;
     }
