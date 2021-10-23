@@ -64,6 +64,7 @@ public class Help implements CommandExecutor {
 	    			+ ChatColor.AQUA + "/Fly <optional-player> " + helpmenu1 + "The Fly Command" + "\n"
 	    			+ ChatColor.AQUA + "/Vanish or /v <optional-false (Hide's Join Message)> " + helpmenu1 + "The Vanish Command" + "\n"
 	    			+ ChatColor.AQUA + "/Unvanish or /uv <optional-false (Hide's Leave Message)> " + helpmenu1 + "The Unvanish Command" + "\n"
+	    			+ ChatColor.AQUA + "/God " + helpmenu1 + "The God Command (Toggle)" + "\n"
 	    			+ ChatColor.AQUA + "/Togglevanish or /tv <optional-false (Hide's Leave or Join Message)> " + helpmenu1 + "The Togglable Vanish Command" + "\n"
 	    			+ ChatColor.AQUA + "/MassSummon " + helpmenu1 + "Summon a lot of Entities!");
 	    			sender.spigot().sendMessage(helpp);

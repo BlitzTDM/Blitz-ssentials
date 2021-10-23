@@ -12,6 +12,7 @@ import net.tydiumcraft.Blitzssentials.commands.GamemodeA;
 import net.tydiumcraft.Blitzssentials.commands.GamemodeC;
 import net.tydiumcraft.Blitzssentials.commands.GamemodeS;
 import net.tydiumcraft.Blitzssentials.commands.GamemodeSP;
+import net.tydiumcraft.Blitzssentials.commands.GodMode;
 import net.tydiumcraft.Blitzssentials.commands.Heal;
 import net.tydiumcraft.Blitzssentials.commands.Help;
 import net.tydiumcraft.Blitzssentials.commands.HelpGamemode;
@@ -26,7 +27,6 @@ import net.tydiumcraft.Blitzssentials.commands.PluginReloadPlugin;
 import net.tydiumcraft.Blitzssentials.commands.PluginTest;
 import net.tydiumcraft.Blitzssentials.commands.PluginTestJoin;
 import net.tydiumcraft.Blitzssentials.commands.PluginTestLeave;
-import net.tydiumcraft.Blitzssentials.commands.Time;
 import net.tydiumcraft.Blitzssentials.commands.TimeDay;
 import net.tydiumcraft.Blitzssentials.commands.TimeMidnight;
 import net.tydiumcraft.Blitzssentials.commands.TimeNight;
@@ -68,10 +68,15 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
 
     	Vanish vanishclass = new Vanish();
     	
-    	
     	//Config
     	getConfig().options().copyDefaults(true);
     	saveDefaultConfig();
+    	
+    	if (getConfig().getInt("config-version") == 000103 && getConfig().contains("config-version")) {
+    		Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.GREEN + "Config is Up-to-Date!");
+    	} else {
+    		Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.RED + "Config is not Up-to-Date, use /BZSsConfig to Update it!");
+    	}
     	
     	//Events/Utils
     	getServer().getPluginManager().registerEvents(new ChatColors(), this);
@@ -113,6 +118,7 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
 		new Feed(this);
 		new Heal(this);
 		new Fly(this);
+		new GodMode(this);
 		
 		getCommand("vanish").setExecutor(vanishclass);
 		getCommand("unvanish").setExecutor(vanishclass);
@@ -123,7 +129,6 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
 		new GamemodeSP(this);
 		new GamemodeA(this);
 		
-		new Time(this);
 		new TimeDay(this);
 		new TimeNoon(this);
 		new TimeNight(this);

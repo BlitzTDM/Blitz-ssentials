@@ -2,6 +2,8 @@ package net.tydiumcraft.Blitzssentials.events;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,6 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.Plugin;
 
+import net.minecraft.sounds.SoundEffect;
 import net.tydiumcraft.Blitzssentials.BlitzssentialsMain;
 import net.tydiumcraft.Blitzssentials.utils.shortcutTags;
 
@@ -57,6 +60,14 @@ public class JoinMessage implements Listener {
 	    adminmessage = adminmessage.replace("%plugin%", pluginprefix + ChatColor.DARK_AQUA + pluginversion);
 	    adminmessage = adminmessage.replace("%api%", apiversion);
 	    
+	    if (config.getBoolean("join-sound.enable-join-sound")) {
+	    	String sound = config.getString("join-sound.sound");
+	    	if (!(Sound.valueOf(sound) == null)) {
+	    player.playSound(player.getLocation(), Sound.valueOf(sound), SoundCategory.MASTER, config.getInt("join-sound.volume"), config.getInt("join-sound.pitch"));
+	    	} else {
+	    		Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.RED + "ERROR! Sound in Config for join-sound, '" + sound + "' is not a valid sound!");
+	    	}
+	    }
 	    
 	    if (config.getBoolean("join-message.global.enable-global")) {
 	    	event.setJoinMessage(globalmessage);

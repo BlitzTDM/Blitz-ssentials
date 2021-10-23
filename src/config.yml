@@ -17,9 +17,17 @@ mass-summon:
 # -----------------------------------------------------------
 # END OF COMMANDS CONFIG
 # -----------------------------------------------------------
-# JOIN/LEAVE MESSAGES CONFIG
+# JOIN/LEAVE CONFIG
 
-# VARIABLES:
+# When someone joins, they hear a sound!
+# Make sure that the sound is valid! (use /playsound to test and/or find sounds)
+join-sound:
+  enable-join-sound: true
+  sound: "ENTITY_PLAYER_LEVELUP"
+  volume: 10
+  pitch: 0
+  
+# PLACEHOLDERS:
 # Use %player% for Playername
 # Use %line% for Line
 # Use %plugin% for Plugin and Plugin Version (Admin Only)
@@ -30,9 +38,8 @@ mass-summon:
 # NOTES:
 # Remember the: Quotations ("<Mesaage>")
 # The Order of Messages is: Default-Personal, then Admin-Personal (If they have the permission), and last, Global
-
+    
 join-message:
-
 # Default Personal Message (Only users with the permission BlitzSsentials.join (default) can see this only, when they join)
   default-personal:
     enable-default-personal: true
@@ -43,27 +50,23 @@ join-message:
     enable-admin-personal: true
     admin-personal-message: "&bWelcome Admin/Operator!\n&r%plugin% - %api%\n&6%line%"
     
-# Global Message (Everyone see's this when someone Joins)
+# Global Message (Everyone sees this when someone Joins)
   global:
     enable-global: true
     global-message: "&aWelcome &l%player% &ato the Server Everyone!"
 
 leave-message: 
-
 # Leave Message (Everyone sees this when someone Leaves)
   leave:
     enable-leave-message: true
     leave-message: "&eSay Goodbye to &l%player% &eEveryone!"
     
 # -----------------------------------------------------------
-# END OF JOIN/LEAVE MESSAGES CONFIG
+# END OF JOIN/LEAVE CONFIG
 # -----------------------------------------------------------
 # More to be added!
 
-
-
-
-
-
 # -----------------------------------------------------------
-# End of the line... Litterally | haha Line 69, FUNNY NUMBER!
+# End of the line... Literally
+# DO NOT CHANGE THIS!
+config-version: 000103

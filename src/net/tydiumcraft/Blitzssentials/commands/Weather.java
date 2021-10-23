@@ -1,5 +1,8 @@
 package net.tydiumcraft.Blitzssentials.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -7,13 +10,14 @@ import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
 import net.tydiumcraft.Blitzssentials.BlitzssentialsMain;
 import net.tydiumcraft.Blitzssentials.utils.shortcutTags;
 
 @SuppressWarnings("unused")
-public class Weather implements CommandExecutor {
+public class Weather implements TabExecutor {
 	
 	String line = shortcutTags.line;
 	String line2 = shortcutTags.line2;
@@ -90,4 +94,14 @@ public class Weather implements CommandExecutor {
     	}
 		return false;
    	}
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
+		List<String> weather = new ArrayList<>();
+		weather.add("clear");
+		weather.add("rain");
+		weather.add("downpour");
+		weather.add("thunder");
+		weather.add("lightning");
+		return weather;
+	}
 }

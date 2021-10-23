@@ -1,18 +1,24 @@
 package net.tydiumcraft.Blitzssentials.commands;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
+import net.minecraft.world.entity.EntityTypes;
 import net.tydiumcraft.Blitzssentials.BlitzssentialsMain;
 import net.tydiumcraft.Blitzssentials.utils.shortcutTags;
 
 @SuppressWarnings("unused")
-public class MassSummon implements CommandExecutor {
+public class MassSummon implements TabExecutor {
 	
 	String line = shortcutTags.line;
 	String line2 = shortcutTags.line2;
@@ -61,7 +67,7 @@ public class MassSummon implements CommandExecutor {
     					sender.sendMessage(lessargs + "Not a Valid Entity");
     				}
     			} else {
-    			  sender.sendMessage(lessargs + "/MassSummon <Entity> <Ammount>");
+    			  sender.sendMessage(lessargs + "/MassSummon <Entity> <Amount>");
     			}
     		} else {
     			sender.sendMessage(noperm);
@@ -71,4 +77,19 @@ public class MassSummon implements CommandExecutor {
     	}
 		return false;
     }
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
+		if (args.length == 1) {
+			List<String> entities = new ArrayList<>();
+			 
+		      for (EntityType entity : EntityType.values()) {
+		    	  entities.add(entity.toString());
+		      }
+		      return entities;
+		} else if (args.length == 2) {
+			List<String> amount = new ArrayList<String>(Arrays.asList("<amount>"));
+			return amount;
+		}
+		return null;
+	}
 }

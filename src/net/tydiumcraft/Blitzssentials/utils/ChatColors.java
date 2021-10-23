@@ -32,16 +32,7 @@ public class ChatColors  implements Listener {
 		event.setMessage(format(event.getMessage()));
 	}
 	private String format(String msg) {
-		if (Bukkit.getVersion().contains("1.16")) {
-			
-			Matcher match = pattern.matcher(msg);
-			while (match.find()) {
-				String color = msg.substring(match.start(), match.end());
-				msg = msg.replace(color, ChatColor.of(color) + "");
-				match = pattern.matcher(msg);
-			}
-		}
-		if (Bukkit.getVersion().contains("1.17")) {
+		if (Bukkit.getVersion().contains("1.16") || Bukkit.getVersion().contains("1.17")) {
 			
 			Matcher match = pattern.matcher(msg);
 			while (match.find()) {

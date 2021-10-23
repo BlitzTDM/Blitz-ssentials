@@ -1,8 +1,8 @@
 name: BlitzSsentials
-version: 0.1.2
+version: 0.1.4
 author: BlitzTDM
 main: net.tydiumcraft.Blitzssentials.BlitzssentialsMain
-description: The BlitzSsentials Plugin that is also ran on TydiumCraft
+description: The BlitzSsentials Plugin, All the BlitzSsentials you Need!
 api-version: 1.17
 prefix: BZSs
 
@@ -31,6 +31,7 @@ permissions:
             BlitzSsentials.heal.other: true
             BlitzSsentials.vanish: true
             BlitzSsentials.gamemode: true
+            BlitzSsentials.god: true
     BlitzSsentials.gamemode:
         description: Gives access to all BlitzSsential Gamemode Commands
         children:
@@ -43,7 +44,6 @@ permissions:
         default: op
         children:
             BlitzSsentials.test: true
-            BlitzSsentials.op: true
             BlitzSsentials.adminhelp: true
             BlitzSsentials.join: true
             BlitzSsentials.fly: true
@@ -51,6 +51,12 @@ permissions:
             BlitzSsentials.adminjoin: true
             BlitzSsentials.vanish: true
             BlitzSsentials.gamemode: true
+            BlitzSsentials.god: true
+    BlitzSsentials.op:
+        description: BlitzSsential Admin/OP Permission
+        default: op
+        children:
+            BlitzSsentials.admin: true
     BlitzSsentials.refillhungerhealth:
         description: BlitzSsential Refill Commands for Health and Hunger
         children:
@@ -152,6 +158,11 @@ commands:
     - f
     description: Allows you to Enable/Disable Fly
     permission: BlitzSsentials.fly
+  god:
+    aliases:
+    - godmode
+    description: Allows you to Enable/Disable Godmode
+    permission: BlitzSsentials.god
     
   vanish:
     aliases:
@@ -190,11 +201,6 @@ commands:
     description: AdventureMode Shortcut Command
     permission: BlitzSsentials.gma
 
-  time:
-    aliases:
-    - t
-    description: Time Shortcut Command
-    permission: BlitzSsentials.time
   day:
     aliases: 
     - timeday
