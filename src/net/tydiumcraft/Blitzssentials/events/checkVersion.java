@@ -28,8 +28,10 @@ public class checkVersion {
 	String console = shortcutTags.console;
     static String pluginversion = shortcutTags.pluginversion;
     String defaultpluginprefix = shortcutTags.defaultpluginprefix;
+    String configversionS = shortcutTags.configversionS;
+    int configversionI = shortcutTags.configversionI;
     
-	public static String PluginUpdated = ChatColor.GREEN + line2 + "\n" 
+public static String PluginUpdated = ChatColor.GREEN + line2 + "\n" 
 			+ bzssprefix2 + ChatColor.GREEN + "is Up-to-Date! <Your Current Version: " + ChatColor.GOLD + pluginversion + ChatColor.GREEN + ">" + ChatColor.RESET + "\n"
 			+ ChatColor.GREEN + line2;
 

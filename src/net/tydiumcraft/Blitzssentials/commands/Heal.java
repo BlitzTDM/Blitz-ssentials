@@ -22,9 +22,12 @@ public class Heal implements CommandExecutor {
 	String bzssprefix2 = shortcutTags.bzssprefix2;
 	String noperm = shortcutTags.noperm;
 	String console = shortcutTags.console;
+	String cannotfind = shortcutTags.cannotfind;
+	String specifyplayer = shortcutTags.specifyplayer;
     String pluginversion = shortcutTags.pluginversion;
     String defaultpluginprefix = shortcutTags.defaultpluginprefix;
     String lessargs = shortcutTags.lessargs;
+    String moreargs = shortcutTags.moreargs;
 	
     private BlitzssentialsMain plugin;
 	public Heal(BlitzssentialsMain plugin) {
@@ -34,19 +37,18 @@ public class Heal implements CommandExecutor {
 	}
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    		if (sender.hasPermission("BlitzSsentials.heal") || !(sender instanceof Player)) {
-    			if (args.length == 0 && sender instanceof Player) {
+    			if (args.length == 0 && sender.hasPermission("BlitzSsentials.heal") && sender instanceof Player) {
     				double maxHealth = ((Player) sender).getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue();
         			((Player) sender).setHealth(maxHealth);
         			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Healed!");
         			
     			} else if (sender.hasPermission("BlitzSsentials.heal.other") || !(sender instanceof Player)) {
     				if (!(sender instanceof Player) && args.length == 0) {
-    					sender.sendMessage(pluginprefix + ChatColor.RED + "Specify Player");
+    					sender.sendMessage(specifyplayer);
     				} else {
     				Player arg0 = Bukkit.getServer().getPlayer(args[0]);
     				if (arg0 == null) {
-        				sender.sendMessage(pluginprefix + ChatColor.RED + "Cannot find " + args[0]);
+        				sender.sendMessage(cannotfind + args[0]);
     				} else {
     				double maxHealth = arg0.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue();
     				arg0.setHealth(maxHealth);
@@ -54,12 +56,18 @@ public class Heal implements CommandExecutor {
     				arg0.sendMessage(pluginprefix + ChatColor.GREEN + "You've Been Healed!");
     				}
     				}
+    			} else if (sender.hasPermission("BlitzSsentials.feed.all") || !(sender instanceof Player)) {
+    				if (args[0] == "all" || args[0] == "*") {
+    				for (Player player : Bukkit.getOnlinePlayers()) {
+    					double maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue();
+    					player.setHealth(maxHealth);
+    				}
+    				} else {
+    					sender.sendMessage(lessargs + "Did you mean '/Heal All'");
+    				}
     			} else {
     				sender.sendMessage(noperm);
     			}
-    		} else {
-    			sender.sendMessage(noperm);
-    		}
 		return false;
     }
 }

@@ -22,8 +22,11 @@ public class Feed implements CommandExecutor {
 	String bzssprefix2 = shortcutTags.bzssprefix2;
 	String noperm = shortcutTags.noperm;
 	String console = shortcutTags.console;
+	String cannotfind = shortcutTags.cannotfind;
+	String specifyplayer = shortcutTags.specifyplayer;
     String pluginversion = shortcutTags.pluginversion;
     String defaultpluginprefix = shortcutTags.defaultpluginprefix;
+    String moreargs = shortcutTags.moreargs;
     String lessargs = shortcutTags.lessargs;
 	
     private BlitzssentialsMain plugin;
@@ -34,30 +37,34 @@ public class Feed implements CommandExecutor {
 	}
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    		if (sender.hasPermission("BlitzSsentials.feed") || !(sender instanceof Player)) {
-    			if (args.length == 0 && sender instanceof Player) {
+    			if (args.length == 0 && sender.hasPermission("BlitzSsentials.feed") && sender instanceof Player) {
     				((Player) sender).setFoodLevel(20);
         			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Fed!");
         			
     			} else if (sender.hasPermission("BlitzSsentials.feed.other") || !(sender instanceof Player)) {
     				if (!(sender instanceof Player) && args.length == 0) {
-    					sender.sendMessage(pluginprefix + ChatColor.RED + "Specify Player");
+    					sender.sendMessage(specifyplayer);
     				} else {
     				Player arg0 = Bukkit.getServer().getPlayer(args[0]);
     				if (arg0 == null) {
-        				sender.sendMessage(pluginprefix + ChatColor.RED + "Cannot find " + args[0]);
+        				sender.sendMessage(cannotfind + args[0]);
     				} else {
     				arg0.setFoodLevel(20);
         			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Fed " + arg0.getDisplayName() + "!");
     				arg0.sendMessage(pluginprefix + ChatColor.GREEN + "You've Been Fed!");
     				}
     				}
+    			} else if (sender.hasPermission("BlitzSsentials.feed.all") || !(sender instanceof Player)) {
+    				if (args[0] == "all" || args[0] == "*") {
+        				for (Player player : Bukkit.getOnlinePlayers()) {
+        					player.setFoodLevel(20);
+        				}
+        				} else {
+        					sender.sendMessage(lessargs + "Did you mean '/Feed All'");
+        				}
     			} else {
     				sender.sendMessage(noperm);
     			}
-    		} else {
-    			sender.sendMessage(noperm);
-    		}
 		return false;
     }
 }

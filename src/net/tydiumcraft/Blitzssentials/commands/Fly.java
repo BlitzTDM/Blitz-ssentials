@@ -22,6 +22,8 @@ public class Fly implements CommandExecutor {
 	String bzssprefix2 = shortcutTags.bzssprefix2;
 	String noperm = shortcutTags.noperm;
 	String console = shortcutTags.console;
+	String cannotfind = shortcutTags.cannotfind;
+	String specifyplayer = shortcutTags.specifyplayer;
     String pluginversion = shortcutTags.pluginversion;
 	
     private BlitzssentialsMain plugin;
@@ -43,11 +45,11 @@ public class Fly implements CommandExecutor {
         			}
     			} else if (sender.hasPermission("BlitzSsentials.fly.other") || !(sender instanceof Player)) {
     				if (args.length == 0 && !(sender instanceof Player)) {
-        	    		sender.sendMessage(pluginprefix + ChatColor.RED + "Specify Player");
+        	    		sender.sendMessage(specifyplayer);
     				} else {
     				Player arg0 = Bukkit.getServer().getPlayer(args[0]);
     				if (arg0 == null) {
-        				sender.sendMessage(pluginprefix + ChatColor.RED + "Cannot find " + args[0]);
+        				sender.sendMessage(cannotfind);
     				} else {
         				if (!(arg0.getAllowFlight())) {
             				arg0.setAllowFlight(true);

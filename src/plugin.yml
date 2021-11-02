@@ -1,5 +1,5 @@
 name: BlitzSsentials
-version: 0.1.3
+version: 0.2.0
 author: BlitzTDM
 main: net.tydiumcraft.Blitzssentials.BlitzssentialsMain
 description: The BlitzSsentials Plugin, All the BlitzSsentials you Need!
@@ -27,11 +27,17 @@ permissions:
             BlitzSsentials.refillhungerhealth: true
             BlitzSsentials.feed: true
             BlitzSsentials.feed.other: true
+            BlitzSsentials.heal.all: true
             BlitzSsentials.heal: true
             BlitzSsentials.heal.other: true
+            BlitzSsentials.heal.all: true
             BlitzSsentials.vanish: true
             BlitzSsentials.gamemode: true
             BlitzSsentials.god: true
+            BlitzSsentials.tphere: true
+            BlitzSsentials.tpall: true
+            BlitzSsentials.kill.all: true
+            BlitzSsentials.kill.all.avoid: true
     BlitzSsentials.gamemode:
         description: Gives access to all BlitzSsential Gamemode Commands
         children:
@@ -52,6 +58,7 @@ permissions:
             BlitzSsentials.vanish: true
             BlitzSsentials.gamemode: true
             BlitzSsentials.god: true
+            BlitzSsentials.tphere: true
     BlitzSsentials.op:
         description: BlitzSsential Admin/OP Permission
         default: op
@@ -68,10 +75,6 @@ permissions:
         description: Default BlitzSsentials Permissions
         children:
             BlitzSsentials.join: true
-            
-    BlitzSsentials.join:
-        description: BlitzSsential Join Events Permission
-        default: true
 
 commands:
   bzsshelp:
@@ -141,6 +144,19 @@ commands:
     description: Summon Multiple Enititys
     permission: BlitzSsentials.masssummon
     
+  tphere:
+    description: Teleport someone to you!
+    permission: BlitzSsentials.tphere
+  tpall:
+    description: Teleport everyone to you or someone else!
+    permission: BlitzSsentials.tpall
+  tpa:
+    description: Request to Teleport to someone!
+    permission: BlitzSsentials.tpa
+  tpaccept:
+    description: Accept someone to Teleport to you!
+    permission: BlitzSsentials.tpa
+    
   feed:
     aliases:
     - feedme
@@ -161,6 +177,12 @@ commands:
   god:
     aliases:
     - godmode
+    description: Allows you to Enable/Disable Godmode
+    permission: BlitzSsentials.god
+  killall:
+    aliases:
+    - killa
+    - kill*
     description: Allows you to Enable/Disable Godmode
     permission: BlitzSsentials.god
     

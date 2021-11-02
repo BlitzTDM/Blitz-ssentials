@@ -61,7 +61,8 @@ public class JoinMessage implements Listener {
 	    adminmessage = adminmessage.replace("%api%", apiversion);
 	    
 	    if (config.getBoolean("join-sound.enable-join-sound")) {
-	    	String sound = config.getString("join-sound.sound");
+	    	String sound = config.getString("join-sound.sound").toUpperCase().replace(".", "_");
+	        
 	    	if (!(Sound.valueOf(sound) == null)) {
 	    player.playSound(player.getLocation(), Sound.valueOf(sound), SoundCategory.MASTER, config.getInt("join-sound.volume"), config.getInt("join-sound.pitch"));
 	    	} else {

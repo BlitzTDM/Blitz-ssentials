@@ -1,17 +1,17 @@
-package net.tydiumcraft.Blitzssentials.utils;
+package net.tydiumcraft.Blitzssentials.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import net.tydiumcraft.Blitzssentials.BlitzssentialsMain;
+import net.tydiumcraft.Blitzssentials.utils.shortcutTags;
 
 @SuppressWarnings("unused")
-public class commandTemplateAliases implements CommandExecutor {
+public class tpHere implements CommandExecutor {
 	
 	String line = shortcutTags.line;
 	String line2 = shortcutTags.line2;
@@ -23,8 +23,6 @@ public class commandTemplateAliases implements CommandExecutor {
 	String console = shortcutTags.console;
 	String cannotfind = shortcutTags.cannotfind;
 	String specifyplayer = shortcutTags.specifyplayer;
-    String moreargs = shortcutTags.moreargs;
-    String lessargs = shortcutTags.lessargs;
     String pluginversion = shortcutTags.pluginversion;
     String lastpluginversion = shortcutTags.lastpluginversion;
     String lastpluginversionquick = shortcutTags.lastpluginversionquick;
@@ -32,27 +30,27 @@ public class commandTemplateAliases implements CommandExecutor {
     String defaultpluginprefix = shortcutTags.defaultpluginprefix;
     String configversionS = shortcutTags.configversionS;
     int configversionI = shortcutTags.configversionI;
-   
+	
     BlitzssentialsMain plugin = BlitzssentialsMain.getPlugin(BlitzssentialsMain.class);
-	public commandTemplateAliases(BlitzssentialsMain plugin) {
+	public tpHere(BlitzssentialsMain plugin) {
 		this.plugin = plugin;
-		plugin.getCommand("test").setExecutor(this);
+		plugin.getCommand("tphere").setExecutor(this);
 		
 	}
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     	if (sender instanceof Player) {
-    		if (sender.hasPermission("BlitzSsentials.test")) {
-    			if (label.equalsIgnoreCase("gm")) {
-    				
-    				//aliases
-    				if (args[0].equalsIgnoreCase("alias1")) {
-    					
-    				} else if (args[0].equalsIgnoreCase("alias2")) {
-
-    				} else if (args[0].equalsIgnoreCase("alias3")) {
-    					
-    				}
+    		if (sender.hasPermission("BlitzSsentials.tphere")) {
+    			if (args.length == 1) {
+    			Player arg0 = Bukkit.getPlayer(args[0]);
+    			if (arg0 == null) {
+    				sender.sendMessage(cannotfind + args[0]);
+    			} else if (arg0 != null) {
+    				sender.sendMessage(pluginprefix + "");
+    				arg0.teleport(((Player) sender).getLocation());
+    			} 
+    			} else {
+    	    		sender.sendMessage(specifyplayer);
     			}
     		} else {
     			sender.sendMessage(noperm);
@@ -61,5 +59,5 @@ public class commandTemplateAliases implements CommandExecutor {
     		Bukkit.getConsoleSender().sendMessage(console);
     	}
 		return false;
-   	}
+    }
 }

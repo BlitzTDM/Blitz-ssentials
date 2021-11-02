@@ -1,17 +1,17 @@
-package net.tydiumcraft.Blitzssentials.utils;
+package net.tydiumcraft.Blitzssentials.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import net.tydiumcraft.Blitzssentials.BlitzssentialsMain;
+import net.tydiumcraft.Blitzssentials.utils.shortcutTags;
 
 @SuppressWarnings("unused")
-public class commandTemplateAliases implements CommandExecutor {
+public class KillAll implements CommandExecutor {
 	
 	String line = shortcutTags.line;
 	String line2 = shortcutTags.line2;
@@ -32,34 +32,28 @@ public class commandTemplateAliases implements CommandExecutor {
     String defaultpluginprefix = shortcutTags.defaultpluginprefix;
     String configversionS = shortcutTags.configversionS;
     int configversionI = shortcutTags.configversionI;
-   
+	
     BlitzssentialsMain plugin = BlitzssentialsMain.getPlugin(BlitzssentialsMain.class);
-	public commandTemplateAliases(BlitzssentialsMain plugin) {
+	public KillAll(BlitzssentialsMain plugin) {
 		this.plugin = plugin;
-		plugin.getCommand("test").setExecutor(this);
-		
+		plugin.getCommand("killall").setExecutor(this);
 	}
+	
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    	if (sender instanceof Player) {
-    		if (sender.hasPermission("BlitzSsentials.test")) {
-    			if (label.equalsIgnoreCase("gm")) {
-    				
-    				//aliases
-    				if (args[0].equalsIgnoreCase("alias1")) {
-    					
-    				} else if (args[0].equalsIgnoreCase("alias2")) {
-
-    				} else if (args[0].equalsIgnoreCase("alias3")) {
-    					
+    		if (sender.hasPermission("BlitzSsentials.kill.all")) {
+    			for (Player player : Bukkit.getOnlinePlayers()) {
+    				if (player.hasPermission("BlitzSsentials.kill.all.avoid")) {
+    					player.sendMessage(pluginprefix + ChatColor.GREEN + "You have avoided from getting Killed");
+    				} else {
+    					player.setHealth(0);
+    					player.sendMessage(ChatColor.RED + "You Have Been Killed");
     				}
     			}
+    			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Killed all Players");
     		} else {
     			sender.sendMessage(noperm);
-    		}
-    	} else {
-    		Bukkit.getConsoleSender().sendMessage(console);
     	}
 		return false;
-   	}
+    }
 }

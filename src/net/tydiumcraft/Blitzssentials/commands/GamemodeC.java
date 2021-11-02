@@ -22,6 +22,8 @@ public class GamemodeC implements CommandExecutor {
 	String bzssprefix2 = shortcutTags.bzssprefix2;
 	String noperm = shortcutTags.noperm;
 	String console = shortcutTags.console;
+	String cannotfind = shortcutTags.cannotfind;
+	String specifyplayer = shortcutTags.specifyplayer;
     String pluginversion = shortcutTags.pluginversion;
 	private BlitzssentialsMain plugin;
 	
@@ -43,11 +45,11 @@ public class GamemodeC implements CommandExecutor {
     			
     			} else if (sender.hasPermission("BlitzSsentials.othergm") || !(sender instanceof Player)) {
         			if (args.length == 0 && !(sender instanceof Player)) {
-        				sender.sendMessage(pluginprefix + ChatColor.RED + "Specify Player");
+        				sender.sendMessage(specifyplayer);
         		} else {
     				Player arg0 = Bukkit.getServer().getPlayer(args[0]);
     				if (arg0 == null) {
-        				sender.sendMessage(pluginprefix + ChatColor.RED + "Cannot find " + args[0]);
+        				sender.sendMessage(cannotfind + args[0]);
     				} else {
     				if (arg0.getGameMode() == GameMode.CREATIVE) {
             			sender.sendMessage(pluginprefix + ChatColor.RED + arg0.getDisplayName() + " is " + "Already in " + arg0.getGameMode());	

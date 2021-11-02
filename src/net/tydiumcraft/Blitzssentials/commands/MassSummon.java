@@ -3,6 +3,8 @@ package net.tydiumcraft.Blitzssentials.commands;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -81,11 +83,12 @@ public class MassSummon implements TabExecutor {
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
 		if (args.length == 1) {
 			List<String> entities = new ArrayList<>();
-			 
+			if (entities.isEmpty()) {
 		      for (EntityType entity : EntityType.values()) {
-		    	  entities.add(entity.toString());
+		    		  entities.add(entity.toString());
 		      }
-		      return entities;
+		    }
+			return entities;   
 		} else if (args.length == 2) {
 			List<String> amount = new ArrayList<String>(Arrays.asList("<amount>"));
 			return amount;

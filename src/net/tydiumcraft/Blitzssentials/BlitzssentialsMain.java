@@ -19,6 +19,7 @@ import net.tydiumcraft.Blitzssentials.commands.HelpGamemode;
 import net.tydiumcraft.Blitzssentials.commands.HelpPlugin;
 import net.tydiumcraft.Blitzssentials.commands.HelpTime;
 import net.tydiumcraft.Blitzssentials.commands.HelpWeather;
+import net.tydiumcraft.Blitzssentials.commands.KillAll;
 import net.tydiumcraft.Blitzssentials.commands.MassSummon;
 import net.tydiumcraft.Blitzssentials.commands.PluginCheckUpdate;
 import net.tydiumcraft.Blitzssentials.commands.PluginInfo;
@@ -36,10 +37,14 @@ import net.tydiumcraft.Blitzssentials.commands.Weather;
 import net.tydiumcraft.Blitzssentials.commands.WeatherClear;
 import net.tydiumcraft.Blitzssentials.commands.WeatherRain;
 import net.tydiumcraft.Blitzssentials.commands.WeatherThunder;
+import net.tydiumcraft.Blitzssentials.commands.tpAll;
+import net.tydiumcraft.Blitzssentials.commands.tpHere;
 import net.tydiumcraft.Blitzssentials.events.JoinMessage;
+import net.tydiumcraft.Blitzssentials.events.LaunchPad;
 import net.tydiumcraft.Blitzssentials.events.LeaveMessage;
 import net.tydiumcraft.Blitzssentials.events.checkVersion;
 import net.tydiumcraft.Blitzssentials.utils.ChatColors;
+import net.tydiumcraft.Blitzssentials.utils.Metrics;
 import net.tydiumcraft.Blitzssentials.utils.shortcutTags;
 
 @SuppressWarnings("unused")
@@ -56,7 +61,9 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
     String pluginversion = shortcutTags.pluginversion;
     String lastpluginversion = shortcutTags.lastpluginversion;
     String lastpluginversionquick = shortcutTags.lastpluginversionquick;
-    String defaultpluginprefix = shortcutTags.defaultpluginprefix;   
+    String defaultpluginprefix = shortcutTags.defaultpluginprefix;
+    String configversionS = shortcutTags.configversionS;
+    int configversionI = shortcutTags.configversionI;
    
 	@Override
 	public void onEnable() {
@@ -68,11 +75,20 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
 
     	Vanish vanishclass = new Vanish();
     	
+    	//BStats
+    	 // All you have to do is adding the following two lines in your onEnable method.
+         // You can find the plugin ids of your plugins on the page https://bstats.org/Blitzssentials
+        int pluginId = 13142; // <-- Replace with the id of your plugin!
+        Metrics metrics = new Metrics(this, pluginId);
+
+         // Optional: Add custom charts
+      //  metrics.addCustomChart(new Metrics.SimplePie("chart_id", () -> "My value"));
+    	
     	//Config
     	getConfig().options().copyDefaults(true);
     	saveDefaultConfig();
     	
-    	if (getConfig().getInt("config-version") == 000103 && getConfig().contains("config-version")) {
+    	if (getConfig().getInt("config-version") == configversionI && getConfig().contains("config-version")) {
     		Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.GREEN + "Config is Up-to-Date!");
     	} else {
     		Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.RED + "Config is not Up-to-Date, use /BZSsConfig to Update it!");
@@ -82,6 +98,7 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
     	getServer().getPluginManager().registerEvents(new ChatColors(), this);
     	getServer().getPluginManager().registerEvents(new JoinMessage(), this);
     	getServer().getPluginManager().registerEvents(new LeaveMessage(), this);
+    	getServer().getPluginManager().registerEvents(new LaunchPad(), this);
     	
     	//checkVersion
     	String PluginUpdated = checkVersion.PluginUpdated;
@@ -115,10 +132,14 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
 		
 		new MassSummon(this);
 		
+		new tpHere(this);
+		new tpAll(this);
+		
 		new Feed(this);
 		new Heal(this);
 		new Fly(this);
 		new GodMode(this);
+		new KillAll(this);
 		
 		getCommand("vanish").setExecutor(vanishclass);
 		getCommand("unvanish").setExecutor(vanishclass);

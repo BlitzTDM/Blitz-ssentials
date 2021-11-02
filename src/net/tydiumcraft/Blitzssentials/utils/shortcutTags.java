@@ -21,11 +21,16 @@ public class shortcutTags implements Listener {
     public static String bzssprefix2 = ChatColor.DARK_AQUA + "BZ" + ChatColor.AQUA + "Ss ";
     public static String noperm = pluginprefix + ChatColor.RED + "No Permission";
     public static String lessargs = pluginprefix + ChatColor.RED + "Not Enough Arguements: ";
+    public static String moreargs = pluginprefix + ChatColor.RED + "Too Many Arguements: ";
     public static String console = pluginprefix + ChatColor.RED + "Not a Console CMD ";
+    public static String cannotfind = pluginprefix + ChatColor.RED + "Cannot find ";
+    public static String specifyplayer = pluginprefix + ChatColor.RED + "Specify Player";
     
     public static String apiversion = "Spigot-1.17";
     
-    public static String pluginversion = "V0.1.3";
-    public static String lastpluginversion = "V0.1.2";
+    public static int configversionI = 000104;
+    public static String configversionS = "000200";
+    public static String pluginversion = "V0.2.0";
+    public static String lastpluginversion = "V0.1.3";
     public static String lastpluginversionquick = "VersionPlaceholder";
 }

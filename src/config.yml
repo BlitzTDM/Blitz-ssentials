@@ -3,7 +3,30 @@
 # -----------------------------------------------------------
 # MAIN/GENERAL CONFIG
 
-# None Yet!
+launchpad:
+  enable-launchpad: false
+# Make sure that the block is valid (Use block item ID or /give to find/get your block)
+  top-block: "heavy_weighted_pressure_plate"
+  bottom-block: "redstone_block"
+# Play Sounds to make the Launchpad feel more Dynamic
+# Make sure that the sound is valid! (use /playsound to test and/or find sounds)
+  sound-1:
+    sound: "block.piston.extend"
+    volume: 2
+    pitch: 1
+  sound-2:
+    sound: "block.piston.contract"
+    volume: 2
+    pitch: 1
+# Set Particle for Visuals
+# Make sure that the particle is valid! (use /particle to test and/find particles)
+  particle:
+    particle: "cloud"
+    count: 20
+# Set Launch Power (XZ is direction, foward, backwards, left, right, and Y is height, Up)
+  Y-launch: 1
+  launch-delay: 5
+  XZ-launch: 2
 
 # -----------------------------------------------------------
 # END OF MAIN/GENERAL CONFIG
@@ -23,8 +46,8 @@ mass-summon:
 # Make sure that the sound is valid! (use /playsound to test and/or find sounds)
 join-sound:
   enable-join-sound: true
-  sound: "ENTITY_PLAYER_LEVELUP"
-  volume: 10
+  sound: "entity.player.levelup"
+  volume: 2
   pitch: 0
   
 # PLACEHOLDERS:
@@ -69,4 +92,4 @@ leave-message:
 # -----------------------------------------------------------
 # End of the line... Literally
 # DO NOT CHANGE THIS!
-config-version: 000103
+config-version: 000200
