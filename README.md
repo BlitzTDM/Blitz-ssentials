@@ -24,4 +24,4 @@ The BlitzSsentials you need!
 - This Plugin is also ran on TydiumCraft
 - Tested on/for SMP's
 
-[IMG](https://bstats.org/signatures/bukkit/blitzssentials.svg)
+![BSTATS](https://bstats.org/signatures/bukkit/blitzssentials.svg)
