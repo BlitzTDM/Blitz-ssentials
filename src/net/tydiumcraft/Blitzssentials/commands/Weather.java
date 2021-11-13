@@ -97,11 +97,14 @@ public class Weather implements TabExecutor {
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
 		List<String> weather = new ArrayList<>();
-		weather.add("clear");
-		weather.add("rain");
-		weather.add("downpour");
-		weather.add("thunder");
-		weather.add("lightning");
+		if (args.length == 1) {
+			weather.add("clear");
+			weather.add("rain");
+			weather.add("downpour");
+			weather.add("thunder");
+			weather.add("lightning");
+		}
+		
 		return weather;
 	}
 }

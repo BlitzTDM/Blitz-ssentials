@@ -34,8 +34,7 @@ public class PluginReloadPlugin implements CommandExecutor {
 	}
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    	if (sender instanceof Player) {
-    		if (sender.hasPermission("BlitzSsentials.reload")) {
+    		if (sender.hasPermission("BlitzSsentials.reload") || !(sender instanceof Player)) {
     			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Reloading Plugin");
     			HandlerList.unregisterAll();
     			plugin.getPluginLoader().disablePlugin(plugin);
@@ -44,13 +43,6 @@ public class PluginReloadPlugin implements CommandExecutor {
     		} else {
     			sender.sendMessage(noperm);
     		}
-    	} else {
-    		Bukkit.getConsoleSender().sendMessage(pluginprefix + ChatColor.GREEN + "Reloading Plugin");
-    		HandlerList.unregisterAll();
-    		plugin.getPluginLoader().disablePlugin(plugin);
-    		plugin.getPluginLoader().enablePlugin(plugin);
-    		Bukkit.getConsoleSender().sendMessage(pluginprefix + ChatColor.GREEN + "Plugin Reloaded");
-    	}
 		return false;
     }
 }

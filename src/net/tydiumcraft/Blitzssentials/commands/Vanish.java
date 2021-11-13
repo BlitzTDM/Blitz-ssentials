@@ -1,12 +1,13 @@
 package net.tydiumcraft.Blitzssentials.commands;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,7 +21,7 @@ import net.tydiumcraft.Blitzssentials.utils.shortcutTags;
 
 
 @SuppressWarnings("unused")
-public class Vanish implements CommandExecutor,Listener {
+public class Vanish implements TabExecutor,Listener {
 	
 	String line = shortcutTags.line;
 	String line2 = shortcutTags.line2;
@@ -242,4 +243,16 @@ public class Vanish implements CommandExecutor,Listener {
     	event.getPlayer().setFlying(false);
     	}
     }
+
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
+		List<String> vanish = new ArrayList<>();
+		if (args.length == 1) {
+			vanish.add("f");
+			vanish.add("false");
+			vanish.add("h");
+			vanish.add("hide");
+		}
+		return vanish;
+	}
 }

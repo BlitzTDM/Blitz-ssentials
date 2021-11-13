@@ -1,5 +1,5 @@
 name: BlitzSsentials
-version: 0.2.0
+version: 0.2.1
 author: BlitzTDM
 main: net.tydiumcraft.Blitzssentials.BlitzssentialsMain
 description: The BlitzSsentials Plugin, All the BlitzSsentials you Need!
@@ -38,6 +38,8 @@ permissions:
             BlitzSsentials.tpall: true
             BlitzSsentials.kill.all: true
             BlitzSsentials.kill.all.avoid: true
+            BlitzSsentials.broadcast.*: true
+            BlitzSsentials.countdown: true
     BlitzSsentials.gamemode:
         description: Gives access to all BlitzSsential Gamemode Commands
         children:
@@ -59,6 +61,9 @@ permissions:
             BlitzSsentials.gamemode: true
             BlitzSsentials.god: true
             BlitzSsentials.tphere: true
+            BlitzSsentials.broadcast.server: true
+            BlitzSsentials.broadcast.alert: true
+            BlitzSsentials.countdown: true
     BlitzSsentials.op:
         description: BlitzSsential Admin/OP Permission
         default: op
@@ -69,12 +74,19 @@ permissions:
         children:
             BlitzSsentials.feed: true
             BlitzSsentials.heal: true
+    BlitzSsentials.broadcast.*:
+        description: BlitzSsential Broadcast Commands
+        children:
+            BlitzSsentials.broadcast.server: true
+            BlitzSsentials.broadcast.alert: true
+            BlitzSsentials.broadcast.countdown: true
             
     BlitzSsentials.default:
         default: true
         description: Default BlitzSsentials Permissions
         children:
             BlitzSsentials.join: true
+            BlitzSsentials.spawn: true
 
 commands:
   bzsshelp:
@@ -100,6 +112,11 @@ commands:
     aliases: 
     - bzsshelpt
     description: The Helpful Command for the Time
+    permission: BlitzSsentials.adminhelp
+  bzsshelpbroadcast:
+    aliases: 
+    - bzsshelpbc
+    description: The Helpful Command for Broadcasting
     permission: BlitzSsentials.adminhelp
   bzssupdate:
     aliases:
@@ -150,12 +167,32 @@ commands:
   tpall:
     description: Teleport everyone to you or someone else!
     permission: BlitzSsentials.tpall
-  tpa:
-    description: Request to Teleport to someone!
-    permission: BlitzSsentials.tpa
-  tpaccept:
-    description: Accept someone to Teleport to you!
-    permission: BlitzSsentials.tpa
+  broadcast:
+    aliases:
+    - bc
+    description: Broadcast a Message to the Server!
+    permission: BlitzSsentials.broadcast.server
+  alert:
+    aliases:
+    - bcalert
+    description: Broadcast a Alert Message to the Server!
+    permission: BlitzSsentials.broadcast.alert
+  countdown:
+    aliases:
+    - cd
+    description: Send a Countdown to Yourself!
+    permission: BlitzSsentials.countdown
+  bccountdown:
+    aliases:
+    - broadcastcountdown
+    description: Send a countdown to Everyone!
+    permission: BlitzSsentials.broadcast.countdown
+#  tpa:
+#    description: Request to Teleport to someone!
+#    permission: BlitzSsentials.tpa
+#  tpaccept:
+#    description: Accept someone to Teleport to you!
+#    permission: BlitzSsentials.tpa
     
   feed:
     aliases:
@@ -186,6 +223,10 @@ commands:
     description: Allows you to Enable/Disable Godmode
     permission: BlitzSsentials.god
     
+  spawn:
+    description: Go to Spawn/Join Position
+    permission: BlitzSsentials.spawn
+  
   vanish:
     aliases:
     - v
@@ -201,6 +242,10 @@ commands:
     - tv
     description: Allows you to Toggle Vanish
     permission: BlitzSsentials.vanish
+
+  joinpos:
+    description: Allows to set or go to the JoinPos
+    permission: BlitzSsentials.joinpos
 
   gmc:
     aliases: 

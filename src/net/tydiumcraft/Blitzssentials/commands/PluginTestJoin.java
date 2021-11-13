@@ -36,8 +36,7 @@ public class PluginTestJoin implements CommandExecutor {
 	}
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    	if (sender instanceof Player) {
-    		if (sender.hasPermission("BlitzSsentials.test")) {
+    		if (sender.hasPermission("BlitzSsentials.test") || !(sender instanceof Player)) {
     			
     			FileConfiguration config = plugin.getConfig();
     		    
@@ -71,9 +70,6 @@ public class PluginTestJoin implements CommandExecutor {
     		} else {
     			sender.sendMessage(noperm);
     		}
-    	} else {
-    		Bukkit.getConsoleSender().sendMessage(console);
-    	}
 		return false;
     }
 }

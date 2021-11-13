@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import net.tydiumcraft.Blitzssentials.BlitzssentialsMain;
@@ -34,6 +35,7 @@ public class commandTemplate implements CommandExecutor {
     int configversionI = shortcutTags.configversionI;
 	
     BlitzssentialsMain plugin = BlitzssentialsMain.getPlugin(BlitzssentialsMain.class);
+	FileConfiguration config = plugin.getConfig();
 	public commandTemplate(BlitzssentialsMain plugin) {
 		this.plugin = plugin;
 		plugin.getCommand("test").setExecutor(this);
@@ -42,6 +44,7 @@ public class commandTemplate implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     	if (sender instanceof Player) {
+			Player player = (Player) sender;
     		if (sender.hasPermission("BlitzSsentials.test")) {
     			//Command Execution Here
     			sender.sendMessage();
