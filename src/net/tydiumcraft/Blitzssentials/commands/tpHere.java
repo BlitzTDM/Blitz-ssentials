@@ -46,7 +46,8 @@ public class tpHere implements CommandExecutor {
     			if (arg0 == null) {
     				sender.sendMessage(cannotfind + args[0]);
     			} else if (arg0 != null) {
-    				sender.sendMessage(pluginprefix + "");
+    				sender.sendMessage(pluginprefix + "Teleported " + arg0.getName() + " to you!");
+    				arg0.sendMessage(pluginprefix + "Teleported to " + sender.getName() + "!");
     				arg0.teleport(((Player) sender).getLocation());
     			} 
     			} else {

@@ -56,8 +56,10 @@ public class Feed implements CommandExecutor {
     				}
     			} else if (sender.hasPermission("BlitzSsentials.feed.all") || !(sender instanceof Player)) {
     				if (args[0] == "all" || args[0] == "*") {
+    					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Fed Everyone!");
         				for (Player player : Bukkit.getOnlinePlayers()) {
         					player.setFoodLevel(20);
+        					player.sendMessage(pluginprefix + ChatColor.GREEN + "You've Been Fed!");
         				}
         				} else {
         					sender.sendMessage(lessargs + "Did you mean '/Feed All'");

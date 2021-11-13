@@ -56,11 +56,13 @@ public class Heal implements CommandExecutor {
     				arg0.sendMessage(pluginprefix + ChatColor.GREEN + "You've Been Healed!");
     				}
     				}
-    			} else if (sender.hasPermission("BlitzSsentials.feed.all") || !(sender instanceof Player)) {
+    			} else if (sender.hasPermission("BlitzSsentials.heal.all") || !(sender instanceof Player)) {
     				if (args[0] == "all" || args[0] == "*") {
+    					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Healed Everyone!");
     				for (Player player : Bukkit.getOnlinePlayers()) {
     					double maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue();
     					player.setHealth(maxHealth);
+    					player.sendMessage(pluginprefix + ChatColor.GREEN + "You've Been Healed!");
     				}
     				} else {
     					sender.sendMessage(lessargs + "Did you mean '/Heal All'");

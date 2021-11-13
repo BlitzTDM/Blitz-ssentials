@@ -6,6 +6,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import net.tydiumcraft.Blitzssentials.commands.BroadcastAlert;
+import net.tydiumcraft.Blitzssentials.commands.BroadcastServer;
+import net.tydiumcraft.Blitzssentials.commands.Countdown;
 import net.tydiumcraft.Blitzssentials.commands.Feed;
 import net.tydiumcraft.Blitzssentials.commands.Fly;
 import net.tydiumcraft.Blitzssentials.commands.GamemodeA;
@@ -15,6 +18,7 @@ import net.tydiumcraft.Blitzssentials.commands.GamemodeSP;
 import net.tydiumcraft.Blitzssentials.commands.GodMode;
 import net.tydiumcraft.Blitzssentials.commands.Heal;
 import net.tydiumcraft.Blitzssentials.commands.Help;
+import net.tydiumcraft.Blitzssentials.commands.HelpBC;
 import net.tydiumcraft.Blitzssentials.commands.HelpGamemode;
 import net.tydiumcraft.Blitzssentials.commands.HelpPlugin;
 import net.tydiumcraft.Blitzssentials.commands.HelpTime;
@@ -23,11 +27,12 @@ import net.tydiumcraft.Blitzssentials.commands.KillAll;
 import net.tydiumcraft.Blitzssentials.commands.MassSummon;
 import net.tydiumcraft.Blitzssentials.commands.PluginCheckUpdate;
 import net.tydiumcraft.Blitzssentials.commands.PluginInfo;
-import net.tydiumcraft.Blitzssentials.commands.PluginReloadConfig;
+import net.tydiumcraft.Blitzssentials.commands.PluginConfig;
 import net.tydiumcraft.Blitzssentials.commands.PluginReloadPlugin;
 import net.tydiumcraft.Blitzssentials.commands.PluginTest;
 import net.tydiumcraft.Blitzssentials.commands.PluginTestJoin;
 import net.tydiumcraft.Blitzssentials.commands.PluginTestLeave;
+import net.tydiumcraft.Blitzssentials.commands.Spawn;
 import net.tydiumcraft.Blitzssentials.commands.TimeDay;
 import net.tydiumcraft.Blitzssentials.commands.TimeMidnight;
 import net.tydiumcraft.Blitzssentials.commands.TimeNight;
@@ -40,6 +45,7 @@ import net.tydiumcraft.Blitzssentials.commands.WeatherThunder;
 import net.tydiumcraft.Blitzssentials.commands.tpAll;
 import net.tydiumcraft.Blitzssentials.commands.tpHere;
 import net.tydiumcraft.Blitzssentials.events.JoinMessage;
+import net.tydiumcraft.Blitzssentials.events.JoinPosition;
 import net.tydiumcraft.Blitzssentials.events.LaunchPad;
 import net.tydiumcraft.Blitzssentials.events.LeaveMessage;
 import net.tydiumcraft.Blitzssentials.events.checkVersion;
@@ -74,6 +80,8 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
 				+ ChatColor.GOLD + line);
 
     	Vanish vanishclass = new Vanish();
+    	JoinPosition joinpositionclass = new JoinPosition();
+    	Countdown countdownclass = new Countdown();
     	
     	//BStats
     	 // All you have to do is adding the following two lines in your onEnable method.
@@ -97,6 +105,7 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
     	//Events/Utils
     	getServer().getPluginManager().registerEvents(new ChatColors(), this);
     	getServer().getPluginManager().registerEvents(new JoinMessage(), this);
+    	getServer().getPluginManager().registerEvents(new JoinPosition(), this);
     	getServer().getPluginManager().registerEvents(new LeaveMessage(), this);
     	getServer().getPluginManager().registerEvents(new LaunchPad(), this);
     	
@@ -121,12 +130,13 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
     	new HelpGamemode(this);
     	new HelpWeather(this);
     	new HelpTime(this);
+    	new HelpBC(this);
     	
 		new PluginTest(this);
 		new PluginTestJoin(this);
 		new PluginTestLeave(this);
 		new PluginReloadPlugin(this);
-		new PluginReloadConfig(this);
+		new PluginConfig(this);
 		new PluginInfo(this);
 		new PluginCheckUpdate(this);
 		
@@ -134,6 +144,10 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
 		
 		new tpHere(this);
 		new tpAll(this);
+		new BroadcastServer(this);
+		new BroadcastAlert(this);
+		getCommand("countdown").setExecutor(countdownclass);
+		getCommand("bccountdown").setExecutor(countdownclass);
 		
 		new Feed(this);
 		new Heal(this);
@@ -141,9 +155,13 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
 		new GodMode(this);
 		new KillAll(this);
 		
+		new Spawn(this);
+		
 		getCommand("vanish").setExecutor(vanishclass);
 		getCommand("unvanish").setExecutor(vanishclass);
 		getCommand("togglevanish").setExecutor(vanishclass);
+		
+		getCommand("joinpos").setExecutor(joinpositionclass);
 		
 		new GamemodeC(this);
 		new GamemodeS(this);

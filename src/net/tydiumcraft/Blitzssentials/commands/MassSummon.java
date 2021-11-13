@@ -81,18 +81,14 @@ public class MassSummon implements TabExecutor {
     }
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
+		List<String> masssummon = new ArrayList<>();
 		if (args.length == 1) {
-			List<String> entities = new ArrayList<>();
-			if (entities.isEmpty()) {
-		      for (EntityType entity : EntityType.values()) {
-		    		  entities.add(entity.toString());
-		      }
+			for (EntityType entity : EntityType.values()) {
+		    		masssummon.add(entity.toString());
 		    }
-			return entities;   
 		} else if (args.length == 2) {
-			List<String> amount = new ArrayList<String>(Arrays.asList("<amount>"));
-			return amount;
+			masssummon.add("<amount>");
 		}
-		return null;
+		return masssummon;
 	}
 }

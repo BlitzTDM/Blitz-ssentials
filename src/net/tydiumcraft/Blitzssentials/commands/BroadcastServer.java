@@ -1,23 +1,22 @@
 package net.tydiumcraft.Blitzssentials.commands;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-
-import com.google.common.collect.Maps;
 
 import net.tydiumcraft.Blitzssentials.BlitzssentialsMain;
 import net.tydiumcraft.Blitzssentials.utils.shortcutTags;
 
 @SuppressWarnings("unused")
-public class tpAll implements CommandExecutor {
+public class BroadcastServer implements TabExecutor {
 	
 	String line = shortcutTags.line;
 	String line2 = shortcutTags.line2;
@@ -29,6 +28,8 @@ public class tpAll implements CommandExecutor {
 	String console = shortcutTags.console;
 	String cannotfind = shortcutTags.cannotfind;
 	String specifyplayer = shortcutTags.specifyplayer;
+    String moreargs = shortcutTags.moreargs;
+    String lessargs = shortcutTags.lessargs;
     String pluginversion = shortcutTags.pluginversion;
     String lastpluginversion = shortcutTags.lastpluginversion;
     String lastpluginversionquick = shortcutTags.lastpluginversionquick;
@@ -38,35 +39,47 @@ public class tpAll implements CommandExecutor {
     int configversionI = shortcutTags.configversionI;
 	
     BlitzssentialsMain plugin = BlitzssentialsMain.getPlugin(BlitzssentialsMain.class);
-	public tpAll(BlitzssentialsMain plugin) {
+	FileConfiguration config = plugin.getConfig();
+	public BroadcastServer(BlitzssentialsMain plugin) {
 		this.plugin = plugin;
-		plugin.getCommand("tpall").setExecutor(this);
-		
+		plugin.getCommand("broadcast").setExecutor(this);
 	}
+	
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    		if (sender.hasPermission("BlitzSsentials.tpall") || !(sender instanceof Player)) {
-    			if (args.length == 0 && sender instanceof Player) {
-    			for (Player player : Bukkit.getOnlinePlayers()) {
-    				player.teleport(((Player) sender).getLocation());
-    				player.sendMessage(pluginprefix + "Teleported to " + sender.getName() + "!");
+    		if (sender.hasPermission("BlitzSsentials.broadcast.server") || !(sender instanceof Player)) {
+    			StringBuilder message = new StringBuilder();
+
+    			for (var i = 0; i < args.length; i++) {
+    				message.append(args[i]).append(" ");
     			}
-    			} else if (args.length == 1) {
-    				Player arg0 = Bukkit.getServer().getPlayer(args[0]);
-    				if (arg0 != null) {
-    					for (Player player : Bukkit.getOnlinePlayers()) {
-    	    				player.teleport(arg0.getLocation());
-    	    				player.sendMessage(pluginprefix + "Teleported to " + arg0.getName() + "!");
-    	    			}
-    				} else {
-    	    			sender.sendMessage(cannotfind + args[0]);
-    				}
-    			} else if (!(sender instanceof Player)) {
-    				sender.sendMessage(specifyplayer);
+    			
+    			String bcmessage = message.toString().trim();
+    			
+    			bcmessage = ChatColor.translateAlternateColorCodes('&', bcmessage);
+    			bcmessage = ChatColor.translateAlternateColorCodes('§', bcmessage);
+    			
+    			if (config.getBoolean("broadcast.bc-server.enable-prefix")) {
+    				String bcprefix = config.getString("broadcast.prefix");
+    				bcprefix = ChatColor.translateAlternateColorCodes('&', bcprefix);
+    				bcprefix = ChatColor.translateAlternateColorCodes('§', bcprefix);
+
+        			Bukkit.getServer().broadcastMessage(bcprefix + bcmessage);
+    			} else {
+    				Bukkit.getServer().broadcastMessage(bcmessage);
     			}
     		} else {
     			sender.sendMessage(noperm);
     		}
 		return false;
     }
+
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
+		List<String> bc = new ArrayList<>();
+		
+		bc.add("<message>");
+		
+		return bc;
+	}
 }

@@ -28,6 +28,31 @@ launchpad:
   launch-delay: 5
   XZ-launch: 2
 
+# Broadcast a Countdown to the whole Server or get Personal messages of a Countdown!
+countdown:
+  personal:
+    enable-prefix: true
+    prefix: "&8[&7Personal Countdown&8] &r"
+    end-message: "&cPersonal Countdown Ended!"
+  bc:
+    enable-prefix: true
+    prefix: "&8[&7Countdown&8] &r"
+    end-message: "&8[&7Countdown&8] &cCountdown Ended!"
+    
+# Broadcast or Alert Messages to the whole Server!
+broadcast:
+  bc-server:
+    enable-prefix: true
+    prefix: "&7[&cBroadcast&7] &r"
+  bc-alert:
+    enable-prefix: true
+    prefix: "&8[&4ALERT&8] &r"
+# Make sure that the sound is valid! (use /playsound to test and/or find sounds)
+    enable-sound: true
+    sound: "block.anvil.land"
+    volume: 2
+    pitch: -10
+
 # -----------------------------------------------------------
 # END OF MAIN/GENERAL CONFIG
 # -----------------------------------------------------------
@@ -41,6 +66,17 @@ mass-summon:
 # END OF COMMANDS CONFIG
 # -----------------------------------------------------------
 # JOIN/LEAVE CONFIG
+
+join-position:
+  enable-join-position: false
+# Specify which world
+  world: "world"
+# Make sure that Coordinates are Correct (Use /tp to test)
+  x: 0
+  y: 64
+  z: 0
+  pitch: 0
+  yaw: 0
 
 # When someone joins, they hear a sound!
 # Make sure that the sound is valid! (use /playsound to test and/or find sounds)
@@ -92,4 +128,4 @@ leave-message:
 # -----------------------------------------------------------
 # End of the line... Literally
 # DO NOT CHANGE THIS!
-config-version: 000200
+config-version: 000201

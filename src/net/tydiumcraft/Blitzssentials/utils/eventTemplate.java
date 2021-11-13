@@ -4,7 +4,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 
 import net.tydiumcraft.Blitzssentials.BlitzssentialsMain;
+import net.tydiumcraft.Blitzssentials.utils.shortcutTags;
 
+@SuppressWarnings("unused")
 public class eventTemplate implements Listener {
 	
 	String line = shortcutTags.line;
