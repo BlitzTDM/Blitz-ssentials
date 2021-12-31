@@ -87,12 +87,7 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new OldPvp(), this);
 
         //Commands
-        new Help(this);
-        new HelpPlugin(this);
-        new HelpGamemode(this);
-        new HelpWeather(this);
-        new HelpTime(this);
-        new HelpBC(this);
+        new HelpMenus(this);
 
         new PluginTest(this);
         new PluginTestJoin(this);
