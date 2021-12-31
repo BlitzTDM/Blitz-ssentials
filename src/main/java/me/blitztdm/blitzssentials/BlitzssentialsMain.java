@@ -128,16 +128,8 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
         getCommand("joinpos").setExecutor(joinpositionclass);
 
         new Gamemode(this);
-
-        new TimeDay(this);
-        new TimeNoon(this);
-        new TimeNight(this);
-        new TimeMidnight(this);
-
+        new Time(this);
         new Weather(this);
-        new WeatherClear(this);
-        new WeatherRain(this);
-        new WeatherThunder(this);
 
         new bzssSpecialCommands(this);
     }

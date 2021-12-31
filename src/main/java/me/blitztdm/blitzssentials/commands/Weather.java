@@ -13,8 +13,7 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-import static me.blitztdm.blitzssentials.utils.shortcutTags.noperm;
-import static me.blitztdm.blitzssentials.utils.shortcutTags.pluginprefix;
+import static me.blitztdm.blitzssentials.utils.shortcutTags.*;
 
 @SuppressWarnings("unused")
 public class Weather implements TabExecutor {
@@ -87,11 +86,11 @@ public class Weather implements TabExecutor {
 				}
 			}
 		} else if (cmd.getName().equalsIgnoreCase("weatherclear")) {
-			changeW(sender, "weather", false, false, "CLEAR");
+			changeW(sender, false, false, "CLEAR");
 		} else if (cmd.getName().equalsIgnoreCase("weatherrain")) {
-			changeW(sender, "weather", false, true, "RAIN");
+			changeW(sender, false, true, "RAIN");
 		} else if (cmd.getName().equalsIgnoreCase("weatherthunder")) {
-			changeW(sender, "weather", true, true, "LIGHTNING AND A THUNDER");
+			changeW(sender, true, true, "LIGHTNING AND A THUNDER");
 		}
 		return false;
    	}
@@ -111,10 +110,10 @@ public class Weather implements TabExecutor {
 		}
 	}
 
-	public void changeW(CommandSender sender, String permission, Boolean thunder, Boolean storm, String name) {
+	public void changeW(CommandSender sender, Boolean thunder, Boolean storm, String name) {
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
-			if (sender.hasPermission("BlitzSsentials." + permission)) {
+			if (sender.hasPermission("BlitzSsentials.weather")) {
 				sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + name);
 				player.getWorld().setThundering(thunder);
 				player.getWorld().setStorm(storm);
