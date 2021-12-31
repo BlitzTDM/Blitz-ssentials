@@ -64,8 +64,6 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
                 Bukkit.getConsoleSender().sendMessage(PluginUpdated);
             } else if (version.equalsIgnoreCase(lastpluginversionquick)) {
                 Bukkit.getConsoleSender().sendMessage(PluginUpdated);
-            } else if (version.equalsIgnoreCase(tydiumcrafteditionversion)) {
-                Bukkit.getConsoleSender().sendMessage(PluginUpdated);
             } else {
                 Bukkit.getConsoleSender().sendMessage(PluginOutdated);
             }});
@@ -129,10 +127,7 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
 
         getCommand("joinpos").setExecutor(joinpositionclass);
 
-        new GamemodeC(this);
-        new GamemodeS(this);
-        new GamemodeSP(this);
-        new GamemodeA(this);
+        new Gamemode(this);
 
         new TimeDay(this);
         new TimeNoon(this);
