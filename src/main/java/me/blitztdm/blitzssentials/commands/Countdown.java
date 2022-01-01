@@ -23,7 +23,7 @@ public class Countdown implements TabExecutor {
 	FileConfiguration config = plugin.getConfig();
 	public Countdown(BlitzssentialsMain plugin) {
 		this.plugin = plugin;
-		plugin.getCommand("coundown").setExecutor(this);
+		plugin.getCommand("countdown").setExecutor(this);
 		plugin.getCommand("bccountdown").setExecutor(this);
 	}
 
