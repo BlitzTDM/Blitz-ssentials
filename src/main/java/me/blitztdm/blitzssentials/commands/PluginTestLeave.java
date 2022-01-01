@@ -19,25 +19,24 @@ public class PluginTestLeave implements CommandExecutor {
 	public PluginTestLeave(BlitzssentialsMain plugin) {
 		this.plugin = plugin;
 		plugin.getCommand("TestLeave").setExecutor(this);
-		
 	}
-    @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    		if (sender.hasPermission("BlitzSsentials.test") || !(sender instanceof Player)) {
-    			
-    			FileConfiguration config = plugin.getConfig();
-    			
-    			String leavemessage = config.getString("leave-message.leave.leave-message");
-    		    leavemessage = ChatColor.translateAlternateColorCodes('&', leavemessage);
-    		    leavemessage = ChatColor.translateAlternateColorCodes('�', leavemessage);
-    		    leavemessage = leavemessage.replace("%player%", sender.getName());
-    		    leavemessage = leavemessage.replace("%playerfull%", ((Player) sender).getDisplayName());
-    		    leavemessage = leavemessage.replace("%line%", line);
-    		    
-    		    sender.sendMessage(leavemessage);
-    		} else {
-    			sender.sendMessage(noperm);
-    		}
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		if (sender.hasPermission("BlitzSsentials.test") || !(sender instanceof Player)) {
+
+			FileConfiguration config = plugin.getConfig();
+
+			String leavemessage = config.getString("leave-message.leave.leave-message");
+			leavemessage = ChatColor.translateAlternateColorCodes('&', leavemessage);
+			leavemessage = leavemessage.replace("%player%", sender.getName());
+			leavemessage = leavemessage.replace("%playerfull%", ((Player) sender).getDisplayName());
+			leavemessage = leavemessage.replace("%line%", line);
+
+			sender.sendMessage(leavemessage);
+		} else {
+			sender.sendMessage(noperm);
+		}
 		return false;
-    }
+	}
 }

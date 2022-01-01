@@ -25,7 +25,12 @@ public class OldPvp implements Listener {
     BlitzssentialsMain plugin = BlitzssentialsMain.getPlugin(BlitzssentialsMain.class);
     FileConfiguration config = plugin.getConfig();
 
-    @EventHandler
+	public OldPvp(BlitzssentialsMain plugin) {
+		this.plugin = plugin;
+		plugin.getServer().getPluginManager().registerEvents(this, plugin);
+	}
+
+	@EventHandler
     public void metaEvent(PlayerMoveEvent event) {
     	Player player = event.getPlayer();
     	Inventory inventory = player.getInventory();

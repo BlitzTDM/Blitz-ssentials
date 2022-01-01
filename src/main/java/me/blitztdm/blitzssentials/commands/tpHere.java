@@ -18,30 +18,30 @@ public class tpHere implements CommandExecutor {
 	public tpHere(BlitzssentialsMain plugin) {
 		this.plugin = plugin;
 		plugin.getCommand("tphere").setExecutor(this);
-		
 	}
-    @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    	if (sender instanceof Player) {
-    		if (sender.hasPermission("BlitzSsentials.tphere")) {
-    			if (args.length == 1) {
-    			Player arg0 = Bukkit.getPlayer(args[0]);
-    			if (arg0 == null) {
-    				sender.sendMessage(cannotfind + args[0]);
-    			} else if (arg0 != null) {
-    				sender.sendMessage(pluginprefix + "Teleported " + arg0.getName() + " to you!");
-    				arg0.sendMessage(pluginprefix + "Teleported to " + sender.getName() + "!");
-    				arg0.teleport(((Player) sender).getLocation());
-    			} 
-    			} else {
-    	    		sender.sendMessage(specifyplayer);
-    			}
-    		} else {
-    			sender.sendMessage(noperm);
-    		}
-    	} else {
-    		Bukkit.getConsoleSender().sendMessage(console);
-    	}
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		if (sender instanceof Player) {
+			if (sender.hasPermission("BlitzSsentials.tphere")) {
+				if (args.length == 1) {
+					Player arg0 = Bukkit.getPlayer(args[0]);
+					if (arg0 == null) {
+						sender.sendMessage(cannotfind + args[0]);
+					} else if (arg0 != null) {
+						sender.sendMessage(pluginprefix + "Teleported " + arg0.getName() + " to you!");
+						arg0.sendMessage(pluginprefix + "Teleported to " + sender.getName() + "!");
+						arg0.teleport(((Player) sender).getLocation());
+					}
+				} else {
+					sender.sendMessage(specifyplayer);
+				}
+			} else {
+				sender.sendMessage(noperm);
+			}
+		} else {
+			sender.sendMessage(console);
+		}
 		return false;
-    }
+	}
 }

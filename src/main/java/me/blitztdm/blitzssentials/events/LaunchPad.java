@@ -19,7 +19,12 @@ public class LaunchPad implements Listener {
     BlitzssentialsMain plugin = BlitzssentialsMain.getPlugin(BlitzssentialsMain.class);
     FileConfiguration config = plugin.getConfig();
 
-    @SuppressWarnings("deprecation")
+	public LaunchPad(BlitzssentialsMain plugin) {
+		this.plugin = plugin;
+		plugin.getServer().getPluginManager().registerEvents(this, plugin);
+	}
+
+	@SuppressWarnings("deprecation")
 	@EventHandler
     public void onMove(PlayerMoveEvent event) {
     	Player player = event.getPlayer();

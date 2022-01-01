@@ -20,22 +20,26 @@ public class LeaveMessage implements Listener {
     
     ArrayList<Player> vanished = Vanish.vanished;
 
+    public LeaveMessage(BlitzssentialsMain plugin) {
+        this.plugin = plugin;
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    }
+
     @EventHandler
     void onPlayerLeave(PlayerQuitEvent event) {
 
-		Player player = event.getPlayer();
-    
-    String leavemessage = config.getString("leave-message.leave.leave-message");
-    leavemessage = ChatColor.translateAlternateColorCodes('&', leavemessage);
-    leavemessage = ChatColor.translateAlternateColorCodes('�', leavemessage);
-    leavemessage = leavemessage.replace("%player%", player.getName());
-    leavemessage = leavemessage.replace("%playerfull%", player.getDisplayName());
-    leavemessage = leavemessage.replace("%line%", line);
-    
-    if (vanished.contains(player)) {
-    	event.setQuitMessage(null);
-    	} else if (config.getBoolean("leave-message.leave.enable-leave-message")) {
-    		event.setQuitMessage(leavemessage);
-    	}
+        Player player = event.getPlayer();
+
+        String leavemessage = config.getString("leave-message.leave.leave-message");
+        leavemessage = ChatColor.translateAlternateColorCodes('&', leavemessage);
+        leavemessage = leavemessage.replace("%player%", player.getName());
+        leavemessage = leavemessage.replace("%playerfull%", player.getDisplayName());
+        leavemessage = leavemessage.replace("%line%", line);
+
+        if (vanished.contains(player)) {
+            event.setQuitMessage(null);
+        } else if (config.getBoolean("leave-message.leave.enable-leave-message")) {
+            event.setQuitMessage(leavemessage);
+        }
     }
 }

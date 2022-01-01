@@ -24,6 +24,12 @@ public class JoinPosition implements Listener,TabExecutor {
     BlitzssentialsMain plugin = BlitzssentialsMain.getPlugin(BlitzssentialsMain.class);
     FileConfiguration config = plugin.getConfig();
 
+	public JoinPosition(BlitzssentialsMain plugin) {
+		this.plugin = plugin;
+		plugin.getCommand("joinpos").setExecutor(this);
+		plugin.getServer().getPluginManager().registerEvents(this, plugin);
+	}
+
     @EventHandler
     void onJoin(PlayerJoinEvent event) {
     	Player player = event.getPlayer();

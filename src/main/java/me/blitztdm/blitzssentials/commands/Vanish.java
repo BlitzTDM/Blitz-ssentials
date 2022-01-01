@@ -3,6 +3,7 @@ package me.blitztdm.blitzssentials.commands;
 import me.blitztdm.blitzssentials.BlitzssentialsMain;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -25,208 +26,74 @@ public class Vanish implements TabExecutor,Listener {
 	
     BlitzssentialsMain plugin = BlitzssentialsMain.getPlugin(BlitzssentialsMain.class);
     FileConfiguration config = plugin.getConfig();
-    
-	@SuppressWarnings("deprecation")
+	public Vanish(BlitzssentialsMain plugin) {
+		this.plugin = plugin;
+		plugin.getCommand("vanish").setExecutor(this);
+		plugin.getCommand("unvanish").setExecutor(this);
+		plugin.getCommand("togglevanish").setExecutor(this);
+	}
+
 	@Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    	if (sender instanceof Player) {
-    		Player player = (Player) sender;
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		if (sender instanceof Player) {
+			Player player = (Player) sender;
 
-    	    String leavemessage = config.getString("leave-message.leave.leave-message");
-    	    leavemessage = ChatColor.translateAlternateColorCodes('&', leavemessage);
-    	    leavemessage = ChatColor.translateAlternateColorCodes('�', leavemessage);
-    	    leavemessage = leavemessage.replace("%player%", player.getName());
-    	    leavemessage = leavemessage.replace("%playerfull%", player.getDisplayName());
-    	    leavemessage = leavemessage.replace("%line%", line);
-    	    
-    	    String globalmessage = config.getString("join-message.global.global-message");
-    	    globalmessage = ChatColor.translateAlternateColorCodes('&', globalmessage);
-    	    globalmessage = ChatColor.translateAlternateColorCodes('�', globalmessage);
-    	    globalmessage = globalmessage.replace("%player%", player.getName());
-    	    globalmessage = globalmessage.replace("%playerfull%", player.getDisplayName());
-    	    globalmessage = globalmessage.replace("%line%", line);
-    	    
-    		//Vanish Command
-    		if (cmd.getName().equalsIgnoreCase("vanish") || cmd.getName().equalsIgnoreCase("v")) {
-    		if (sender.hasPermission("BlitzSsentials.vanish")) {
-    			if (!vanished.contains(player)) {
-    				for (Player online : Bukkit.getOnlinePlayers()) {
-    					online.hidePlayer(player);
-    				}
-        		sender.sendMessage(pluginprefix + ChatColor.GREEN + "You are now Vanished");
-    			vanished.add(player);
-    			((Player) sender).setCollidable(false);
-    			((Player) sender).setCanPickupItems(false);
-    			((Player) sender).setInvulnerable(true);
-    			((Player) sender).setFlying(true);
-    			
-    			if (args.length == 1) {
-    				if (args[0].equalsIgnoreCase("f") || args[0].equalsIgnoreCase("false") || args[0].equalsIgnoreCase("h") || args[0].equalsIgnoreCase("hide")) {
-    					sender.sendMessage(pluginprefix + ChatColor.RED + "Didn't send leave Message");
-    				} else {
-    					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Sent leave Message");
-    				    	if (config.getBoolean("leave-message.leave.enable-leave-message")) {
-    				    		Bukkit.broadcastMessage(leavemessage);
-    				    	} else {
-    				    		Bukkit.broadcastMessage(ChatColor.YELLOW + sender.getName() + " left the game");
-    				    	}
-    				}
-    			} else {
-					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Sent leave Message");
-    				if (config.getBoolean("leave-message.leave.enable-leave-message")) {
-			    		Bukkit.broadcastMessage(leavemessage);
-			    	} else {
-			    		Bukkit.broadcastMessage(ChatColor.YELLOW + sender.getName() + " left the game");
-			    	}
-    			}
-    			
-    			} else {
-					sender.sendMessage(pluginprefix + ChatColor.YELLOW + "You are already Vanished");
-				}
-    		} else {
-    			sender.sendMessage(noperm);
-    		}
+			String leavemessage = config.getString("leave-message.leave.leave-message");
+			leavemessage = ChatColor.translateAlternateColorCodes('&', leavemessage);
+			leavemessage = leavemessage.replace("%player%", player.getName());
+			leavemessage = leavemessage.replace("%playerfull%", player.getDisplayName());
+			leavemessage = leavemessage.replace("%line%", line);
 
-        	return true;
-        	
-    		//Unvanish Command
-    		} else if (cmd.getName().equalsIgnoreCase("unvanish") || cmd.getName().equalsIgnoreCase("uv")) {
-        		if (sender.hasPermission("BlitzSsentials.vanish")) {
-        			if (vanished.contains(player)) {
-				for (Player online : Bukkit.getServer().getOnlinePlayers()) {
-					online.showPlayer(player);
-				}
-				sender.sendMessage(pluginprefix + ChatColor.RED + "You are no longer Vanished");
-				vanished.remove(player);
-				((Player) sender).setCollidable(true);
-    			((Player) sender).setCanPickupItems(true);
-    			((Player) sender).setInvulnerable(false);
-    			((Player) sender).setFlying(false);
-				
-				if (args.length == 1) {
-    				if (args[0].equalsIgnoreCase("f") || args[0].equalsIgnoreCase("false") || args[0].equalsIgnoreCase("h") || args[0].equalsIgnoreCase("hide")) {
-    					sender.sendMessage(pluginprefix + ChatColor.RED + "Didn't send join Message");
-    				} else {
-    					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Sent leave Message");
-    				    	if (config.getBoolean("join-message.global.enable-global")) {
-    				    		Bukkit.broadcastMessage(globalmessage);
-    				    	} else {
-    				    		Bukkit.broadcastMessage(ChatColor.YELLOW + sender.getName() + " joined the game");
-    				    	}
-    				}
-    			} else {
-					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Sent join Message");
-    				if (config.getBoolean("join-message.global.enable-global")) {
-			    		Bukkit.broadcastMessage(globalmessage);
-			    	} else {
-			    		Bukkit.broadcastMessage(ChatColor.YELLOW + sender.getName() + " joined the game");
-			    	}
-    			}
-				
+			String globalmessage = config.getString("join-message.global.global-message");
+			globalmessage = ChatColor.translateAlternateColorCodes('&', globalmessage);
+			globalmessage = globalmessage.replace("%player%", player.getName());
+			globalmessage = globalmessage.replace("%playerfull%", player.getDisplayName());
+			globalmessage = globalmessage.replace("%line%", line);
+
+			//Vanish Command
+			if (cmd.getName().equalsIgnoreCase("vanish") || cmd.getName().equalsIgnoreCase("v")) {
+				setVanish(sender, args, leavemessage, globalmessage, true);
+
+				//Unvanish Command
+			} else if (cmd.getName().equalsIgnoreCase("unvanish") || cmd.getName().equalsIgnoreCase("uv")) {
+				setVanish(sender, args, leavemessage, globalmessage, false);
+
+				//Toggle Vanish Command
+			} else if (cmd.getName().equalsIgnoreCase("togglevanish") || cmd.getName().equalsIgnoreCase("tv")) {
+				if (sender.hasPermission("BlitzSsentials.vanish")) {
+					if (!vanished.contains(player)) {
+						setVanish(sender, args, leavemessage, globalmessage, true);
+					} else if (vanished.contains(player)) {
+						setVanish(sender, args, leavemessage, globalmessage, false);
+					}
 				} else {
-					sender.sendMessage(pluginprefix + ChatColor.YELLOW + "You are already Unvanished");
+					sender.sendMessage(noperm);
 				}
-			} else {
-	    		Bukkit.getConsoleSender().sendMessage(noperm);
-    		}
-            return true;
-            
-        //Toggle Vanish Command
-    	} else if (cmd.getName().equalsIgnoreCase("togglevanish") || cmd.getName().equalsIgnoreCase("tv")) {
-    		if (sender.hasPermission("BlitzSsentials.vanish")) {
-    			if (!vanished.contains(player)) {
-    				for (Player online : Bukkit.getOnlinePlayers()) {
-    					online.hidePlayer(player);
-    				}
-        		sender.sendMessage(pluginprefix + ChatColor.GREEN + "You are now Vanished");
-    			vanished.add(player);
-    			((Player) sender).setCollidable(false);
-    			((Player) sender).setCanPickupItems(false);
-    			((Player) sender).setInvulnerable(true);
-    			((Player) sender).setFlying(true);
-    			
-    			if (args.length == 1) {
-    				if (args[0].equalsIgnoreCase("f") || args[0].equalsIgnoreCase("false") || args[0].equalsIgnoreCase("h") || args[0].equalsIgnoreCase("hide")) {
-    					sender.sendMessage(pluginprefix + ChatColor.RED + "Didn't send leave Message");
-    				} else {
-    					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Sent leave Message");
-    				    	if (config.getBoolean("leave-message.leave.enable-leave-message")) {
-    				    		Bukkit.broadcastMessage(leavemessage);
-    				    	} else {
-    				    		Bukkit.broadcastMessage(ChatColor.YELLOW + sender.getName() + " left the game");
-    				    	}
-    				}
-    			} else {
-					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Sent leave Message");
-    				if (config.getBoolean("leave-message.leave.enable-leave-message")) {
-			    		Bukkit.broadcastMessage(leavemessage);
-			    	} else {
-			    		Bukkit.broadcastMessage(ChatColor.YELLOW + sender.getName() + " left the game");
-			    	}
-    			}
-    			
-    			} else if (vanished.contains(player)) {
-    				for (Player online : Bukkit.getServer().getOnlinePlayers()) {
-    					online.showPlayer(player);
-    				}
-    				sender.sendMessage(pluginprefix + ChatColor.RED + "You are no longer Vanished");
-    				vanished.remove(player);
-    				((Player) sender).setCollidable(true);
-        			((Player) sender).setCanPickupItems(true);
-        			((Player) sender).setInvulnerable(false);
-        			((Player) sender).setFlying(false);
-    				
-    				if (args.length == 1) {
-        				if (args[0].equalsIgnoreCase("f") || args[0].equalsIgnoreCase("false") || args[0].equalsIgnoreCase("h") || args[0].equalsIgnoreCase("hide")) {
-        					sender.sendMessage(pluginprefix + ChatColor.RED + "Didn't send join Message");
-        				} else {
-        					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Sent leave Message");
-        				    	if (config.getBoolean("join-message.global.enable-global")) {
-        				    		Bukkit.broadcastMessage(globalmessage);
-        				    	} else {
-        				    		Bukkit.broadcastMessage(ChatColor.YELLOW + sender.getName() + " joined the game");
-        				    	}
-        				}
-        			} else {
-    					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Sent join Message");
-        				if (config.getBoolean("join-message.global.enable-global")) {
-    			    		Bukkit.broadcastMessage(globalmessage);
-    			    	} else {
-    			    		Bukkit.broadcastMessage(ChatColor.YELLOW + sender.getName() + " joined the game");
-    			    	}
-        			}
-    				
-    				}
-    		} else {
-    			sender.sendMessage(noperm);
-    		}
-    		}
+			}
+		} else {
+			sender.sendMessage(console);
+		}
+		return true;
+	}
 
-        	return true;
-    	} else {
-    		sender.sendMessage(console);
-    	}
-    	return true;
-    }
-    
-    @EventHandler
-    @SuppressWarnings("deprecation")
-    public void onJoin(PlayerJoinEvent event) {
-    	for (Player player : vanished) {
-    		event.getPlayer().hidePlayer(player);
-    	}
-    }
-    @EventHandler
-    public void onLeave(PlayerQuitEvent event) {
-    	if (vanished.contains(event.getPlayer())) {
-    	event.setQuitMessage(null);
-    	vanished.remove(event.getPlayer());
-    	event.getPlayer().setCollidable(true);
-    	event.getPlayer().setCanPickupItems(true);
-    	event.getPlayer().setInvulnerable(false);
-    	event.getPlayer().setFlying(false);
-    	}
-    }
+	@EventHandler
+	@SuppressWarnings("deprecation")
+	public void onJoin(PlayerJoinEvent event) {
+		for (Player player : vanished) {
+			event.getPlayer().hidePlayer(player);
+		}
+	}
+	@EventHandler
+	public void onLeave(PlayerQuitEvent event) {
+		if (vanished.contains(event.getPlayer())) {
+			event.setQuitMessage(null);
+			vanished.remove(event.getPlayer());
+			event.getPlayer().setCollidable(true);
+			event.getPlayer().setCanPickupItems(true);
+			event.getPlayer().setInvulnerable(false);
+			event.getPlayer().setFlying(false);
+		}
+	}
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
@@ -238,5 +105,69 @@ public class Vanish implements TabExecutor,Listener {
 			vanish.add("hide");
 		}
 		return vanish;
+	}
+
+	public void setVanish(CommandSender sender, String[] args, String leavemessage, String globalmessage, Boolean beVanished) {
+		if (beVanished) {
+			Player player = (Player) sender;
+			if (sender.hasPermission("BlitzSsentials.vanish")) {
+				if (!vanished.contains(player)) {
+					for (Player online : Bukkit.getOnlinePlayers()) {
+						online.hidePlayer(player);
+					}
+					sender.sendMessage(pluginprefix + ChatColor.GREEN + "You are now Vanished");
+					vanished.add(player);
+					player.setCollidable(false);
+					player.setCanPickupItems(false);
+					player.setInvulnerable(true);
+					player.setAllowFlight(true);
+					if (args.length == 1 && (args[0].equalsIgnoreCase("f") || args[0].equalsIgnoreCase("false") || args[0].equalsIgnoreCase("h") || args[0].equalsIgnoreCase("hide"))) {
+						sender.sendMessage(pluginprefix + ChatColor.RED + "Didn't send leave Message");
+					} else {
+						sender.sendMessage(pluginprefix + ChatColor.GREEN + "Sent leave Message");
+						if (config.getBoolean("leave-message.leave.enable-leave-message")) {
+							Bukkit.broadcastMessage(leavemessage);
+						} else {
+							Bukkit.broadcastMessage(ChatColor.YELLOW + sender.getName() + " left the game");
+						}
+					}
+				} else {
+					sender.sendMessage(pluginprefix + ChatColor.YELLOW + "You are already Vanished");
+				}
+			} else {
+				sender.sendMessage(noperm);
+			}
+		} else {
+			if (sender.hasPermission("BlitzSsentials.vanish")) {
+				Player player = (Player) sender;
+				if (vanished.contains(player)) {
+					for (Player online : Bukkit.getServer().getOnlinePlayers()) {
+						online.showPlayer(player);
+					}
+					sender.sendMessage(pluginprefix + ChatColor.RED + "You are no longer Vanished");
+					vanished.remove(player);
+					player.setCollidable(true);
+					player.setCanPickupItems(true);
+					player.setInvulnerable(false);
+					if (player.getGameMode() != GameMode.CREATIVE || player.getGameMode() != GameMode.SPECTATOR) {
+						player.setAllowFlight(false);
+					}
+					if (args.length == 1 && (args[0].equalsIgnoreCase("f") || args[0].equalsIgnoreCase("false") || args[0].equalsIgnoreCase("h") || args[0].equalsIgnoreCase("hide"))) {
+						sender.sendMessage(pluginprefix + ChatColor.RED + "Didn't send join Message");
+					} else {
+						sender.sendMessage(pluginprefix + ChatColor.GREEN + "Sent leave Message");
+						if (config.getBoolean("join-message.global.enable-global")) {
+							Bukkit.broadcastMessage(globalmessage);
+						} else {
+							Bukkit.broadcastMessage(ChatColor.YELLOW + sender.getName() + " joined the game");
+						}
+					}
+				} else {
+					sender.sendMessage(pluginprefix + ChatColor.YELLOW + "You are already Unvanished");
+				}
+			} else {
+				Bukkit.getConsoleSender().sendMessage(noperm);
+			}
+		}
 	}
 }

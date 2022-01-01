@@ -20,11 +20,12 @@ public class Help implements CommandExecutor {
 
 	BlitzssentialsMain plugin = BlitzssentialsMain.getPlugin(BlitzssentialsMain.class);
 	FileConfiguration config = plugin.getConfig();
+
 		public Help(BlitzssentialsMain plugin) {
 			this.plugin = plugin;
 			plugin.getCommand("BZSsHelp").setExecutor(this);
-			
 		}
+
 	    @Override
 	    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 	    	if (sender instanceof Player) {

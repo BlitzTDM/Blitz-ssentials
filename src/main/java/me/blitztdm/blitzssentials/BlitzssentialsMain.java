@@ -28,10 +28,6 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
                 + ChatColor.GREEN + "|Plugin Enabled| " + ChatColor.AQUA + pluginversion + ChatColor.RESET + "\n"
                 + ChatColor.GOLD + line);
 
-        Vanish vanishclass = new Vanish();
-        JoinPosition joinpositionclass = new JoinPosition();
-        Countdown countdownclass = new Countdown();
-
         //BStats
         // All you have to do is adding the following two lines in your onEnable method.
         // You can find the plugin ids of your plugins on the page https://bstats.org/Blitzssentials
@@ -79,14 +75,15 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
         }
 
         //Events/Utils
-        getServer().getPluginManager().registerEvents(new ChatColors(), this);
-        getServer().getPluginManager().registerEvents(new JoinMessage(), this);
-        getServer().getPluginManager().registerEvents(new JoinPosition(), this);
-        getServer().getPluginManager().registerEvents(new LeaveMessage(), this);
-        getServer().getPluginManager().registerEvents(new LaunchPad(), this);
-        getServer().getPluginManager().registerEvents(new OldPvp(), this);
+        new ChatColors(this);
+        new JoinMessage(this);
+        new JoinPosition(this);
+        new LeaveMessage(this);
+        new LaunchPad(this);
+        new OldPvp(this);
 
         //Commands
+        new Help(this);
         new HelpMenus(this);
 
         new PluginTest(this);
@@ -103,8 +100,7 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
         new tpAll(this);
         new BroadcastServer(this);
         new BroadcastAlert(this);
-        getCommand("countdown").setExecutor(countdownclass);
-        getCommand("bccountdown").setExecutor(countdownclass);
+        new Countdown(this);
 
         new Feed(this);
         new Heal(this);
@@ -116,12 +112,7 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
         new Spawn(this);
         new MyInfo(this);
 
-        getCommand("vanish").setExecutor(vanishclass);
-        getCommand("unvanish").setExecutor(vanishclass);
-        getCommand("togglevanish").setExecutor(vanishclass);
-
-        getCommand("joinpos").setExecutor(joinpositionclass);
-
+        new Vanish(this);
         new Gamemode(this);
         new Time(this);
         new Weather(this);
