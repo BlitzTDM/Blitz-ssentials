@@ -71,9 +71,9 @@ public class MassSummon implements TabExecutor {
 			for (EntityType entity : EntityType.values()) {
 				if (args[0].length() == 0) {
 					masssummon.add(entity.toString());
-				} else if (entity.toString().startsWith(args[0])) {
+				} else if (entity.toString().startsWith(args[0].toUpperCase())) {
 					masssummon.add(entity.toString());
-				} else if (entity.toString().contains(args[0])) {
+				} else if (entity.toString().contains(args[0].toUpperCase())) {
 					masssummon.add(entity.toString());
 				} else {
 					masssummon.add("<entity>");
