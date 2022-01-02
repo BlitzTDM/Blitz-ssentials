@@ -95,7 +95,7 @@ permissions:
 
 commands:
   bzss:
-    description: Default Command, does Nothing Right Now
+    description: Default Command that does Nothing Right Now
   bzsshelp:
     aliases:
       - bzssh
@@ -194,20 +194,20 @@ commands:
     aliases:
       - broadcastcountdown
       - bcc
-    description: Send a countdown to Everyone!
+    description: Send a countdown to Everyone
     permission: BlitzSsentials.broadcast.countdown
   tpa:
-    description: Request to Teleport to someone!
+    description: Request to Teleport to someone
     permission: BlitzSsentials.tpa
   tpahere:
-    description: Request to someone to Teleport to your!
+    description: Request to someone to Teleport to you
     permission: BlitzSsentials.tpa
   tpaccept:
-    description: Accept to Teleport to you or them!
+    description: Accept to Teleport to you or them
     permission: BlitzSsentials.tpa
   tpdeny:
-    description: Deny to Teleport to you or them.
-   permission: BlitzSsentials.tpa
+    description: Deny to Teleport to you or them
+    permission: BlitzSsentials.tpa
 
   feed:
     aliases:
