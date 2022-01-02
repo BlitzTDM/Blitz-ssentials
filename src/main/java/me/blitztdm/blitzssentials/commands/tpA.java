@@ -26,7 +26,7 @@ public class tpA implements CommandExecutor {
     HashMap<UUID, Boolean> requestAcceptTPA = new HashMap<UUID, Boolean>();
     HashMap<UUID, Boolean> requestAcceptTPAHere = new HashMap<UUID, Boolean>();
 
-    tpA(BlitzssentialsMain plugin) {
+    public tpA(BlitzssentialsMain plugin) {
         this.plugin = plugin;
         plugin.getCommand("tpa").setExecutor(this);
         plugin.getCommand("tpahere").setExecutor(this);

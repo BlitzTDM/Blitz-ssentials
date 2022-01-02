@@ -196,15 +196,18 @@ commands:
       - bcc
     description: Send a countdown to Everyone!
     permission: BlitzSsentials.broadcast.countdown
-    #  tpa:
-    #    description: Request to Teleport to someone!
-    #    permission: BlitzSsentials.tpa
-    #  tpaccept:
-    #    description: Accept someone to Teleport to you!
-    #    permission: BlitzSsentials.tpa
-    #  tpdeny:
-    #    description: Deny someone to Teleport to you.
-    #    permission: BlitzSsentials.tpa
+  tpa:
+    description: Request to Teleport to someone!
+    permission: BlitzSsentials.tpa
+  tpahere:
+    description: Request to someone to Teleport to your!
+    permission: BlitzSsentials.tpa
+  tpaccept:
+    description: Accept to Teleport to you or them!
+    permission: BlitzSsentials.tpa
+  tpdeny:
+    description: Deny to Teleport to you or them.
+   permission: BlitzSsentials.tpa
 
   feed:
     aliases:

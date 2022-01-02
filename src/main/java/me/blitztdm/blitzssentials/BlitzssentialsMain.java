@@ -118,6 +118,8 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
         new Time(this);
         new Weather(this);
 
+        new tpA(this);
+
         new bzssSpecialCommands(this);
     }
 
