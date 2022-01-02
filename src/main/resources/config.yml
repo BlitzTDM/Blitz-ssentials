@@ -129,7 +129,9 @@ leave-message:
 # WARNING: All these features are in BETA, may not work, and/or may crash your server | Disabled on Default
 old-pvp:
   enable-old-pvp: false
-  
+
+tpa:
+  enable-tpa: false
 # -----------------------------------------------------------
 # END OF BETA CONFIG
 # -----------------------------------------------------------

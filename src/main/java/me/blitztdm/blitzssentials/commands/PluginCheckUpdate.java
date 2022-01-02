@@ -38,8 +38,6 @@ public class PluginCheckUpdate implements CommandExecutor {
 						Bukkit.getConsoleSender().sendMessage(PluginUpdated);
 					} else if (version.equalsIgnoreCase(lastpluginversionquick)) {
 						Bukkit.getConsoleSender().sendMessage(PluginUpdated);
-					} else if (version.equalsIgnoreCase(tydiumcrafteditionversion)) {
-						Bukkit.getConsoleSender().sendMessage(PluginUpdated);
 					} else {
 						Bukkit.getConsoleSender().sendMessage(PluginOutdated);
 					}});
