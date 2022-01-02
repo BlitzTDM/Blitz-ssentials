@@ -113,6 +113,7 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
         new MyInfo(this);
 
         new Vanish(this);
+        new Sudo(this);
         new Gamemode(this);
         new Time(this);
         new Weather(this);

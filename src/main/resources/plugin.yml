@@ -263,6 +263,9 @@ commands:
       - tv
     description: Allows you to Toggle Vanish
     permission: BlitzSsentials.vanish
+  sudo:
+    description: Allows you to Sudo Someone
+    permission: BlitzSsentials.sudo
 
   joinpos:
     description: Allows to set or go to the JoinPos
