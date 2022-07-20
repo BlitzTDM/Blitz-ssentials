@@ -35,9 +35,9 @@ public class JoinPosition implements Listener,TabExecutor {
     	Player player = event.getPlayer();
     	if (config.getBoolean("join-position.enable-join-position")) {
     		String JWorld = config.getString("join-position.world");
-    		double JLocX = config.getInt("join-position.x");
-    		double JLocY = config.getInt("join-position.y");
-    		double JLocZ = config.getInt("join-position.z");
+    		double JLocX = config.getDouble("join-position.x");
+    		double JLocY = config.getDouble("join-position.y");
+    		double JLocZ = config.getDouble("join-position.z");
     		float JYaw = config.getInt("join-position.yaw");
     		float JPitch = config.getInt("join-position.pitch");
     		

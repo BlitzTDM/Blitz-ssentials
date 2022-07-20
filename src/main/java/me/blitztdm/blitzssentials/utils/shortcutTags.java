@@ -29,10 +29,10 @@ public class shortcutTags implements Listener {
     public static String configversionS = "000300";
     public static int configversionI = 000300;
 
-    public static String pluginversion = "V0.3.0";
+    public static String pluginversion = "V0.3.1";
     
-    public static String pluginversionreal = "V0.3.0";
+    public static String pluginversionreal = "V0.3.1";
     
-    public static String lastpluginversion = "V0.2.2";
+    public static String lastpluginversion = "V0.3.0";
     public static String lastpluginversionquick = "VersionPlaceholder";
 }

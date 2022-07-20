@@ -23,10 +23,10 @@ public class BroadcastServer implements TabExecutor {
 		this.plugin = plugin;
 		plugin.getCommand("broadcast").setExecutor(this);
 	}
-
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (sender.hasPermission("BlitzSsentials.broadcast.server") || !(sender instanceof Player)) {
+	
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    	if (sender.hasPermission("BlitzSsentials.broadcast.server") || !(sender instanceof Player)) {
 			StringBuilder message = new StringBuilder();
 
 			for (int i = 0; i < args.length; i++) {
@@ -50,14 +50,14 @@ public class BroadcastServer implements TabExecutor {
 			sender.sendMessage(noperm);
 		}
 		return false;
-	}
+    }
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
 		List<String> bc = new ArrayList<>();
-
+		
 		bc.add("<message>");
-
+		
 		return bc;
 	}
 }

@@ -10,7 +10,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-import static me.blitztdm.blitzssentials.utils.shortcutTags.*;
+import static me.blitztdm.blitzssentials.utils.shortcutTags.noperm;
+import static me.blitztdm.blitzssentials.utils.shortcutTags.pluginprefix;
 
 @SuppressWarnings("unused")
 public class Time implements CommandExecutor {
@@ -25,8 +26,8 @@ public class Time implements CommandExecutor {
 		plugin.getCommand("midnight").setExecutor(this);
 	}
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("day")) {
 			changeT(sender, 23500, "DAY");
 		} else if (cmd.getName().equalsIgnoreCase("noon")) {
@@ -37,7 +38,7 @@ public class Time implements CommandExecutor {
 			changeT(sender, 18000, "MIDNIGHT");
 		}
 		return false;
-    }
+	}
 
 	public void changeT(CommandSender sender, long time, String name) {
 		if (sender instanceof Player) {

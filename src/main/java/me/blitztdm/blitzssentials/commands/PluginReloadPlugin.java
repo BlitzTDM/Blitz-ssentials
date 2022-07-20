@@ -7,7 +7,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.HandlerList;
 
 import static me.blitztdm.blitzssentials.utils.shortcutTags.noperm;
 import static me.blitztdm.blitzssentials.utils.shortcutTags.pluginprefix;
@@ -22,19 +21,19 @@ public class PluginReloadPlugin implements CommandExecutor {
 		plugin.getCommand("BZSsReload").setExecutor(this);
 	}
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (sender.hasPermission("BlitzSsentials.reload") || !(sender instanceof Player)) {
-			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Reloading Plugin");
-			plugin.saveDefaultConfig();
-			plugin.getPluginLoader().disablePlugin(plugin);
-			plugin.getPluginLoader().enablePlugin(plugin);
-			config.options().copyDefaults(true);
-			plugin.saveDefaultConfig();
-			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Plugin Reloaded");
-		} else {
-			sender.sendMessage(noperm);
-		}
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    		if (sender.hasPermission("BlitzSsentials.reload") || !(sender instanceof Player)) {
+    			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Reloading Plugin");
+				plugin.saveDefaultConfig();
+    			plugin.getPluginLoader().disablePlugin(plugin);
+    			plugin.getPluginLoader().enablePlugin(plugin);
+				config.options().copyDefaults(true);
+				plugin.saveDefaultConfig();
+    			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Plugin Reloaded");
+    		} else {
+    			sender.sendMessage(noperm);
+    		}
 		return false;
-	}
+    }
 }

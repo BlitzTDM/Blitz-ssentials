@@ -45,7 +45,7 @@ public class Sudo implements TabExecutor {
                     sender.sendMessage(cannotfind + args[0]);
                 }
             } else {
-                sender.sendMessage(lessargs + "/sudo <player> <chat | cmd> <input <chat | cmd>>");
+                sender.sendMessage(lessargs + "/sudo <player> <chat|cmd> <input <chat|cmd>>");
             }
         } else {
             sender.sendMessage(noperm);

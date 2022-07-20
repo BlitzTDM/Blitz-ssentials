@@ -24,19 +24,19 @@ public class Gamemode implements CommandExecutor {
 		plugin.getCommand("gmsp").setExecutor(this);
 	}
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("gma")) {
 			changeGM(sender, args, "gma", GameMode.ADVENTURE);
 		} else if (cmd.getName().equalsIgnoreCase("gmc")) {
 			changeGM(sender, args, "gmc", GameMode.CREATIVE);
 		} else if (cmd.getName().equalsIgnoreCase("gms")) {
-			changeGM(sender, args, "gmc", GameMode.SURVIVAL);
+			changeGM(sender, args, "gms", GameMode.SURVIVAL);
 		} else if (cmd.getName().equalsIgnoreCase("gmsp")) {
 			changeGM(sender, args, "gmsp", GameMode.SPECTATOR);
 		}
-    	return false;
-    }
+		return false;
+	}
 
 	public void changeGM(CommandSender sender, String[] args, String permission, GameMode gamemode) {
 		if (sender.hasPermission("BlitzSsentials." + permission) || !(sender instanceof Player)) {

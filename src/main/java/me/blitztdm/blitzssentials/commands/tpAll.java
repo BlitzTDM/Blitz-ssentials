@@ -20,31 +20,31 @@ public class tpAll implements CommandExecutor {
 		plugin.getCommand("tpall").setExecutor(this);
 	}
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (sender.hasPermission("BlitzSsentials.tpall") || !(sender instanceof Player)) {
-			if (args.length == 0 && sender instanceof Player) {
-				Player executer = (Player) sender;
-				for (Player player : Bukkit.getOnlinePlayers()) {
-					player.teleport(executer.getLocation());
-					player.sendMessage(pluginprefix + "Teleported to " + sender.getName() + "!");
-				}
-			} else if (args.length == 1) {
-				Player arg0 = Bukkit.getServer().getPlayer(args[0]);
-				if (arg0 != null) {
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    		if (sender.hasPermission("BlitzSsentials.tpall") || !(sender instanceof Player)) {
+    			if (args.length == 0 && sender instanceof Player) {
+					Player executer = (Player) sender;
 					for (Player player : Bukkit.getOnlinePlayers()) {
-						player.teleport(arg0.getLocation());
-						player.sendMessage(pluginprefix + "Teleported to " + arg0.getName() + "!");
+						player.teleport(executer.getLocation());
+						player.sendMessage(pluginprefix + "Teleported to " + sender.getName() + "!");
 					}
-				} else {
-					sender.sendMessage(cannotfind + args[0]);
-				}
-			} else if (!(sender instanceof Player)) {
-				sender.sendMessage(specifyplayer);
-			}
-		} else {
-			sender.sendMessage(noperm);
-		}
+				} else if (args.length == 1) {
+    				Player arg0 = Bukkit.getServer().getPlayer(args[0]);
+    				if (arg0 != null) {
+    					for (Player player : Bukkit.getOnlinePlayers()) {
+    	    				player.teleport(arg0.getLocation());
+    	    				player.sendMessage(pluginprefix + "Teleported to " + arg0.getName() + "!");
+    	    			}
+    				} else {
+    	    			sender.sendMessage(cannotfind + args[0]);
+    				}
+    			} else if (!(sender instanceof Player)) {
+    				sender.sendMessage(specifyplayer);
+    			}
+    		} else {
+    			sender.sendMessage(noperm);
+    		}
 		return false;
-	}
+    }
 }

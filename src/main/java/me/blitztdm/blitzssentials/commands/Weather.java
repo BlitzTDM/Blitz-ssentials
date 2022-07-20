@@ -13,7 +13,8 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-import static me.blitztdm.blitzssentials.utils.shortcutTags.*;
+import static me.blitztdm.blitzssentials.utils.shortcutTags.noperm;
+import static me.blitztdm.blitzssentials.utils.shortcutTags.pluginprefix;
 
 @SuppressWarnings("unused")
 public class Weather implements TabExecutor {
@@ -28,8 +29,8 @@ public class Weather implements TabExecutor {
 		plugin.getCommand("weatherthunder").setExecutor(this);
 	}
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("weather")) {
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
@@ -93,7 +94,7 @@ public class Weather implements TabExecutor {
 			changeW(sender, true, true, "LIGHTNING AND A THUNDER");
 		}
 		return false;
-   	}
+	}
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {

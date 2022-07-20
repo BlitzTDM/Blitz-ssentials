@@ -20,13 +20,13 @@ public class PluginTest implements CommandExecutor {
 		plugin.getCommand("test").setExecutor(this);
 	}
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (sender.hasPermission("BlitzSsentials.test") || (!(sender instanceof Player))) {
-			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Test Command Successful ( " + bzssprefix2 + ChatColor.GREEN + ")");
-		} else {
-			sender.sendMessage(noperm);
-		}
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    		if (sender.hasPermission("BlitzSsentials.test") || (!(sender instanceof Player))) {
+    			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Test Command Successful ( " + bzssprefix2 + ChatColor.GREEN + ")");
+    		} else {
+				sender.sendMessage(noperm);
+			}
 		return false;
-	}
+    }
 }

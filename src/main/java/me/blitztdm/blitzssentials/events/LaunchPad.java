@@ -24,7 +24,7 @@ public class LaunchPad implements Listener {
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
 
-	@SuppressWarnings("deprecation")
+    @SuppressWarnings("deprecation")
 	@EventHandler
     public void onMove(PlayerMoveEvent event) {
     	Player player = event.getPlayer();

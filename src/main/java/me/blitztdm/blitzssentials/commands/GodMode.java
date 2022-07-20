@@ -1,7 +1,6 @@
 package me.blitztdm.blitzssentials.commands;
 
 import me.blitztdm.blitzssentials.BlitzssentialsMain;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
@@ -26,32 +25,32 @@ public class GodMode implements CommandExecutor {
 		plugin.getCommand("god").setExecutor(this);
 	}
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (sender instanceof Player) {
-			Player player = (Player) sender;
-			if (sender.hasPermission("BlitzSsentials.god")) {
-				if (!god.contains(player)) {
-					player.setInvulnerable(true);
-					if (!player.getGameMode().equals(GameMode.CREATIVE) || !player.getGameMode().equals(GameMode.SPECTATOR)) {
-						player.setAllowFlight(true);
-					}
-					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Now in " + ChatColor.GOLD + "GODMODE");
-					god.add(player);
-				} else {
-					player.setInvulnerable(false);
-					if (!player.getGameMode().equals(GameMode.CREATIVE) || !player.getGameMode().equals(GameMode.SPECTATOR)) {
-						player.setAllowFlight(false);
-					}
-					sender.sendMessage(pluginprefix + ChatColor.RED + "No longer in " + ChatColor.GOLD + "GODMODE");
-					god.remove(player);
-				}
-			} else {
-				sender.sendMessage(noperm);
-			}
-		} else {
-			sender.sendMessage(console);
-		}
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    	if (sender instanceof Player) {
+    		Player player = (Player) sender;
+    		if (sender.hasPermission("BlitzSsentials.god")) {
+    			if (!god.contains(player)) {
+    				player.setInvulnerable(true);
+    				if (!player.getGameMode().equals(GameMode.CREATIVE) || !player.getGameMode().equals(GameMode.SPECTATOR)) {
+    				player.setAllowFlight(true);
+    				}
+        			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Now in " + ChatColor.GOLD + "GODMODE");
+        			god.add(player);
+    			} else {
+    				player.setInvulnerable(false);
+    				if (!player.getGameMode().equals(GameMode.CREATIVE) || !player.getGameMode().equals(GameMode.SPECTATOR)) {
+    				player.setAllowFlight(false);
+    				}
+        			sender.sendMessage(pluginprefix + ChatColor.RED + "No longer in " + ChatColor.GOLD + "GODMODE");
+        			god.remove(player);
+    			}
+    		} else {
+    			sender.sendMessage(noperm);
+    		}
+    	} else {
+    		sender.sendMessage(console);
+    	}
 		return false;
-	}
+    }
 }

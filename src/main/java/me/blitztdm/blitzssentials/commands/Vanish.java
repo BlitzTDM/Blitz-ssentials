@@ -34,66 +34,66 @@ public class Vanish implements TabExecutor,Listener {
 	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (sender instanceof Player) {
-			Player player = (Player) sender;
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    	if (sender instanceof Player) {
+    		Player player = (Player) sender;
 
-			String leavemessage = config.getString("leave-message.leave.leave-message");
-			leavemessage = ChatColor.translateAlternateColorCodes('&', leavemessage);
-			leavemessage = leavemessage.replace("%player%", player.getName());
-			leavemessage = leavemessage.replace("%playerfull%", player.getDisplayName());
-			leavemessage = leavemessage.replace("%line%", line);
-
-			String globalmessage = config.getString("join-message.global.global-message");
-			globalmessage = ChatColor.translateAlternateColorCodes('&', globalmessage);
-			globalmessage = globalmessage.replace("%player%", player.getName());
-			globalmessage = globalmessage.replace("%playerfull%", player.getDisplayName());
-			globalmessage = globalmessage.replace("%line%", line);
-
-			//Vanish Command
-			if (cmd.getName().equalsIgnoreCase("vanish") || cmd.getName().equalsIgnoreCase("v")) {
-				setVanish(sender, args, leavemessage, globalmessage, true);
-
-				//Unvanish Command
-			} else if (cmd.getName().equalsIgnoreCase("unvanish") || cmd.getName().equalsIgnoreCase("uv")) {
-				setVanish(sender, args, leavemessage, globalmessage, false);
-
-				//Toggle Vanish Command
-			} else if (cmd.getName().equalsIgnoreCase("togglevanish") || cmd.getName().equalsIgnoreCase("tv")) {
-				if (sender.hasPermission("BlitzSsentials.vanish")) {
-					if (!vanished.contains(player)) {
-						setVanish(sender, args, leavemessage, globalmessage, true);
-					} else if (vanished.contains(player)) {
-						setVanish(sender, args, leavemessage, globalmessage, false);
-					}
-				} else {
-					sender.sendMessage(noperm);
+    	    String leavemessage = config.getString("leave-message.leave.leave-message");
+    	    leavemessage = ChatColor.translateAlternateColorCodes('&', leavemessage);
+    	    leavemessage = leavemessage.replace("%player%", player.getName());
+    	    leavemessage = leavemessage.replace("%playerfull%", player.getDisplayName());
+    	    leavemessage = leavemessage.replace("%line%", line);
+    	    
+    	    String globalmessage = config.getString("join-message.global.global-message");
+    	    globalmessage = ChatColor.translateAlternateColorCodes('&', globalmessage);
+    	    globalmessage = globalmessage.replace("%player%", player.getName());
+    	    globalmessage = globalmessage.replace("%playerfull%", player.getDisplayName());
+    	    globalmessage = globalmessage.replace("%line%", line);
+    	    
+    		//Vanish Command
+    		if (cmd.getName().equalsIgnoreCase("vanish") || cmd.getName().equalsIgnoreCase("v")) {
+    		setVanish(sender, args, leavemessage, globalmessage, true);
+        	
+    		//Unvanish Command
+    		} else if (cmd.getName().equalsIgnoreCase("unvanish") || cmd.getName().equalsIgnoreCase("uv")) {
+        		setVanish(sender, args, leavemessage, globalmessage, false);
+            
+        //Toggle Vanish Command
+    	} else if (cmd.getName().equalsIgnoreCase("togglevanish") || cmd.getName().equalsIgnoreCase("tv")) {
+    		if (sender.hasPermission("BlitzSsentials.vanish")) {
+    			if (!vanished.contains(player)) {
+    				setVanish(sender, args, leavemessage, globalmessage, true);
+    			} else if (vanished.contains(player)) {
+					setVanish(sender, args, leavemessage, globalmessage, false);
 				}
-			}
-		} else {
-			sender.sendMessage(console);
-		}
-		return true;
-	}
-
-	@EventHandler
-	@SuppressWarnings("deprecation")
-	public void onJoin(PlayerJoinEvent event) {
-		for (Player player : vanished) {
-			event.getPlayer().hidePlayer(player);
-		}
-	}
-	@EventHandler
-	public void onLeave(PlayerQuitEvent event) {
-		if (vanished.contains(event.getPlayer())) {
-			event.setQuitMessage(null);
-			vanished.remove(event.getPlayer());
-			event.getPlayer().setCollidable(true);
-			event.getPlayer().setCanPickupItems(true);
-			event.getPlayer().setInvulnerable(false);
-			event.getPlayer().setFlying(false);
-		}
-	}
+    		} else {
+    			sender.sendMessage(noperm);
+    		}
+    		}
+    	} else {
+    		sender.sendMessage(console);
+    	}
+    	return true;
+    }
+    
+    @EventHandler
+    @SuppressWarnings("deprecation")
+    public void onJoin(PlayerJoinEvent event) {
+    	for (Player player : vanished) {
+    		event.getPlayer().hidePlayer(player);
+    	}
+    }
+    @EventHandler
+    public void onLeave(PlayerQuitEvent event) {
+    	if (vanished.contains(event.getPlayer())) {
+    	event.setQuitMessage(null);
+    	vanished.remove(event.getPlayer());
+    	event.getPlayer().setCollidable(true);
+    	event.getPlayer().setCanPickupItems(true);
+    	event.getPlayer().setInvulnerable(false);
+    	event.getPlayer().setFlying(false);
+    	}
+    }
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
@@ -122,8 +122,8 @@ public class Vanish implements TabExecutor,Listener {
 					player.setInvulnerable(true);
 					player.setAllowFlight(true);
 					if (args.length == 1 && (args[0].equalsIgnoreCase("f") || args[0].equalsIgnoreCase("false") || args[0].equalsIgnoreCase("h") || args[0].equalsIgnoreCase("hide"))) {
-						sender.sendMessage(pluginprefix + ChatColor.RED + "Didn't send leave Message");
-					} else {
+							sender.sendMessage(pluginprefix + ChatColor.RED + "Didn't send leave Message");
+						} else {
 						sender.sendMessage(pluginprefix + ChatColor.GREEN + "Sent leave Message");
 						if (config.getBoolean("leave-message.leave.enable-leave-message")) {
 							Bukkit.broadcastMessage(leavemessage);

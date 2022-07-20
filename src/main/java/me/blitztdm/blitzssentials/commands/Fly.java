@@ -22,42 +22,42 @@ public class Fly implements CommandExecutor {
 	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (sender.hasPermission("BlitzSsentials.fly") || !(sender instanceof Player)) {
-			if (args.length == 0 && sender instanceof Player) {
-				Player player = (Player) sender;
-				if (!(player.getAllowFlight())) {
-					player.setAllowFlight(true);
-					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Enabled Flying!");
-				} else if (player.getAllowFlight()) {
-					player.setAllowFlight(false);
-					sender.sendMessage(pluginprefix + ChatColor.RED + "Disabled Flying!");
-				}
-			} else if (sender.hasPermission("BlitzSsentials.fly.other") || !(sender instanceof Player)) {
-				if (args.length == 0 && !(sender instanceof Player)) {
-					sender.sendMessage(specifyplayer);
-				} else {
-					Player arg0 = Bukkit.getServer().getPlayer(args[0]);
-					if (arg0 == null) {
-						sender.sendMessage(cannotfind);
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    		if (sender.hasPermission("BlitzSsentials.fly") || !(sender instanceof Player)) {
+				if (args.length == 0 && sender instanceof Player) {
+					Player player = (Player) sender;
+					if (!(player.getAllowFlight())) {
+						player.setAllowFlight(true);
+						sender.sendMessage(pluginprefix + ChatColor.GREEN + "Enabled Flying!");
+					} else if (player.getAllowFlight()) {
+						player.setAllowFlight(false);
+						sender.sendMessage(pluginprefix + ChatColor.RED + "Disabled Flying!");
+					}
+				} else if (sender.hasPermission("BlitzSsentials.fly.other") || !(sender instanceof Player)) {
+					if (args.length == 0 && !(sender instanceof Player)) {
+						sender.sendMessage(specifyplayer);
 					} else {
-						if (!(arg0.getAllowFlight())) {
-							arg0.setAllowFlight(true);
-							arg0.sendMessage(pluginprefix + ChatColor.GREEN + "Enabled Flying!");
-							sender.sendMessage(pluginprefix + ChatColor.GREEN + "Enabled Flying for " + arg0.getDisplayName() + "!");
-						} else if (arg0.getAllowFlight()) {
-							arg0.setAllowFlight(false);
-							arg0.sendMessage(pluginprefix + ChatColor.RED + "Disabled Flying!");
-							sender.sendMessage(pluginprefix + ChatColor.RED + "Disabled Flying for " + arg0.getDisplayName() + "!");
+						Player arg0 = Bukkit.getServer().getPlayer(args[0]);
+						if (arg0 == null) {
+							sender.sendMessage(cannotfind);
+						} else {
+							if (!(arg0.getAllowFlight())) {
+								arg0.setAllowFlight(true);
+								arg0.sendMessage(pluginprefix + ChatColor.GREEN + "Enabled Flying!");
+								sender.sendMessage(pluginprefix + ChatColor.GREEN + "Enabled Flying for " + arg0.getDisplayName() + "!");
+							} else if (arg0.getAllowFlight()) {
+								arg0.setAllowFlight(false);
+								arg0.sendMessage(pluginprefix + ChatColor.RED + "Disabled Flying!");
+								sender.sendMessage(pluginprefix + ChatColor.RED + "Disabled Flying for " + arg0.getDisplayName() + "!");
+							}
 						}
 					}
+				} else {
+					sender.sendMessage(noperm);
 				}
 			} else {
 				sender.sendMessage(noperm);
 			}
-		} else {
-			sender.sendMessage(noperm);
-		}
 		return false;
-	}
+    }
 }
