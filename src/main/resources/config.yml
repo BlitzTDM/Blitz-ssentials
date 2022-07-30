@@ -130,8 +130,6 @@ leave-message:
 old-pvp:
   enable-old-pvp: false
 
-tpa:
-  enable-tpa: false
 # -----------------------------------------------------------
 # END OF BETA CONFIG
 # -----------------------------------------------------------

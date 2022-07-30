@@ -1,5 +1,5 @@
 name: Blitzssentials
-version: '${project.version}'
+version: V0.3.1
 main: me.blitztdm.blitzssentials.BlitzssentialsMain
 api-version: 1.17
 prefix: BZSs
@@ -42,6 +42,8 @@ permissions:
       BlitzSsentials.blocktop: true
       BlitzSsentials.broadcast.*: true
       BlitzSsentials.countdown: true
+      BlitzSsentials.sudo: true
+      BlitzSsentials.world: true
   BlitzSsentials.gamemode:
     description: Gives access to all BlitzSsential Gamemode Commands
     children:
@@ -68,6 +70,7 @@ permissions:
       BlitzSsentials.broadcast.server: true
       BlitzSsentials.broadcast.alert: true
       BlitzSsentials.countdown: true
+      BlitzSsentials.world: true
   BlitzSsentials.op:
     description: BlitzSsential Admin/OP Permission
     default: op
@@ -95,7 +98,7 @@ permissions:
 
 commands:
   bzss:
-    description: Default Command that does Nothing Right Now
+    description: Default Command, does Nothing Right Now
   bzsshelp:
     aliases:
       - bzssh
@@ -194,20 +197,17 @@ commands:
     aliases:
       - broadcastcountdown
       - bcc
-    description: Send a countdown to Everyone
+    description: Send a countdown to Everyone!
     permission: BlitzSsentials.broadcast.countdown
-  tpa:
-    description: Request to Teleport to someone
-    permission: BlitzSsentials.tpa
-  tpahere:
-    description: Request to someone to Teleport to you
-    permission: BlitzSsentials.tpa
-  tpaccept:
-    description: Accept to Teleport to you or them
-    permission: BlitzSsentials.tpa
-  tpdeny:
-    description: Deny to Teleport to you or them
-    permission: BlitzSsentials.tpa
+    #  tpa:
+    #    description: Request to Teleport to someone!
+    #    permission: BlitzSsentials.tpa
+    #  tpaccept:
+    #    description: Accept someone to Teleport to you!
+    #    permission: BlitzSsentials.tpa
+    #  tpdeny:
+    #    description: Deny someone to Teleport to you.
+    #    permission: BlitzSsentials.tpa
 
   feed:
     aliases:
@@ -243,6 +243,11 @@ commands:
       - surface
     description: Allows you to go to the Top most Block
     permission: BlitzSsentials.blocktop
+  world:
+    aliases:
+      - dimension
+    description: Go to other Worlds/Dimensions
+    permission: BlitzSsentials.world
 
   spawn:
     description: Go to Spawn/Join Position

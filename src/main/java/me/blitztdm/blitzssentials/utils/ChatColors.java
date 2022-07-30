@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 public class ChatColors implements Listener {
 	
-	private final Pattern pattern = Pattern.compile("&#[a-fA-F0-9]{6}");
+	public static Pattern pattern = Pattern.compile("&#[a-fA-F0-9]{6}");
 
 	BlitzssentialsMain plugin = BlitzssentialsMain.getPlugin(BlitzssentialsMain.class);
 	public ChatColors(BlitzssentialsMain plugin) {
@@ -24,9 +24,10 @@ public class ChatColors implements Listener {
 	public void onChat(AsyncPlayerChatEvent event) {
 		event.setMessage(format(event.getMessage()));
 	}
-	private String format(String msg) {
-		if (Bukkit.getVersion().contains("1.16") || Bukkit.getVersion().contains("1.17") || Bukkit.getVersion().contains("1.18")) {
-			
+
+	public static String format(String msg) {
+		if (Bukkit.getVersion().contains("1.16") || Bukkit.getVersion().contains("1.17") || Bukkit.getVersion().contains("1.18") || Bukkit.getVersion().contains("1.19")) {
+
 			Matcher match = pattern.matcher(msg);
 			while (match.find()) {
 				String color = msg.substring(match.start(), match.end());
@@ -38,3 +39,5 @@ public class ChatColors implements Listener {
 	}
 	
 }
+
+

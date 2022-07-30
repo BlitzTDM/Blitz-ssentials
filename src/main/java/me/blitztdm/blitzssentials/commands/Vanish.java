@@ -4,6 +4,7 @@ import me.blitztdm.blitzssentials.BlitzssentialsMain;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -79,9 +80,12 @@ public class Vanish implements TabExecutor,Listener {
     @EventHandler
     @SuppressWarnings("deprecation")
     public void onJoin(PlayerJoinEvent event) {
-    	for (Player player : vanished) {
-    		event.getPlayer().hidePlayer(player);
-    	}
+		Player joined = event.getPlayer();
+		if (!vanished.contains(joined)) {
+			for (Player player : vanished) {
+				event.getPlayer().hidePlayer(player);
+			}
+		}
     }
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
@@ -113,7 +117,9 @@ public class Vanish implements TabExecutor,Listener {
 			if (sender.hasPermission("BlitzSsentials.vanish")) {
 				if (!vanished.contains(player)) {
 					for (Player online : Bukkit.getOnlinePlayers()) {
-						online.hidePlayer(player);
+						if (!online.hasPermission("BlitzSsentials.vanish")) {
+							online.hidePlayer(player);
+						}
 					}
 					sender.sendMessage(pluginprefix + ChatColor.GREEN + "You are now Vanished");
 					vanished.add(player);
