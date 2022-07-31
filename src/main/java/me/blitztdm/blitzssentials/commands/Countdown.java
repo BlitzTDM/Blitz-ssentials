@@ -37,9 +37,9 @@ public class Countdown implements TabExecutor {
 							countdownI = Integer.parseInt(args[0]);
 						}
 						int finalCountdownI = countdownI;
-						new BukkitRunnable() {
+						int task = new BukkitRunnable() {
 							int i = finalCountdownI;
-			            	@Override
+							@Override
     			            public void run() {
     			                if (config.getBoolean("countdown.personal.enable-prefix") && i >= 0) {
         							String prefix = config.getString("countdown.personal.prefix");
@@ -63,7 +63,10 @@ public class Countdown implements TabExecutor {
         						}
         						i--;
     			                }
-    			            }.runTaskTimer(plugin, 0, 20);
+    			            }.runTaskTimer(plugin, 0, 20).getTaskId();
+						if (args[0].equalsIgnoreCase("cancel")) {
+							Bukkit.getScheduler().cancelTask(task);
+						}
     				} else {
     					sender.sendMessage(lessargs + "No countdown Number");
     				}
@@ -78,7 +81,7 @@ public class Countdown implements TabExecutor {
 							countdownI = Integer.parseInt(args[0]);
 						}
 						int finalCountdownI = countdownI;
-						new BukkitRunnable() {
+						int task = new BukkitRunnable() {
 							int i = finalCountdownI;
 			            	@Override
     			            public void run() {
@@ -104,7 +107,10 @@ public class Countdown implements TabExecutor {
         						}
         						i--;
     			                }
-    			            }.runTaskTimer(plugin, 0, 20);
+    			            }.runTaskTimer(plugin, 0, 20).getTaskId();
+						if (args[0].equalsIgnoreCase("cancel")) {
+							Bukkit.getScheduler().cancelTask(task);
+						}
     				} else {
     					sender.sendMessage(lessargs + "No countdown Number");
     				}
