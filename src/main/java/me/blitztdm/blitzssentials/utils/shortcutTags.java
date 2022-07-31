@@ -7,12 +7,10 @@ import org.bukkit.event.Listener;
 public class shortcutTags implements Listener {
 
 	//Plugin Prefix's
-	public static String defaultpluginprefix = ChatColor.AQUA + "[" + ChatColor.DARK_AQUA + "BlitzSsentials" + ChatColor.AQUA + "] ";
+	public static String pluginprefix = ChatColor.AQUA + "[" + ChatColor.DARK_AQUA + "BlitzSsentials" + ChatColor.AQUA + "] ";
     public static String pluginprefix2 = ChatColor.DARK_AQUA + "BlitzSsentials ";
     public static String bzssprefix = ChatColor.BLUE + "[" + ChatColor.DARK_AQUA + "BZ" + ChatColor.AQUA + "Ss" + ChatColor.BLUE + "] ";
     public static String bzssprefix2 = ChatColor.DARK_AQUA + "BZ" + ChatColor.AQUA + "Ss ";
-
-	public static String pluginprefix = defaultpluginprefix;
 	
 	//Shortcut Tags
 	public static String line = "------------------------------------";
@@ -29,10 +27,10 @@ public class shortcutTags implements Listener {
     public static String configversionS = "000300";
     public static int configversionI = 000300;
 
-    public static String pluginversion = "V0.3.1";
+    public static String pluginversion = "V0.3.0";
     
-    public static String pluginversionreal = "V0.3.1";
+    public static String pluginversionreal = "V0.3.0";
     
-    public static String lastpluginversion = "V0.3.0";
+    public static String lastpluginversion = "V0.2.2";
     public static String lastpluginversionquick = "VersionPlaceholder";
 }

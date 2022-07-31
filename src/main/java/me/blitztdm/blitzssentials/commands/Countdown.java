@@ -32,9 +32,13 @@ public class Countdown implements TabExecutor {
     		if (cmd.getName().equalsIgnoreCase("countdown")) {
     			if (sender.hasPermission("BlitzSsentials.countdown") || !(sender instanceof Player)) {
     				if (args.length == 1) {
-    					int countdownI = Integer.parseInt(args[0]);
-    					new BukkitRunnable() {
-			            	int i = countdownI;
+						int countdownI = 0;
+						if (!args[0].equalsIgnoreCase("cancel")) {
+							countdownI = Integer.parseInt(args[0]);
+						}
+						int finalCountdownI = countdownI;
+						new BukkitRunnable() {
+							int i = finalCountdownI;
 			            	@Override
     			            public void run() {
     			                if (config.getBoolean("countdown.personal.enable-prefix") && i >= 0) {
@@ -69,16 +73,19 @@ public class Countdown implements TabExecutor {
     		} else if (cmd.getName().equalsIgnoreCase("bccountdown")) {
     			if (sender.hasPermission("BlitzSsentials.broadcast.countdown") || !(sender instanceof Player)) {
     				if (args.length == 1) {
-    					int countdownI = Integer.parseInt(args[0]);
-    					new BukkitRunnable() {
-			            	int i = countdownI;
+						int countdownI = 0;
+						if (!args[0].equalsIgnoreCase("cancel")) {
+							countdownI = Integer.parseInt(args[0]);
+						}
+						int finalCountdownI = countdownI;
+						new BukkitRunnable() {
+							int i = finalCountdownI;
 			            	@Override
     			            public void run() {
     			                if (config.getBoolean("countdown.bc.enable-prefix") && i >= 0) {
         							String prefix = config.getString("countdown.bc.prefix");
         			    			
         							prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-        							prefix = ChatColor.translateAlternateColorCodes('�', prefix);
         							
         							Bukkit.getServer().broadcastMessage(prefix + i);
         						} else if (i >= 0) {
@@ -88,7 +95,6 @@ public class Countdown implements TabExecutor {
         							String end = config.getString("countdown.bc.end-message");
         			    			
         							end = ChatColor.translateAlternateColorCodes('&', end);
-        							end = ChatColor.translateAlternateColorCodes('�', end);
         							
         							Bukkit.getServer().broadcastMessage(end);
         							cancel();

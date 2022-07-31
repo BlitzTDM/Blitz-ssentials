@@ -18,6 +18,7 @@ public class World implements TabExecutor {
 
     BlitzssentialsMain plugin = BlitzssentialsMain.getPlugin(BlitzssentialsMain.class);
     FileConfiguration config = plugin.getConfig();
+
     public World(BlitzssentialsMain plugin) {
         this.plugin = plugin;
         plugin.getCommand("world").setExecutor(this);
@@ -54,7 +55,9 @@ public class World implements TabExecutor {
         List<String> worlds = new ArrayList<>();
         if (args.length == 1) {
             for (org.bukkit.World world : plugin.getServer().getWorlds()) {
-                if (args[0].toUpperCase().startsWith(world.toString()) || args[0].toUpperCase().contains(world.toString())) {
+                if (args[0].equalsIgnoreCase("")) {
+                    worlds.add(world.toString());
+                } else if (world.toString().contains(args[0])) {
                     worlds.add(world.toString());
                 }
             }
