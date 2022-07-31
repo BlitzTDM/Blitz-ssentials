@@ -11,6 +11,8 @@ public class shortcutTags implements Listener {
     public static String pluginprefix2 = ChatColor.DARK_AQUA + "BlitzSsentials ";
     public static String bzssprefix = ChatColor.BLUE + "[" + ChatColor.DARK_AQUA + "BZ" + ChatColor.AQUA + "Ss" + ChatColor.BLUE + "] ";
     public static String bzssprefix2 = ChatColor.DARK_AQUA + "BZ" + ChatColor.AQUA + "Ss ";
+
+    public static String defaultpluginprefix = pluginprefix;
 	
 	//Shortcut Tags
 	public static String line = "------------------------------------";
