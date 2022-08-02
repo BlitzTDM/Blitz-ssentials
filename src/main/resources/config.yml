@@ -1,6 +1,12 @@
 # BlitzSsentials Config!
 
 # -----------------------------------------------------------
+# Config Notes:
+
+# Use & for color codes! (Search 'MC Code codes' in a browser if you don't know what it is)
+# Use \n for Enter/Another Line
+# Remember the: Quotations ("<Message>")
+
 # MAIN/GENERAL CONFIG
 
 launchpad:
@@ -53,6 +59,11 @@ broadcast:
     volume: 2
     pitch: -10
 
+prefix-addon:
+# Add a prefix to addon to Blitzssentials (ex: [TydiumCraft Blitzssentials])
+  enable-addon: false
+  prefix: "&8ServerName"
+
 # -----------------------------------------------------------
 # END OF MAIN/GENERAL CONFIG
 # -----------------------------------------------------------
@@ -87,16 +98,13 @@ join-sound:
   volume: 2
   pitch: 0
   
-# PLACEHOLDERS:
+# PLACEHOLDERS: (For Join/Leave Config)
 # Use %player% for Playername
 # Use %line% for Line
 # Use %plugin% for Plugin and Plugin Version (Admin Only)
 # Use %api% for Plugin's Spigot API and Dependencies (Admin Only)
-# Use & for color codes!
-# Use \n for Enter/Another Line
 
-# NOTES:
-# Remember the: Quotations ("<Mesaage>")
+# NOTES: (For Join/Leave Config)
 # The Order of Messages is: Default-Personal, then Admin-Personal (If they have the permission), and last, Global
     
 join-message:

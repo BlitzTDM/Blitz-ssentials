@@ -150,13 +150,9 @@ commands:
     description: The Test Command for Leave Message
     permission: BlitzSsentials.test
   BZSsReload:
-    aliases:
-      - bzssreloadplugin
     description: The Plugins Plugin Reload Command
     permission: BlitzSsentials.reload
   BZSsConfig:
-    aliases:
-      - bzssreloadconfig
     description: The Plugins Config Reload Command
     permission: BlitzSsentials.reload
   BZSsInfo:

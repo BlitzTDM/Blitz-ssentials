@@ -1,11 +1,13 @@
 package me.blitztdm.blitzssentials.commands;
 
 import me.blitztdm.blitzssentials.BlitzssentialsMain;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.io.File;
@@ -31,18 +33,29 @@ public class PluginConfig implements TabExecutor {
     			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Reloading Config");
     			File confyml = new File(plugin.getDataFolder(), "config.yml");
     			File confymlbackup = new File(plugin.getDataFolder(), "configOld.yml");
-    			
+				YamlConfiguration backup;
     			if (confyml.exists() && !(confymlbackup.exists())) {
-    			confyml.renameTo(confymlbackup);
-    				sender.sendMessage(bzssprefix + ChatColor.YELLOW + "Created Config Backup and Generated New Config");
+    				confyml.renameTo(confymlbackup);
+					backup = YamlConfiguration.loadConfiguration(confymlbackup.getAbsoluteFile());
+					ArrayList<String> keys = new ArrayList<String>();
+					keys.addAll(backup.getKeys(true));
+					plugin.saveDefaultConfig();
+					for (String key : keys) {
+						if (!backup.get(key).toString().contains("MemorySection[")) {
+							config.set(key, backup.get(key));
+							plugin.saveDefaultConfig();
+						}
+					}
+					plugin.reloadConfig();
+
+					sender.sendMessage(bzssprefix + ChatColor.YELLOW + "Created Config Backup and Generated New Config");
     			} else {
     				sender.sendMessage(bzssprefix + ChatColor.YELLOW + "Remove or Rename configOld.yml to Create new Config and Backup current Config");
     			}
     		} else if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-		    	plugin.saveDefaultConfig();
-				plugin.getConfig().options().copyDefaults(true);
-				plugin.reloadConfig();
+				config.options().copyDefaults(false);
 				plugin.saveDefaultConfig();
+				plugin.reloadConfig();
     			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Config Reloaded");
     		} else {
     			if (args.length >= 2) {

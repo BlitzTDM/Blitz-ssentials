@@ -61,7 +61,9 @@ public class JoinMessage implements Listener {
 	    
 	    if (config.getBoolean("join-message.global.enable-global")) {
 	    	event.setJoinMessage(globalmessage);
-	    }
+	    } else {
+			event.setJoinMessage(null);
+		}
 	    if ((player.hasPermission("BlitzSsentials.join"))) {
 	    	if (config.getBoolean("join-message.default-personal.enable-default-personal")) {
 	    		player.sendMessage(defaultmessage);

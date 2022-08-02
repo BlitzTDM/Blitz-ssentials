@@ -11,7 +11,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import static me.blitztdm.blitzssentials.utils.shortcutTags.lessargs;
 import static me.blitztdm.blitzssentials.utils.shortcutTags.noperm;
@@ -27,6 +29,9 @@ public class Countdown implements TabExecutor {
 		plugin.getCommand("bccountdown").setExecutor(this);
 	}
 
+	HashMap<String, Boolean> personalCD = new HashMap<String, Boolean>();
+	boolean bccd;
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     		if (cmd.getName().equalsIgnoreCase("countdown")) {
@@ -35,22 +40,28 @@ public class Countdown implements TabExecutor {
 						int countdownI = 0;
 						if (!args[0].equalsIgnoreCase("cancel")) {
 							countdownI = Integer.parseInt(args[0]);
+							personalCD.put(sender.getName(), true);
+						} else {
+							personalCD.put(sender.getName(), false);
 						}
 						int finalCountdownI = countdownI;
-						int task = new BukkitRunnable() {
+						new BukkitRunnable() {
 							int i = finalCountdownI;
 							@Override
     			            public void run() {
-    			                if (config.getBoolean("countdown.personal.enable-prefix") && i >= 0) {
+    			                if (config.getBoolean("countdown.personal.enable-prefix") && i > 0) {
         							String prefix = config.getString("countdown.personal.prefix");
         			    			
         							prefix = ChatColor.translateAlternateColorCodes('&', prefix);
         							
         							sender.sendMessage(prefix + i);
-        						} else if (i >= 0) {
+        						} else if (i > 0) {
         							sender.sendMessage(String.valueOf(i));
         						}
-        						if (i == 0) {
+								if (!personalCD.get(sender.getName())) {
+									i = 0;
+								}
+        						if (i <= 0) {
         							String end = config.getString("countdown.personal.end-message");
         			    			
         							end = ChatColor.translateAlternateColorCodes('&', end);
@@ -58,15 +69,9 @@ public class Countdown implements TabExecutor {
         							sender.sendMessage(end);
         							cancel();
         						}
-        						if (args[0].equalsIgnoreCase("cancel")) {
-        							cancel();
-        						}
         						i--;
     			                }
-    			            }.runTaskTimer(plugin, 0, 20).getTaskId();
-						if (args[0].equalsIgnoreCase("cancel")) {
-							Bukkit.getScheduler().cancelTask(task);
-						}
+    			            }.runTaskTimer(plugin, 0, 20);
     				} else {
     					sender.sendMessage(lessargs + "No countdown Number");
     				}
@@ -79,22 +84,28 @@ public class Countdown implements TabExecutor {
 						int countdownI = 0;
 						if (!args[0].equalsIgnoreCase("cancel")) {
 							countdownI = Integer.parseInt(args[0]);
+							bccd = true;
+						} else {
+							bccd = false;
 						}
 						int finalCountdownI = countdownI;
-						int task = new BukkitRunnable() {
+						new BukkitRunnable() {
 							int i = finalCountdownI;
 			            	@Override
     			            public void run() {
-    			                if (config.getBoolean("countdown.bc.enable-prefix") && i >= 0) {
+    			                if (config.getBoolean("countdown.bc.enable-prefix") && i > 0) {
         							String prefix = config.getString("countdown.bc.prefix");
         			    			
         							prefix = ChatColor.translateAlternateColorCodes('&', prefix);
         							
         							Bukkit.getServer().broadcastMessage(prefix + i);
-        						} else if (i >= 0) {
+        						} else if (i > 0) {
         							Bukkit.getServer().broadcastMessage(String.valueOf(i));
         						}
-        						if (i == 0) {
+								if (!bccd) {
+									i = 0;
+								}
+        						if (i <= 0) {
         							String end = config.getString("countdown.bc.end-message");
         			    			
         							end = ChatColor.translateAlternateColorCodes('&', end);
@@ -102,15 +113,9 @@ public class Countdown implements TabExecutor {
         							Bukkit.getServer().broadcastMessage(end);
         							cancel();
         						}
-        						if (args[0].equalsIgnoreCase("cancel")) {
-        							cancel();
-        						}
         						i--;
     			                }
-    			            }.runTaskTimer(plugin, 0, 20).getTaskId();
-						if (args[0].equalsIgnoreCase("cancel")) {
-							Bukkit.getScheduler().cancelTask(task);
-						}
+    			            }.runTaskTimer(plugin, 0, 20);
     				} else {
     					sender.sendMessage(lessargs + "No countdown Number");
     				}

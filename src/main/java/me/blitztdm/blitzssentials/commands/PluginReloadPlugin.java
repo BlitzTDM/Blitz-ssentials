@@ -1,6 +1,7 @@
 package me.blitztdm.blitzssentials.commands;
 
 import me.blitztdm.blitzssentials.BlitzssentialsMain;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -25,11 +26,9 @@ public class PluginReloadPlugin implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     		if (sender.hasPermission("BlitzSsentials.reload") || !(sender instanceof Player)) {
     			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Reloading Plugin");
-				plugin.saveDefaultConfig();
     			plugin.getPluginLoader().disablePlugin(plugin);
+				Bukkit.getScheduler().cancelTasks(plugin);
     			plugin.getPluginLoader().enablePlugin(plugin);
-				config.options().copyDefaults(true);
-				plugin.saveDefaultConfig();
     			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Plugin Reloaded");
     		} else {
     			sender.sendMessage(noperm);

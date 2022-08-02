@@ -5,6 +5,7 @@ import me.blitztdm.blitzssentials.events.*;
 import me.blitztdm.blitzssentials.special.bzssSpecialCommands;
 import me.blitztdm.blitzssentials.utils.ChatColors;
 import me.blitztdm.blitzssentials.utils.Metrics;
+import me.blitztdm.blitzssentials.utils.shortcutTags;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.attribute.Attribute;
@@ -28,14 +29,8 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
                 + ChatColor.GREEN + "|Plugin Enabled| " + ChatColor.AQUA + pluginversion + ChatColor.RESET + "\n"
                 + ChatColor.GOLD + line);
 
-        //BStats
-        // All you have to do is adding the following two lines in your onEnable method.
-        // You can find the plugin ids of your plugins on the page https://bstats.org/Blitzssentials
-        int pluginId = 13142; // <-- Replace with the id of your plugin!
+        int pluginId = 13142;
         Metrics metrics = new Metrics(this, pluginId);
-
-        // Optional: Add custom charts
-        //  metrics.addCustomChart(new Metrics.SimplePie("chart_id", () -> "My value"));
 
         //Config
         getConfig().options().copyDefaults(true);
@@ -75,6 +70,8 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
         }
 
         //Events/Utils
+        new shortcutTags(this);
+        shortcutTags.setPrefixAddon(this);
         new ChatColors(this);
         new JoinMessage(this);
         new JoinPosition(this);
@@ -128,8 +125,7 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
                 + defaultpluginprefix + "Plugin By BlitzTDM " + ChatColor.AQUA + "\n"
                 + ChatColor.RED + "|Plugin Disabled| " + ChatColor.AQUA + pluginversion + ChatColor.RESET + "\n"
                 + ChatColor.GOLD + line);
-
+        getConfig().options().copyDefaults(false);
         saveDefaultConfig();
-
     }
 }

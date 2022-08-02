@@ -40,6 +40,8 @@ public class LeaveMessage implements Listener {
     	event.setQuitMessage(null);
     	} else if (config.getBoolean("leave-message.leave.enable-leave-message")) {
     		event.setQuitMessage(leavemessage);
-    	}
+    	} else {
+            event.setQuitMessage(null);
+        }
     }
 }
