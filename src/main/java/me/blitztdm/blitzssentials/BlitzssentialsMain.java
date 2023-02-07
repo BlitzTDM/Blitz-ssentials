@@ -78,7 +78,7 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
         new LeaveMessage(this);
         new LaunchPad(this);
         new OldPvp(this);
-        new experienceBottle(this);
+        new Gameplay(this);
 
         //Commands
         new Help(this);

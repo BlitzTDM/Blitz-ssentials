@@ -81,6 +81,7 @@ mass-summon:
 #Allows a player to Sneak-Right-Click a EXP Bottle to collect EXP directly.
 enable-sneak-exp: false
 
+log-item-despawn: true
 
 
 # -----------------------------------------------------------
@@ -147,6 +148,9 @@ leave-message:
 # WARNING: All these features are in BETA, may not work, and/or may crash your server | Disabled on Default
 old-pvp:
   enable-old-pvp: false
+
+death-chest:
+  enable: false
 
 # -----------------------------------------------------------
 # END OF BETA CONFIG
