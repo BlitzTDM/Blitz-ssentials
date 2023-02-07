@@ -32,66 +32,24 @@ public class Weather implements TabExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("weather")) {
-			if (sender instanceof Player) {
-				Player player = (Player) sender;
-				if (sender.hasPermission("BlitzSsentials.weather")) {
-					if (label.equalsIgnoreCase("weather")) {
-						if (args[0].equalsIgnoreCase("clear")) {
-							sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "CLEAR");
-							player.getWorld().setThundering(false);
-							player.getWorld().setStorm(false);
-						} else if (args[0].equalsIgnoreCase("rain")) {
-							sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "RAIN");
-							player.getWorld().setThundering(false);
-							player.getWorld().setStorm(true);
-						} else if (args[0].equalsIgnoreCase("downpour")) {
-							sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "RAIN");
-							player.getWorld().setThundering(false);
-							player.getWorld().setStorm(true);
-						} else if (args[0].equalsIgnoreCase("thunder")) {
-							sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "LIGHTNING AND THE THUNDER");
-							player.getWorld().setStorm(true);
-							player.getWorld().setThundering(true);
-						} else if (args[0].equalsIgnoreCase("lighting")) {
-							sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "LIGHTNING AND THE THUNDER");
-							player.getWorld().setStorm(true);
-							player.getWorld().setThundering(true);
-						}
-					}
-				} else {
-					sender.sendMessage(noperm);
-				}
+			if (sender.hasPermission("BlitzSsentials.weather") || !(sender instanceof Player)) {
+				weatherChange(sender, args);
 			} else {
-				World mainworld = Bukkit.getWorlds().get(0);
-
-				if (args[0].equalsIgnoreCase("clear")) {
-					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "CLEAR");
-					mainworld.setThundering(false);
-					mainworld.setStorm(false);
-				} else if (args[0].equalsIgnoreCase("rain")) {
-					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "RAIN");
-					mainworld.setThundering(false);
-					mainworld.setStorm(true);
-				} else if (args[0].equalsIgnoreCase("downpour")) {
-					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "RAIN");
-					mainworld.setThundering(false);
-					mainworld.setStorm(true);
-				} else if (args[0].equalsIgnoreCase("thunder")) {
-					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "LIGHTNING AND A THUNDER");
-					mainworld.setStorm(true);
-					mainworld.setThundering(true);
-				} else if (args[0].equalsIgnoreCase("lighting")) {
-					sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "LIGHTNING AND A THUNDER");
-					mainworld.setStorm(true);
-					mainworld.setThundering(true);
-				}
+				sender.sendMessage(noperm);
 			}
-		} else if (cmd.getName().equalsIgnoreCase("weatherclear")) {
-			changeW(sender, false, false, "CLEAR");
-		} else if (cmd.getName().equalsIgnoreCase("weatherrain")) {
-			changeW(sender, false, true, "RAIN");
-		} else if (cmd.getName().equalsIgnoreCase("weatherthunder")) {
-			changeW(sender, true, true, "LIGHTNING AND A THUNDER");
+		} else {
+			ArrayList<String> otherargs = new ArrayList<>();
+			if (cmd.getName().equalsIgnoreCase("weatherclear")) {
+				otherargs.add("clear");
+			} else if (cmd.getName().equalsIgnoreCase("weatherrain")) {
+				otherargs.add("rain");
+			} else if (cmd.getName().equalsIgnoreCase("weatherthunder")) {
+				otherargs.add("thunder");
+			}
+			if (args.length > 1 && Bukkit.getWorlds().contains(args[1])) {
+				otherargs.add(args[1]);
+			}
+			weatherChange(sender, otherargs.toArray(new String[0]));
 		}
 		return false;
 	}
@@ -104,6 +62,10 @@ public class Weather implements TabExecutor {
 				weather.add("clear");
 				weather.add("rain");
 				weather.add("thunder");
+			} else if (args.length == 2) {
+				for (World world : Bukkit.getWorlds()) {
+					weather.add(world.getName());
+				}
 			}
 			return weather;
 		} else {
@@ -111,22 +73,37 @@ public class Weather implements TabExecutor {
 		}
 	}
 
-	public void changeW(CommandSender sender, Boolean thunder, Boolean storm, String name) {
-		if (sender instanceof Player) {
-			Player player = (Player) sender;
-			if (sender.hasPermission("BlitzSsentials.weather")) {
-				sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + name);
-				player.getWorld().setThundering(thunder);
-				player.getWorld().setStorm(storm);
-			} else {
-				sender.sendMessage(noperm);
-			}
+	public void weatherChange(CommandSender sender, String[] args) {
+		World world;
+		if (args.length > 1 && Bukkit.getWorlds().contains(args[1])) {
+			world = Bukkit.getWorld(args[1]);
 		} else {
-			World mainworld = Bukkit.getWorlds().get(0);
-			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + name);
-			mainworld.setThundering(thunder);
-			mainworld.setStorm(storm);
+			if (sender instanceof Player) {
+				world = ((Player) sender).getWorld();
+			} else {
+				world = Bukkit.getWorlds().get(0);
+			}
+		}
+		if (args[0].equalsIgnoreCase("clear")) {
+			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "CLEAR");
+			world.setThundering(false);
+			world.setStorm(false);
+		} else if (args[0].equalsIgnoreCase("rain")) {
+			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "RAIN");
+			world.setThundering(false);
+			world.setStorm(true);
+		} else if (args[0].equalsIgnoreCase("downpour")) {
+			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "RAIN");
+			world.setThundering(false);
+			world.setStorm(true);
+		} else if (args[0].equalsIgnoreCase("thunder")) {
+			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "LIGHTNING AND A THUNDER");
+			world.setStorm(true);
+			world.setThundering(true);
+		} else if (args[0].equalsIgnoreCase("lighting")) {
+			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Weather has been set to " + ChatColor.GOLD + "LIGHTNING AND A THUNDER");
+			world.setStorm(true);
+			world.setThundering(true);
 		}
 	}
-
 }

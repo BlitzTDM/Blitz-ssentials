@@ -1,7 +1,6 @@
 package me.blitztdm.blitzssentials.commands;
 
 import me.blitztdm.blitzssentials.BlitzssentialsMain;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

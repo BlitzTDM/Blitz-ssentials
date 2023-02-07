@@ -60,7 +60,7 @@ broadcast:
     pitch: -10
 
 prefix-addon:
-# Add a prefix to addon to Blitzssentials (ex: [TydiumCraft Blitzssentials])
+# Add a prefix to addon to Blitzssentials (ex: [ServerName Blitzssentials])
   enable-addon: false
   prefix: "&8ServerName"
 
@@ -75,6 +75,16 @@ mass-summon:
 
 # -----------------------------------------------------------
 # END OF COMMANDS CONFIG
+# -----------------------------------------------------------
+# GAMEPLAY CONFIG
+
+#Allows a player to Sneak-Right-Click a EXP Bottle to collect EXP directly.
+enable-sneak-exp: false
+
+
+
+# -----------------------------------------------------------
+# END OF GAMEPLAY CONFIG
 # -----------------------------------------------------------
 # JOIN/LEAVE CONFIG
 
@@ -146,4 +156,4 @@ old-pvp:
 # -----------------------------------------------------------
 # End of the line... Literally
 # DO NOT CHANGE THIS!
-config-version: 000300
+config-version: 000400

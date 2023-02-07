@@ -52,7 +52,7 @@ public class LaunchPad implements Listener {
     	        player.spawnParticle(Particle.valueOf(particle), event.getFrom(), particlecount);
 				player.setVelocity(new Vector().setY(multiplyY));
 				player.playSound(player.getLocation(), Sound.valueOf(sound1), volume1, pitch1);
-				
+
     			Bukkit.getScheduler().scheduleAsyncDelayedTask(plugin, new Runnable() {
 					@Override
 					public void run() {

@@ -1,7 +1,6 @@
 package me.blitztdm.blitzssentials.special;
 
 import me.blitztdm.blitzssentials.BlitzssentialsMain;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Particle;
@@ -14,7 +13,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 import static me.blitztdm.blitzssentials.utils.shortcutTags.bzssprefix;
 
@@ -28,34 +26,34 @@ public class bzssSpecialCommands implements CommandExecutor {
 		plugin.getCommand("bzss").setExecutor(this);
 	}
 
-	ArrayList<UUID> BlitzTDMTrailArray = new ArrayList<UUID>();
+	ArrayList<String> BlitzTDMTrailArray = new ArrayList<String>();
 	String BlitzTDMUuid = "a22cdac1-2856-44c3-8b7b-3f57f06ecf18";
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
 		createTrail(sender, args, "BlitzTDMCosmeticTrail", BlitzTDMTrailArray, BlitzTDMUuid, 0,0,204, 0,255,255, 102,0,204, 0,128,255);
-
+		
 		return false;
 	}
 
-	public void createTrail(CommandSender sender, String[] args, String cmdArg, ArrayList<UUID> nameArray, String nameUUID, int r1, int g1, int b1, int r2, int g2, int b2, int r3, int g3, int b3, int r4, int g4, int b4){
+	public void createTrail(CommandSender sender, String[] args, String cmdArg, ArrayList<String> nameArray, String nameUUID, int r1, int g1, int b1, int r2, int g2, int b2, int r3, int g3, int b3, int r4, int g4, int b4){
 		if (args.length == 1 && args[0].equalsIgnoreCase(cmdArg)) {
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
 				if (player.getUniqueId().toString().equals(nameUUID) || player.getUniqueId().toString().equals(BlitzTDMUuid)) {
-					sender.sendMessage(bzssprefix + player.getUniqueId());
-					if (!(nameArray.contains(player.getUniqueId()))) {
-						nameArray.add(player.getUniqueId());
-						sender.sendMessage(bzssprefix + ChatColor.GREEN + "Successfully Applied Special " + Bukkit.getOfflinePlayer(nameUUID).getName() + " Cosmetic Trail");
+					sender.sendMessage(bzssprefix + player.getUniqueId().toString());
+					if (!(nameArray.contains(player.getUniqueId().toString()))) {
+						nameArray.add(player.getUniqueId().toString());
+						sender.sendMessage(bzssprefix + ChatColor.GREEN + "Successfully Applied Special " + cmdArg);
 					} else {
-						nameArray.remove(player.getUniqueId());
-						sender.sendMessage(bzssprefix + ChatColor.RED + "Successfully Unapplied Special " + Bukkit.getOfflinePlayer(nameUUID).getName() + " Cosmetic Trail");
+						nameArray.remove(player.getUniqueId().toString());
+						sender.sendMessage(bzssprefix + ChatColor.RED + "Successfully Unapplied Special " + cmdArg);
 					}
 					new BukkitRunnable() {
 						@Override
 						public void run() {
-							if (nameArray.toString().contains(nameUUID) && player.isOnline() || nameArray.toString().contains(BlitzTDMUuid) && player.isOnline()) {
+							if (nameArray.contains(nameUUID) && player.isOnline() || nameArray.contains(BlitzTDMUuid) && player.isOnline()) {
 								float brightness = 1;
 								DustOptions color2 = new DustOptions(Color.fromRGB(r2, g2, b2), brightness);
 								DustOptions color3 = new DustOptions(Color.fromRGB(r3, g3, b3), brightness);

@@ -26,9 +26,9 @@ public class PluginReloadPlugin implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     		if (sender.hasPermission("BlitzSsentials.reload") || !(sender instanceof Player)) {
     			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Reloading Plugin");
-    			plugin.getPluginLoader().disablePlugin(plugin);
+				Bukkit.getPluginManager().disablePlugin(plugin);
 				Bukkit.getScheduler().cancelTasks(plugin);
-    			plugin.getPluginLoader().enablePlugin(plugin);
+				Bukkit.getPluginManager().enablePlugin(plugin);
     			sender.sendMessage(pluginprefix + ChatColor.GREEN + "Plugin Reloaded");
     		} else {
     			sender.sendMessage(noperm);

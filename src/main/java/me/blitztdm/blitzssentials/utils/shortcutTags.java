@@ -45,13 +45,13 @@ public class shortcutTags implements Listener {
     
     public static String apiversion = "Spigot-1.17";
     
-    public static String configversionS = "000300";
-    public static int configversionI = 000300;
+    public static String configversionS = "000400";
+    public static int configversionI = 000400;
 
-    public static String pluginversion = "V0.3.0";
+    public static String pluginversion = "V0.4.0Beta";
     
-    public static String pluginversionreal = "V0.3.0";
+    public static String pluginversionreal = "V0.4.0Beta";
     
-    public static String lastpluginversion = "V0.2.2";
+    public static String lastpluginversion = "V0.3.0";
     public static String lastpluginversionquick = "VersionPlaceholder";
 }

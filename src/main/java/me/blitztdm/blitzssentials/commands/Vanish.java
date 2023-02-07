@@ -13,6 +13,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.server.PluginDisableEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,18 +86,27 @@ public class Vanish implements TabExecutor,Listener {
 				event.getPlayer().hidePlayer(player);
 			}
 		}
+		joined.sendMessage(pluginprefix + ChatColor.GREEN + "NOTE: You are Currently Vanished since you left!");
     }
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
     	if (vanished.contains(event.getPlayer())) {
     	event.setQuitMessage(null);
-    	vanished.remove(event.getPlayer());
-    	event.getPlayer().setCollidable(true);
-    	event.getPlayer().setCanPickupItems(true);
-    	event.getPlayer().setInvulnerable(false);
-    	event.getPlayer().setFlying(false);
     	}
     }
+
+	@EventHandler
+	public void onPluginClose(PluginDisableEvent event) {
+		for (Player player : vanished) {
+			vanished.remove(player);
+			player.setCollidable(true);
+			player.setCanPickupItems(true);
+			player.setInvulnerable(false);
+			if (player.getGameMode() != GameMode.CREATIVE || player.getGameMode() != GameMode.SPECTATOR) {
+				player.setAllowFlight(false);
+			}
+		}
+	}
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
