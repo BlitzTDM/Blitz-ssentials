@@ -121,12 +121,12 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
 
     @Override
     public void onDisable() {
+        getConfig().options().copyDefaults(false);
+        saveDefaultConfig();
         Bukkit.getConsoleSender().sendMessage(""
                 + ChatColor.GOLD + line + ChatColor.DARK_AQUA + "\n"
                 + defaultpluginprefix + "Plugin By BlitzTDM " + ChatColor.AQUA + "\n"
                 + ChatColor.RED + "|Plugin Disabled| " + ChatColor.AQUA + pluginversion + ChatColor.RESET + "\n"
                 + ChatColor.GOLD + line);
-        getConfig().options().copyDefaults(false);
-        saveDefaultConfig();
     }
 }

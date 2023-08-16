@@ -14,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ExpBottleEvent;
 import org.bukkit.event.entity.ItemDespawnEvent;
+import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -57,9 +58,25 @@ public class Gameplay implements Listener {
             } else {
                 dropper = event.getEntityType().name();
             }
-            Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.WHITE + "Item Dropped by: " + dropper + " || Item: " + name + " || Amount: " + amount);
+            Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.WHITE + "Item Despawn Dropped by: " + dropper + " || Item: " + name + " || Amount: " + amount);
         }
     }
+    @EventHandler
+    public void itemSpawnLog(ItemSpawnEvent event) {
+        if (config.getBoolean("log-item-spawn")) {
+            ItemStack item = event.getEntity().getItemStack();
+            int amount = item.getAmount();
+            String name = item.getItemMeta().getDisplayName();
+            String dropper;
+            if (event.getEntity().getThrower() != null) {
+                dropper = Bukkit.getOfflinePlayer(event.getEntity().getThrower()).getPlayer().getDisplayName();
+            } else {
+                dropper = event.getEntityType().name();
+            }
+            Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.WHITE + "Item Spawn Dropped by: " + dropper + " || Item: " + name + " || Amount: " + amount);
+        }
+    }
+
 
     @EventHandler
     public void deathChest(PlayerDeathEvent event) {

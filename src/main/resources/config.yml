@@ -81,8 +81,8 @@ mass-summon:
 #Allows a player to Sneak-Right-Click a EXP Bottle to collect EXP directly.
 enable-sneak-exp: false
 
-log-item-despawn: true
-
+log-item-spawn: true
+log-item-despawn: false
 
 # -----------------------------------------------------------
 # END OF GAMEPLAY CONFIG
