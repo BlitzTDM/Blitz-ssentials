@@ -110,7 +110,9 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
         new Spawn(this);
         new MyInfo(this);
 
-        new Vanish(this);
+        if (getConfig().getBoolean("vanish")) {
+            new Vanish(this);
+        }
         new Sudo(this);
         new Gamemode(this);
         new Time(this);

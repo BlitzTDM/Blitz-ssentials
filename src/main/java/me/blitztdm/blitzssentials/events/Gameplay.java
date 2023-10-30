@@ -16,13 +16,15 @@ import org.bukkit.event.entity.ExpBottleEvent;
 import org.bukkit.event.entity.ItemDespawnEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.inventory.Inventory;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static me.blitztdm.blitzssentials.utils.shortcutTags.bzssprefix;
-import static me.blitztdm.blitzssentials.utils.shortcutTags.bzssprefix2;
 
 public class Gameplay implements Listener {
 
@@ -58,7 +60,7 @@ public class Gameplay implements Listener {
             } else {
                 dropper = event.getEntityType().name();
             }
-            Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.WHITE + "Item Despawn Dropped by: " + dropper + " || Item: " + name + " || Amount: " + amount);
+            Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.WHITE + "Item Despawned by: " + dropper + " || Item: " + name + " || Amount: " + amount);
         }
     }
     @EventHandler
@@ -73,26 +75,73 @@ public class Gameplay implements Listener {
             } else {
                 dropper = event.getEntityType().name();
             }
-            Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.WHITE + "Item Spawn Dropped by: " + dropper + " || Item: " + name + " || Amount: " + amount);
+            Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.WHITE + "Item Spawned by: " + dropper + " || Item: " + name + " || Amount: " + amount);
+        }
+    }
+    @EventHandler
+    public void itemDropLog(PlayerDropItemEvent event) {
+        if (config.getBoolean("log-item-drops")) {
+            ItemStack item = event.getItemDrop().getItemStack();
+            int amount = item.getAmount();
+            String name = event.getItemDrop().getName();
+            String dropper = event.getPlayer().getDisplayName();
+            Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.WHITE + "Item Dropped by: " + dropper + " || Item: " + name + " || Amount: " + amount);
+        }
+    }
+    @EventHandler
+    public void itemPickupLog(PlayerPickupItemEvent event) {
+        if (config.getBoolean("log-item-pickup")) {
+            ItemStack item = event.getItem().getItemStack();
+            int amount = item.getAmount();
+            String name = event.getItem().getName();
+            String dropper = event.getPlayer().getDisplayName();
+            Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.WHITE + "Item Picked Up by: " + dropper + " || Item: " + name + " || Amount: " + amount);
         }
     }
 
 
     @EventHandler
     public void deathChest(PlayerDeathEvent event) {
-        if (config.getBoolean("death-chest.enable")) {
-            int exp = event.getDroppedExp();
-            Player player = event.getEntity().getPlayer();
-            Location loc = event.getEntity().getLocation();
-            List<ItemStack> drops = event.getDrops();
-            loc.getBlock().setType(Material.CHEST);
-            Block chestBlock = loc.getBlock();
-            Chest chest = (Chest) chestBlock.getState();
+        Player player = event.getEntity().getPlayer();
+        int exp = event.getDroppedExp();
+        List<ItemStack> drops = event.getDrops();
+        if (config.getBoolean("death-chest.enable") && player.isOnline()) {
+            Location loc1 = player.getLocation();
+            Block chestBlock1 = loc1.getBlock();
+            Chest chest1;
+            Location loc2 = new Location(loc1.getWorld(), loc1.getX(), loc1.getY() + 1, loc1.getZ());
+            Block chestBlock2 = loc2.getBlock();
+            Chest chest2 = null;
             int expBottles = exp/7;
-            chest.setCustomName(player.getName() + " Death Chest");
-            chest.getBlockInventory().setContents(drops.toArray(new ItemStack[0]));
-            chest.getBlockInventory().addItem(new ItemStack(Material.EXPERIENCE_BOTTLE, expBottles));
-            drops.clear();
+            ItemStack xpBottle = new ItemStack(Material.EXPERIENCE_BOTTLE, expBottles);
+            ItemMeta xpmeta = xpBottle.getItemMeta();
+            xpmeta.setDisplayName(player.getDisplayName() + " XP");
+            List<String> lore = new ArrayList<String>();
+            lore.add("Obtain the XP of " + player.getName());
+            xpmeta.setLore(lore);
+            xpBottle.setItemMeta(xpmeta);
+            //Chest Creation
+            if (drops.size() > 0) {
+                loc1.getBlock().setType(Material.CHEST);
+                chest1 = (Chest) chestBlock1.getState();
+                chest1.setCustomName(player.getDisplayName() + " Death Chest");
+                if (drops.size() > 27) {
+                    loc2.getBlock().setType(Material.CHEST);
+                    chest2 = (Chest) chestBlock2.getState();
+                    chest2.setCustomName(player.getDisplayName() + " Death Chest");
+                }
+                chest1.getBlockInventory().addItem(xpBottle);
+                for (int i = 0; i < drops.size(); i++) {
+                    if (drops.get(i).getType() != null || drops.get(i).getType() != Material.AIR) {
+                        if (i <= (27-(Math.ceil(expBottles/64)))) {
+                            chest1.getBlockInventory().addItem(drops.get(i));
+                        } else {
+                            chest2.getBlockInventory().addItem(drops.get(i));
+                        }
+                    }
+                }
+            }
+            event.getDrops().clear();
         }
     }
 

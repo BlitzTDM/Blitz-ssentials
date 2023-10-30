@@ -26,7 +26,12 @@ public class ChatColors implements Listener {
 	}
 
 	public static String format(String msg) {
-		if (Bukkit.getVersion().contains("1.16") || Bukkit.getVersion().contains("1.17") || Bukkit.getVersion().contains("1.18") || Bukkit.getVersion().contains("1.19")) {
+		String version = Bukkit.getVersion();
+		if (version.contains("1.16") || version.contains("1.17") || version.contains("1.18") ||
+			version.contains("1.19") || version.contains("1.20") || version.contains("1.21") ||
+			version.contains("1.22") || version.contains("1.23") || version.contains("1.24") ||
+			version.contains("1.25") || version.contains("1.26") || version.contains("1.27") ||
+			version.contains("1.28") || version.contains("1.29") || version.contains("1.3")) {
 
 			Matcher match = pattern.matcher(msg);
 			while (match.find()) {
