@@ -7,15 +7,13 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
+import org.bukkit.block.Container;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.ExpBottleEvent;
-import org.bukkit.event.entity.ItemDespawnEvent;
-import org.bukkit.event.entity.ItemSpawnEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
@@ -78,23 +76,24 @@ public class Gameplay implements Listener {
             Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.WHITE + "Item Spawned by: " + dropper + " || Item: " + name + " || Amount: " + amount);
         }
     }
+
     @EventHandler
-    public void itemDropLog(PlayerDropItemEvent event) {
+    public void itemDropLog(EntityDropItemEvent event) {
         if (config.getBoolean("log-item-drops")) {
             ItemStack item = event.getItemDrop().getItemStack();
             int amount = item.getAmount();
             String name = event.getItemDrop().getName();
-            String dropper = event.getPlayer().getDisplayName();
+            String dropper = event.getEntity().getName();
             Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.WHITE + "Item Dropped by: " + dropper + " || Item: " + name + " || Amount: " + amount);
         }
     }
     @EventHandler
-    public void itemPickupLog(PlayerPickupItemEvent event) {
+    public void itemPickupLog(EntityPickupItemEvent event) {
         if (config.getBoolean("log-item-pickup")) {
             ItemStack item = event.getItem().getItemStack();
             int amount = item.getAmount();
             String name = event.getItem().getName();
-            String dropper = event.getPlayer().getDisplayName();
+            String dropper = event.getEntity().getName();
             Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.WHITE + "Item Picked Up by: " + dropper + " || Item: " + name + " || Amount: " + amount);
         }
     }
@@ -112,6 +111,7 @@ public class Gameplay implements Listener {
             Location loc2 = new Location(loc1.getWorld(), loc1.getX(), loc1.getY() + 1, loc1.getZ());
             Block chestBlock2 = loc2.getBlock();
             Chest chest2 = null;
+            //XP
             int expBottles = exp/7;
             ItemStack xpBottle = new ItemStack(Material.EXPERIENCE_BOTTLE, expBottles);
             ItemMeta xpmeta = xpBottle.getItemMeta();
@@ -120,24 +120,23 @@ public class Gameplay implements Listener {
             lore.add("Obtain the XP of " + player.getName());
             xpmeta.setLore(lore);
             xpBottle.setItemMeta(xpmeta);
+            drops.add(xpBottle);
             //Chest Creation
+            boolean fillChest1;
             if (drops.size() > 0) {
                 loc1.getBlock().setType(Material.CHEST);
                 chest1 = (Chest) chestBlock1.getState();
                 chest1.setCustomName(player.getDisplayName() + " Death Chest");
-                if (drops.size() > 27) {
+                if (drops.size() >= 27) {
                     loc2.getBlock().setType(Material.CHEST);
                     chest2 = (Chest) chestBlock2.getState();
                     chest2.setCustomName(player.getDisplayName() + " Death Chest");
                 }
-                chest1.getBlockInventory().addItem(xpBottle);
-                for (int i = 0; i < drops.size(); i++) {
-                    if (drops.get(i).getType() != null || drops.get(i).getType() != Material.AIR) {
-                        if (i <= (27-(Math.ceil(expBottles/64)))) {
-                            chest1.getBlockInventory().addItem(drops.get(i));
-                        } else {
-                            chest2.getBlockInventory().addItem(drops.get(i));
-                        }
+                for (int i = 0; i < ((drops.size()-1)+(Math.ceil(expBottles/64))); i++) {
+                    if (i < 27) {
+                        chest1.getBlockInventory().addItem(drops.get(i));
+                    } else {
+                        chest2.getBlockInventory().addItem(drops.get(i));
                     }
                 }
             }

@@ -10,6 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,13 +22,15 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
 
     private static BlitzssentialsMain instance;
 
+    public static ConsoleCommandSender console;
+
     @Override
     public void onEnable() {
-        Bukkit.getConsoleSender().sendMessage(""
-                + ChatColor.GOLD + line + ChatColor.DARK_AQUA + "\n"
-                + defaultpluginprefix + "Plugin By BlitzTDM " + ChatColor.AQUA + "\n"
-                + ChatColor.GREEN + "|Plugin Enabled| " + ChatColor.AQUA + pluginversion + ChatColor.RESET + "\n"
-                + ChatColor.GOLD + line);
+        console = Bukkit.getConsoleSender();
+        console.sendMessage(ChatColor.GOLD + line + ChatColor.DARK_AQUA);
+        console.sendMessage(defaultpluginprefix + "Plugin By BlitzTDM " + ChatColor.AQUA);
+        console.sendMessage(ChatColor.GREEN + "|Plugin Enabled| " + ChatColor.AQUA + pluginversion + ChatColor.RESET);
+        console.sendMessage(ChatColor.GOLD + line);
 
         int pluginId = 13142;
         Metrics metrics = new Metrics(this, pluginId);
@@ -37,9 +40,9 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
         saveDefaultConfig();
 
         if (getConfig().getInt("config-version") == configversionI && getConfig().contains("config-version")) {
-            Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.GREEN + "Config is Up-to-Date!");
+            console.sendMessage(bzssprefix + ChatColor.GREEN + "Config is Up-to-Date!");
         } else {
-            Bukkit.getConsoleSender().sendMessage(bzssprefix + ChatColor.RED + "Config is not Up-to-Date, use /BZSsConfig to Update it!");
+            console.sendMessage(bzssprefix + ChatColor.RED + "Config is not Up-to-Date, use /BZSsConfig to Update it!");
         }
 
         //checkVersion
@@ -48,15 +51,15 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
         String PluginError = checkVersion.VersionCheckError;
         new checkVersion(this).getVersion(version -> {
             if (pluginversion.equalsIgnoreCase(version)) {
-                Bukkit.getConsoleSender().sendMessage(PluginUpdated);
+                console.sendMessage(PluginUpdated);
             } else if (version.equalsIgnoreCase(pluginversionreal)) {
-                Bukkit.getConsoleSender().sendMessage(PluginUpdated);
+                console.sendMessage(PluginUpdated);
             } else if (version.equalsIgnoreCase(lastpluginversion)) {
-                Bukkit.getConsoleSender().sendMessage(PluginUpdated);
+                console.sendMessage(PluginUpdated);
             } else if (version.equalsIgnoreCase(lastpluginversionquick)) {
-                Bukkit.getConsoleSender().sendMessage(PluginUpdated);
+                console.sendMessage(PluginUpdated);
             } else {
-                Bukkit.getConsoleSender().sendMessage(PluginOutdated);
+                console.sendMessage(PluginOutdated);
             }});
 
         //Old PvP
@@ -125,10 +128,9 @@ public class BlitzssentialsMain extends JavaPlugin implements Listener {
     public void onDisable() {
         getConfig().options().copyDefaults(false);
         saveDefaultConfig();
-        Bukkit.getConsoleSender().sendMessage(""
-                + ChatColor.GOLD + line + ChatColor.DARK_AQUA + "\n"
-                + defaultpluginprefix + "Plugin By BlitzTDM " + ChatColor.AQUA + "\n"
-                + ChatColor.RED + "|Plugin Disabled| " + ChatColor.AQUA + pluginversion + ChatColor.RESET + "\n"
-                + ChatColor.GOLD + line);
+        console.sendMessage(ChatColor.GOLD + line + ChatColor.DARK_AQUA);
+        console.sendMessage(defaultpluginprefix + "Plugin By BlitzTDM " + ChatColor.AQUA);
+        console.sendMessage(ChatColor.RED + "|Plugin Disabled| " + ChatColor.AQUA + pluginversion + ChatColor.RESET);
+        console.sendMessage(ChatColor.GOLD + line);
     }
 }
